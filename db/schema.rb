@@ -11,14 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160523092217) do
+ActiveRecord::Schema.define(version: 20160523095358) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "apps", force: :cascade do |t|
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+    t.string   "app_icon"
+    t.string   "app_name"
+    t.string   "featured_image"
+    t.string   "app_url"
+    t.string   "apk_url"
+    t.integer  "author_id"
   end
 
   create_table "authors", force: :cascade do |t|
@@ -39,4 +45,5 @@ ActiveRecord::Schema.define(version: 20160523092217) do
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true, using: :btree
   add_index "authors", ["reset_password_token"], name: "index_authors_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "apps", "authors"
 end

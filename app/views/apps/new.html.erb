@@ -29,8 +29,8 @@
                                                 <div class="form-group fg-line">
                                 <label for="exampleInputEmail1" >App Name</label>
               
-             <%= f.text_field :app_name ,:class=>"form-control input-sm fult" ,:placeholder=>"Your app name goes here." %>
-
+   <input type="text" name="app_name" class="form-control input-sm" id="fn" onkeyup="printname(this)"  placeholder="Your app name goes here.">
+               
                     </div>
 
                    <div class="form-group fg-line">
@@ -175,13 +175,11 @@
 <script type="text/javascript">
 
 
-   $(".fult").on("keyup", function() 
-
-       {
-        var first = $(".fult").val();
+      function printname(val) {
+        var first = $("#fn").val();
        
                  $('#app_name').text(first);
-             });
+             };
 
 
         function changecolor(value)

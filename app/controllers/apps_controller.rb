@@ -62,6 +62,21 @@ class AppsController < ApplicationController
     end
   end
 
+  def posts
+  end
+
+  def push_notification
+  end
+
+  def all_notification
+  end
+
+  def customize
+  end
+
+  def support
+  end
+   
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app

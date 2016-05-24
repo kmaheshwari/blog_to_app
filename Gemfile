@@ -5,7 +5,16 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
-# Basic Auth
+gem 'bootstrap-sass', '~> 3.3.6'    # Bootstrap For rails
+gem "font-awesome-rails"
+gem 'bootstrap-select-rails'
+# Use SCSS for stylesheets
+gem 'sass-rails', '~> 5.0'
+# Use Uglifier as compressor for JavaScript assets
+gem 'uglifier', '>= 1.3.0'
+# Use CoffeeScript for .coffee assets and views
+gem 'coffee-rails', '~> 4.1.0'
+
 gem 'devise'
 # Rails Api
 gem 'grape'
@@ -15,6 +24,7 @@ gem 'httparty'
 gem 'jquery-rails'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
+
 gem 'rack-mini-profiler'
 
 gem 'redis'
@@ -23,10 +33,10 @@ gem 'redis-rails'
 gem 'redis-rack-cache'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-# Use Uglifier as compressor for JavaScript assets
-gem 'uglifier', '>= 1.3.0'
+
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

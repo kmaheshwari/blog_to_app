@@ -16,6 +16,7 @@ class AppsController < ApplicationController
   # GET /apps/new
   def new
     @app = App.new
+
   end
 
   # GET /apps/1/edit
@@ -25,8 +26,22 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
+    @app = App.new
     
-  end
+   
+     @app.author_id     =   params[:app][:author_id] 
+     @app.app_name      =   params[:app][:app_name]
+     @app.app_url       =   params[:app][:app_url]
+     @app.app_icon      =   params[:app][:app_icon] 
+     @app.contact_email =   params[:app][:contact_email]
+
+     @app.save
+    
+
+    
+
+    
+      end
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
@@ -75,6 +90,8 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.fetch(:app, {})
+      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
     end
+
+
 end

@@ -15,6 +15,12 @@ gem 'httparty'
 gem 'jquery-rails'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-mini-profiler'
+
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks

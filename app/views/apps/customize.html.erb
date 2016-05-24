@@ -1,11 +1,6 @@
 <section id="content">
     <div class="container">
-        <div class="block-header">
-           
-
-            
-
-        </div>
+        <div class="block-header"> </div>
 
         <div class="card">
             <div class="card-header">
@@ -17,16 +12,19 @@
             </div>
 
             <div class="card-body card-padding">
-                
-
                 <div class="row">
                     <div class="col-sm-6">
-                        <div class="form-group fg-line">
+                    <div class="form-group fg-line">
                         <label for="exampleInputEmail1">App Name</label>
                         <input type="email" class="form-control input-sm" id="exampleInputEmail1"
                                placeholder="Your app name goes here.">
                     </div>
-                   
+
+                   <div class="form-group fg-line">
+                        <label for="exampleInputEmail1">App URL</label>
+                        <input type="email" class="form-control input-sm" id="exampleInputEmail1"
+                               placeholder="Your app URL goes here.">
+                    </div>
                     
                    
 
@@ -38,8 +36,9 @@
                     <div class="form-group fg-line">
 
                     <label for="exampleInputPassword1">Choose Categories</label>
+                    <br>
                         <select class="selectpicker" multiple data-max-options="5"
-                                title='Choose any 5 categories'>
+                                title='Choose any 5 categories' tabindex="-98">
                             <option>Mustard</option>
                             <option>Ketchup</option>
                             <option>Relish</option>
@@ -49,21 +48,19 @@
                         </select>
                         </div>
                         
+                         <div class="form-group fg-line">
+                            <label for="exampleInputPassword1">Primary Color</label>
+                            <div class="fg-line dropdown">
+                                <input type="text" class="form-control cp-value" value="#03A9F4"
+                                       data-toggle="dropdown">
 
-                        
-                             <div class="form-group fg-line">
-                                <label for="exampleInputPassword1">Primary Color</label>
-                                <div class="fg-line dropdown">
-                                    <input type="text" class="form-control cp-value" value="#03A9F4"
-                                           data-toggle="dropdown">
-
-                                    <div class="dropdown-menu">
-                                        <div class="color-picker" data-cp-default="#03A9F4"></div>
-                                    </div>
-
-                                    <i class="cp-value"></i>
+                                <div class="dropdown-menu">
+                                    <div class="color-picker" data-cp-default="#03A9F4"></div>
                                 </div>
+
+                                <i class="cp-value"></i>
                             </div>
+                        </div>
 
 <div class="form-group fg-line">
                             <div class="toggle-switch toggle-switch-demo" data-ts-color="blue">
@@ -73,7 +70,7 @@
                         </div></div>
 
 
-<div class="form-group fg-line">
+                <div class="form-group fg-line">
                             <p class="f-500 c-black m-b-20"><span style="color:#5E5E5E">App Icon</span></p>
 
                 <div class="fileinput fileinput-new" data-provides="fileinput">
@@ -91,12 +88,6 @@
 
 
                 <button class="btn btn-primary btn-lg waves-effect">Generate APK Now</button>
-
-
-                        
-
-
-
 
                     </div>
 
@@ -119,25 +110,6 @@
             </div>
 
             <br/>
-        </div>
-
-
-      
-
-    
-
-
-     
-
-      
-
-     
-
-    
-
-
-     
-
-        
+        </div>   
     </div>
 </section>

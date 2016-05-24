@@ -4,5 +4,7 @@ class Author < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  mount_uploader :app_icon, IconUploader
+
   has_many :apps
 end

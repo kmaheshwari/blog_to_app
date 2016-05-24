@@ -1,7 +1,7 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  # before_action :authenticate_author!
-
+  before_action :authenticate_author!
+  
   # GET /apps
   # GET /apps.json
   def index
@@ -25,17 +25,7 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new(app_params)
-
-    respond_to do |format|
-      if @app.save
-        format.html { redirect_to @app, notice: 'App was successfully created.' }
-        format.json { render :show, status: :created, location: @app }
-      else
-        format.html { render :new }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
-    end
+    
   end
 
   # PATCH/PUT /apps/1

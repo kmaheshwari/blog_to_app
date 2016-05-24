@@ -29,7 +29,7 @@ gem 'turbolinks'
 gem 'sidekiq'                       #background jobs
 gem 'sidetiq'                        #repeat jobs for sidekiq workers
 gem 'sinatra' ,require: false
-
+gem "foreman"
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'

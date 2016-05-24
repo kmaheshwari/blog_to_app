@@ -26,7 +26,9 @@ gem 'jquery-rails'
 gem 'rack-cors', :require => 'rack/cors'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
-
+gem 'sidekiq'                       #background jobs
+gem 'sidetiq'                        #repeat jobs for sidekiq workers
+gem 'sinatra' ,require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

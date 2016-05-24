@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount API::Base, at: "/"
   devise_for :authors
   root 'apps#index'
   resources :apps

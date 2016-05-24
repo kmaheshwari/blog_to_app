@@ -24,6 +24,15 @@ gem 'httparty'
 gem 'jquery-rails'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'rack-mini-profiler'
+
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'redis-rack-cache'
+
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 gem 'sidekiq'                       #background jobs

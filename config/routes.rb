@@ -2,6 +2,11 @@ Rails.application.routes.draw do
   devise_for :authors
   root 'apps#index'
   resources :apps
+  get 'posts' => 'apps#posts'
+  get 'new_notification' => 'apps#push_notification'
+  get 'all_notification' => 'apps#all_notification'
+  get 'customize' => 'apps#customize'
+  get 'support' => 'apps#support'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

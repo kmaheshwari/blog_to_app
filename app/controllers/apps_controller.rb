@@ -29,13 +29,20 @@ class AppsController < ApplicationController
     @app = App.new
     
    
-     @app.author_id     =   params[:app][:author_id] 
-     @app.app_name      =   params[:app][:app_name]
+     @app.author_id     =   params[:app][:author_id]
+     @app.app_name      =   params[:app_name]
      @app.app_url       =   params[:app][:app_url]
      @app.app_icon      =   params[:app][:app_icon] 
      @app.contact_email =   params[:app][:contact_email]
 
-     @app.save
+    if @app.save
+
+          flash[:notice] = 'Successfully create app'
+    else
+          flash[:notice] = 'Some error ocured'
+    end
+
+     redirect_to root_path
     
 
     

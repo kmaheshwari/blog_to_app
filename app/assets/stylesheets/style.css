@@ -27,3 +27,21 @@
     position: absolute;left: 42px;
     font-size:18px;
    }
+
+   #catog-div
+   {
+    background-color: #57ABC5;
+    margin-top: 64px;
+    height: 30px;
+    font-size: 14px;
+    position: absolute;
+    left: 0px;
+    right: 0px;
+    width: 100%:;
+}
+#all-cateogries
+{
+  position: absolute;
+  left: 30px;
+
+}

@@ -24,16 +24,15 @@
                                                 <div class="form-group fg-line">
                                 <label for="exampleInputEmail1" >App Name</label>
               
-   <input type="text" name="app_name" class="form-control input-sm" id="fn" onkeyup="printname(this)"  placeholder="Your app name goes here." maxlength="22">
+   <input type="text" name="app_name" class="form-control input-sm" id="fn" onkeyup="printname(this)"  placeholder="Your app name goes here." maxlength="18" required>
                
                     </div>
 
                    <div class="form-group fg-line">
-                        <label for="exampleInputEmail1">App URL</label>
+                        <label for="exampleInputEmail1">Blog URL</label>
                         
              <%= f.text_field :app_url ,:class=>"form-control input-sm" ,:placeholder=>
-             "Your app url goes here."
-             %>
+             "Your app url goes here." , :required => true  %>
                     
 
                     </div>
@@ -44,7 +43,7 @@
                         <label for="exampleInputPassword1">Contact Email</label>
                        
                     
-                    <%=  f.email_field :contact_email , :class=> "form-control input-sm" %>
+<%=  f.email_field :contact_email , :class=> "form-control input-sm", :required => true %>
 
                     </div>
 
@@ -70,13 +69,10 @@
                                 <div class="fg-line dropdown">
 
      <input type="text" class="jscolor" value="57ABC5"
-     data-toggle="dropdown" id="color-element" >
-
-     <span id="color-box" onclick="changecolor(this)"> <b> Apply Color </b> </span>
+     data-toggle="dropdown" id="color-element" onchange="changecolor(this)" style="color: rgb(0, 0, 0); background-image: none; background-color: rgb(87, 171, 197);">
 
                                 </div>
 
-                                <i class="cp-value"></i>
                             </div>
                         
 

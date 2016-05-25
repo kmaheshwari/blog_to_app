@@ -1,172 +1,147 @@
-        <div class="block-header"> </div>
+<div class="block-header"> </div>
 
-        <div class="card">
-            <div class="card-header">
-                <h2>Customize Your App
-                    <small>Extend form controls by adding text or buttons before, after, or on both sides of
-                        any text-based inputs.
-                    </small>
-                </h2>
-            </div>
+<div class="card">
+    <div class="card-header">
+        <h2>Customize Your App
+            <small>Extend form controls by adding text or buttons before, after, or on both sides of
+                any text-based inputs.
+            </small>
+        </h2>
+    </div>
+   <div class="card-body card-padding"> <!-- card-body card-padding-->
 
-            
+        <%= form_for @app do |f| %> 
 
+            <% f.text_field :author_id ,:value=>current_author.id %>
 
+                <div class="row">
+                    <div class="col-sm-6">
+                        <div class="form-group fg-line">
+                            <label for="exampleInputEmail1" >App Name</label>
+                                  
+                            <input type="text" name="app_name" class="form-control input-sm" id="fn" onkeyup="printname(this)" placeholder="Your app name goes here.">
+                        </div>
 
-                     <div class="card-body card-padding"> <!-- card-body card-padding-->
-
-                  <%= form_for @app do |f| %> 
-
-<% f.text_field :author_id ,:value=>current_author.id %>
-
-                                        <div class="row">
-                                            <div class="col-sm-6">
-                                                <div class="form-group fg-line">
-                                <label for="exampleInputEmail1" >App Name</label>
-              
-   <input type="text" name="app_name" class="form-control input-sm" id="fn" onkeyup="printname(this)"  placeholder="Your app name goes here." maxlength="18" required>
-               
-                    </div>
-
-                   <div class="form-group fg-line">
-                        <label for="exampleInputEmail1">Blog URL</label>
+                        <div class="form-group fg-line">
+                            <label for="exampleInputEmail1">Blog URL</label>
                         
-             <%= f.text_field :app_url ,:class=>"form-control input-sm" ,:placeholder=>
-             "Your app url goes here." , :required => true  %>
+                            <%= f.text_field :app_url ,:class=>"form-control input-sm" ,:placeholder=>"Your app url goes here."%>     
+                        </div>
                     
+                        <div class="form-group fg-line">
+                            <label for="exampleInputPassword1">Contact Email</label>
+                           
+                        
+                            <%=  f.email_field :contact_email , :class=> "form-control input-sm" %>
 
-                    </div>
-                    
+                        </div>
+
+                        <div class="form-group fg-line">
+
+                            <label for="exampleInputPassword1">Choose Categories</label>
+                            <br>
+                            <select class="selectpicker" multiple data-max-options="3"
+                                    title='Choose any 3 categories' tabindex="-98" onchange="catog()">
+                                <option>Mustard</option>
+                                <option>Ketchup</option>
+                                <option>Relish</option>
+                                <option>Plain</option>
+                                <option>Steamed</option>
+                                <option>Toasted</option>
+                            </select>
                    
-
-                    <div class="form-group fg-line">
-                        <label for="exampleInputPassword1">Contact Email</label>
-                       
-                    
-<%=  f.email_field :contact_email , :class=> "form-control input-sm", :required => true %>
-
-                    </div>
-
-
-                    <div class="form-group fg-line">
-
-                    <label for="exampleInputPassword1">Choose Categories</label>
-                    <br>
-
-                        <select class="selectpicker" multiple data-max-options="3"
-                                title='Choose any 3 categories' tabindex="-98" onchange="catog()">
-                            <option>Mustard</option>
-                            <option>Ketchup</option>
-                            <option>Relish</option>
-                            <option>Plain</option>
-                            <option>Steamed</option>
-                            <option>Toasted</option>
-                        </select>
-
-                    
                         </div>
                         
-                        
-                             <div class="form-group fg-line">
-                                <label for="exampleInputPassword1">Primary Color</label>
-                                <div class="fg-line dropdown">
-
-     <input type="text" class="jscolor" value="57ABC5"
-     data-toggle="dropdown" id="color-element" onchange="changecolor(this)">
-
-
-
-                                </div>
-
+                         <div class="form-group fg-line">
+                            <div class="col-sm-4" style="padding:0px;margin:0px;">
+                                <label for="exampleInputPassword1" >Primary Color</label>
                             </div>
+                            
+                            <div class="fg-line dropdown">
+                                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'} col-sm-5" value="57ABC5"     data-toggle="dropdown" id="color-element" style="padding:0px;margin:0px;">
+                                     <input type="text" class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="valueInput" onchange="changecolor(this)" style="color: rgb(0, 0, 0);">
+                                </div>
+                                <div class="col-sm-1" >
+                                    <div class="show-color " id="styleInput"></div>
+                                </div>                        
+                            </div>
+                            <i class="cp-value"></i>
+                        </div>
                         
 
-<div class="form-group fg-line">
+                        <div class="form-group fg-line">
                             <div class="toggle-switch toggle-switch-demo" data-ts-color="blue">
                             <label for="ts3" class="ts-label">Auto Push Notification for New Posts</label>
                             <input id="ts3" type="checkbox" hidden="hidden">
                             <label for="ts3" class="ts-helper"></label>
-                        </div></div>
+                            </div>
+                        </div>
 
 
                 
-<div class="form-group fg-line">
-        <p class="f-500 c-black m-b-20"><span style="color:#5E5E5E">App Icon</span></p>
+                        <div class="form-group fg-line">
+                            <p class="f-500 c-black m-b-20"><span style="color:#5E5E5E">App Icon</span></p>
 
-                  <div class="fileinput fileinput-new" data-provides="fileinput">
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
                                 <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
                                 <div>
                                     <span class="btn btn-info btn-file">
                                         <span class="fileinput-new">Select image</span>
                                         <span class="fileinput-exists">Change</span>
-                            <%= f.file_field :app_icon %>
+                                    <%= f.file_field :app_icon %>
                                     </span>
 
                                     <a href="#" class="btn btn-danger fileinput-exists"
                                        data-dismiss="fileinput">Remove</a>
                                 </div>
-                </div>
-</div>
+                            </div>
+                        </div>
       
-                
+                        <input type="submit" class="btn btn-primary btn-lg waves-effect" value="Generate APK Now"> 
+                        </input>
 
 
-<input type="submit" class="btn waves-effect" value="Generate APK Now"> 
-</input>
+        <% end %>   <!-- form ends here -->
+    </div>
 
-
-<% end %>   <!-- form ends here -->
-
-
+        <div class="container">
+            <div class="col-sm-4 col-sm-offset-1" id="phone"> <!-- smartphone -->
+                <div class= "line">
+                    <div class="col-sm-2">
+                        <div class= "small-circle"></div>
                     </div>
-
-
-  <div class="col-sm-4 col-sm-offset-1" id="phone"> <!-- smartphone -->
-
-                <div id ="above-nav" class="col-sm-12">
-                
-                <div id="above-nav-content"> 
-                    <i class="zmdi zmdi-wifi"></i> <i class="zmdi zmdi-network"></i>
-                    <i class="zmdi zmdi-battery"></i> 12:20
-                 </div>
+                    <div class="col-sm-6">
+                        <div class= " center-circle"></div>
+                    </div>
+                    <div class="col-sm-6"></div>
+                </div>
+                <div id ="top-nav" class="col-sm-12">
+               
+                    <div id="top-nav-content"> 
+                        <i class="zmdi zmdi-wifi"></i> <i class="zmdi zmdi-network"></i>
+                        <i class="zmdi zmdi-battery"></i> 12:20
+                     </div>
 
                </div> <br>
+                <div id="header-app">
+                       <br>
+                    <i class="zmdi zmdi-menu zmdi-hc-2x" style="position: absolute;left: 12px"></i>
+                    <span id="app_name"> </span>
+                    <i class="zmdi zmdi-search zmdi-hc-2x" style="position: absolute;right: 38px"></i>
+                    <i class="zmdi zmdi-apps zmdi-hc-2x" style="position: absolute;right: 12px"></i>
 
-                   <div id="header-app">
-                   <br>
-  
-  <i class="zmdi zmdi-menu zmdi-hc-2x" style="position: absolute;left: 12px"></i>
-
-                <span id="app_name"> </span>
-
-
-  <i class="zmdi zmdi-search zmdi-hc-2x" style="position: absolute;right: 38px"></i>
-
-  <i class="zmdi zmdi-apps zmdi-hc-2x" style="position: absolute;right: 12px"></i>
-
-
-            </div>
-  <div id="catog-div"> <span id="all-cateogries"> </span> </div>
-
-
-
-
-
-
-
- </div>   <!-- smartphone ends -->
-
-                    
                 </div>
-
                 
-
+                <div id="catog-div"><span id="all-categories"></span>
+                <div class="power"></div>
+                <div class="volume"></div></div>
+                <img src="/assets/profile-menu.png" class="image">
                 
-
                 
-
-                
-            </div> <!-- card-body card-padding -->
-
-            <br/>
+            </div>   <!-- smartphone ends -->
         </div>
+      
+    </div> <!-- card-body card-padding -->
+
+    <br/>
+</div>

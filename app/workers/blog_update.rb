@@ -4,7 +4,7 @@ class BlogUpdate
   include Sidetiq::Schedulable
 
   recurrence backfill: true do
-      minutely(15)
+      minutely(1)
   end
 
   def perform
@@ -19,47 +19,32 @@ class BlogUpdate
     else
       cache_post_id = cache_posts[0]["id"]
       #if blog updated
-      if cache_post_id != post_id
+      if cache_post_id == post_id
         #remove current cache
         $redis.del("posts")
         #save cache with updated data
         $redis.set("posts", posts)
-        cache_categories = $redis.get("categories")
-        cache_tags = $redis.get("tags")
-        if cache_categories.nil?
-          posts.each do |post|
-            post_categories << post["categories"]
-            post_tags << post["tags"]
+        #categories cache
+        $redis.del("categories")
+        categories=HTTParty.get('http://beingmango.com/wp-json/wp/v2/categories')
+        if not categories.nil?
+          category_hash=[]
+          categories.each do |category| 
+            category_hash << category.extract!("id","name","slug")
           end
-          post_categories.flatten!
-          post_tags.flatten!
-          $redis.set("categories",post_categories.uniq! )
-          $redis.set("tags",post_tags.uniq!)
-        else
-          cache_count=cache_posts.length
-          post_count = posts.length
-          #if new posts
-          if post_count < cache_count
-            (0..post_count).each do |i|
-              post_categories << posts[i]["categories"]
-              post_tags << posts[i]["tags"]
-            end
-            cache_categories = cache_categories.uniq!
-            cache_tags = cache_tags.uniq!
-            post_categories = post_categories.uniq!
-            post_tags = post_tags.uniq!
-            ##update categories cache
-            if not cache_categories.include?(post_categories)
-              $redis.del("categories")
-              $redis.set("categories",post_categories.uniq! )
-            end
-            ##update tags cache
-            if not cache_tags.include?(post_tags)
-              $redis.del("tags")
-              $redis.set("tags",post_tags.uniq!)
-            end
-          end
+          $redis.set("categories",category_hash)
         end
+        #tags cache
+        $redis.del("tags")
+        tags=HTTParty.get('http://beingmango.com/wp-json/wp/v2/tags')
+        if not tags.nil?
+          tag_hash=[]
+          tags.each do |tag| 
+            tag_hash << tag.extract!("id","name","slug")
+          end
+          $redis.set("tags",tag_hash)
+        end
+        
       end
     end
   end

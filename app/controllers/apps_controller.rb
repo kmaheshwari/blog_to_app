@@ -1,11 +1,8 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_author!
-<<<<<<< HEAD
-  before_create :generate_access_token
-=======
-  
->>>>>>> development
+  before_action :generate_access_token, only: [:create]
+
   # GET /apps
   # GET /apps.json
   def index

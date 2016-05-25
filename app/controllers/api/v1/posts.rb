@@ -7,7 +7,7 @@ module API
       resource :posts do
         desc "Return all posts"
         get "", root: :posts do
-          fetch_posts
+          fetch_posts current_url+"/posts", app_key
         end
 
         desc "Return a post"
@@ -15,7 +15,7 @@ module API
           requires :id, type: String, desc: "ID of the post"
         end
         get ":id", root: "post" do
-          fetch id: permitted_params[:id]
+          fetch(params[:id],current_url+"/posts",app_key)
         end 
       end
 

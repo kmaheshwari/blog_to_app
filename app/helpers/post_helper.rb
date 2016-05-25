@@ -1,35 +1,36 @@
 module PostHelper
 	include HTTParty
-	base_uri 'beingmango.com/wp-json/wp/v2/posts'
 	@@attributes=["id","title","excerpt","content","categories","tags"]
-	def fetch_posts
-		posts = $redis.get("posts")
+	def fetch_posts base_uri, app_key
+		posts = $redis.get("posts"+"#{app_key}")
 		if posts.nil?
-		  posts=HTTParty.get(base_uri)
+		  posts=HTTParty.get("http://"+base_uri)
 		  posts.each {|post| post.slice!(*@@attributes)}
-		  $redis.set("posts", posts)
+		  $redis.set("posts"+"#{app_key}", posts)
+		  posts
 		else
-			eval posts  
+		  eval posts  
 		end	
 	end	
 
-	def fetch id
-		post_id=id[:id].to_i
-		post=$redis.get("posts")
-		post=eval post
+	def fetch id, base_uri, app_key
+		post_id=id.to_i
+		posts = $redis.get("posts"+"#{app_key}")
 
-		if post.nil?
-			post=HTTParty.get(base_uri+"/#{post_id}")
+		if posts.nil?
+			post=HTTParty.get("http://"+base_uri+"/#{post_id}")
 			post.slice!(*@@attributes)
 		else
+			posts=eval posts
 			record={}
-			post.map do |p|
-				if p["id"]==post_id
-					record=p
+			posts.map do |post|
+				if post["id"]==post_id
+					record=post
 					break
 				end	
 			end
 		end	
 		record
 	end	
+
 end

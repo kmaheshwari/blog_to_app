@@ -14,6 +14,15 @@ module API
             @permitted_params ||= declared(params, include_missing: false)
           end
 
+          def current_url
+              base_url=App.find(2).app_url
+              base_url+="/wp-json/wp/v2"
+          end  
+
+          def app_key
+              2
+          end  
+
           def logger
             Rails.logger
           end

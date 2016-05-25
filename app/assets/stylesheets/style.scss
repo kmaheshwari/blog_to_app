@@ -25,7 +25,7 @@
     width:7px;
     height:7px;
     border-radius:5px;
-    background:#212020;
+    background:#161616;
     margin-top: 2px; 
     border-style: inset;
     border-width:0px 0px 1px 0px;
@@ -43,7 +43,6 @@
     .power
     {
       background:#212020;
-      margin-top: 30px;
       height: 35px;
       border-radius: 20px;
       width:4px;
@@ -79,9 +78,10 @@
    }
    .show-color
    {
-    height: 20px;
-    width: 20px;
+    height: 23px;
+    width: 23px;
     border: 1px solid black;
+    margin-left: 15px;
    }
    #catog-div
    {
@@ -93,10 +93,15 @@
     left: 0px;
     right: 0px;
     width: 100%;
-  }
-  #all-cateogries
+    }
+    #all-categories
+    {
+      position: absolute;
+      left: 20px;
+    }
+  .image
   {
-    position: absolute;
-    left: 30px;
-
+    height: 50%;
+    width: 100%;
+    
   }

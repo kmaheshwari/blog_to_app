@@ -16,6 +16,15 @@
 //= require bootstrap-select
 //= require_tree .
 //= require_tree ./inc
-
-
+//= require_self
+function printname(val) {
+        var first = $("#fn").val();
+       
+        $('#app_name').text(first);
+};
+function changecolor(value)
+{
+     var color_value = $("#color-element").val()
+     $("#header-app").css("background-color", "#"+color_value)
+}    
 

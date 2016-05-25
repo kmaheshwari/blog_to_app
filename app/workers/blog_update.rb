@@ -30,7 +30,7 @@ class BlogUpdate
         if not categories.nil?
           category_hash=[]
           categories.each do |category| 
-            category_hash << category.extract!("id","name","slug")
+            category_hash << eval (category.extract!("id","name","slug").to_s.gsub /&amp\;/, "&")
           end
           $redis.set("categories",category_hash)
         end
@@ -40,12 +40,13 @@ class BlogUpdate
         if not tags.nil?
           tag_hash=[]
           tags.each do |tag| 
-            tag_hash << tag.extract!("id","name","slug")
+            tag_hash << eval (tag.extract!("id","name","slug").to_s.gsub /&amp\;/, "&")
           end
           $redis.set("tags",tag_hash)
         end
         
       end
     end
+    #byebug
   end
 end

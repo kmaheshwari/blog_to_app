@@ -2,7 +2,7 @@ module API
   module V1
     module Defaults
       extend ActiveSupport::Concern
-      # include ActionController::HttpAuthentication::Token::ControllerMethods
+      
       included do
         ActionController::HttpAuthentication::Token
         prefix "api"
@@ -16,12 +16,12 @@ module API
           end
 
           def current_url
-              base_url=App.find(2).app_url
+              base_url=App.find_by_access_token(headers['Authorization']).app_url
               base_url+="/wp-json/wp/v2"
           end  
 
           def app_key
-              2
+              headers['Authorization']
           end  
 
           def logger

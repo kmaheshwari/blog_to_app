@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_author!
+  before_action :generate_access_token, only: [:create]
 
   # GET /apps
   # GET /apps.json
@@ -16,6 +17,7 @@ class AppsController < ApplicationController
   # GET /apps/new
   def new
     @app = App.new
+
   end
 
   # GET /apps/1/edit
@@ -25,18 +27,29 @@ class AppsController < ApplicationController
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new(app_params)
+    @app = App.new
+    
+   
+     @app.author_id     =   params[:app][:author_id]
+     @app.app_name      =   params[:app_name]
+     @app.app_url       =   params[:app][:app_url]
+     @app.app_icon      =   params[:app][:app_icon] 
+     @app.contact_email =   params[:app][:contact_email]
 
-    respond_to do |format|
-      if @app.save
-        format.html { redirect_to @app, notice: 'App was successfully created.' }
-        format.json { render :show, status: :created, location: @app }
-      else
-        format.html { render :new }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
+    if @app.save
+
+          flash[:notice] = 'Successfully create app'
+    else
+          flash[:notice] = 'Some error ocured'
     end
-  end
+
+     redirect_to root_path
+    
+
+    
+
+    
+      end
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
@@ -62,6 +75,21 @@ class AppsController < ApplicationController
     end
   end
 
+  def posts
+  end
+
+  def push_notification
+  end
+
+  def all_notification
+  end
+
+  def customize
+  end
+
+  def support
+  end
+   
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
@@ -70,6 +98,16 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.fetch(:app, {})
+      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
     end
+
+<<<<<<< HEAD
+    def generate_access_token
+    begin
+      self.access_token = SecureRandom.hex
+    end while self.class.exists?(access_token: access_token)
+  end
+=======
+
+>>>>>>> development
 end

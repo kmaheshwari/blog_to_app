@@ -40,8 +40,8 @@
 
                             <label for="exampleInputPassword1">Choose Categories</label>
                             <br>
-                            <select class="selectpicker" multiple data-max-options="5"
-                                title='Choose any 5 categories' tabindex="-98">
+                            <select class="selectpicker" multiple data-max-options="3"
+                                    title='Choose any 3 categories' tabindex="-98" onchange="catog()">
                                 <option>Mustard</option>
                                 <option>Ketchup</option>
                                 <option>Relish</option>
@@ -49,6 +49,7 @@
                                 <option>Steamed</option>
                                 <option>Toasted</option>
                             </select>
+                   
                         </div>
                         
                          <div class="form-group fg-line">
@@ -56,11 +57,12 @@
                                 <label for="exampleInputPassword1" >Primary Color</label>
                             </div>
                             <div class="col-sm-1" style="padding:0px;margin:0px;">
-                                <div class="show-color "></div>
+                                <div class="show-color " id="styleInput"></div>
                             </div>
                             <div class="fg-line dropdown">
-                                 <input type="text" class="jscolor" value="57ABC5"     data-toggle="dropdown" id="color-element" onchange="changecolor(this)" style="color: rgb(0, 0, 0); background-image: none; background-color: rgb(87, 171, 197);">
-
+                                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                                     <input type="text" class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="valueInput" onchange="changecolor(this)" style="color: rgb(0, 0, 0);">
+                                </div>                        
                             </div>
                             <i class="cp-value"></i>
                         </div>
@@ -113,7 +115,7 @@
                     <div class="col-sm-6"></div>
                 </div>
                 <div id ="top-nav" class="col-sm-12">
-                
+               
                     <div id="top-nav-content"> 
                         <i class="zmdi zmdi-wifi"></i> <i class="zmdi zmdi-network"></i>
                         <i class="zmdi zmdi-battery"></i> 12:20
@@ -126,7 +128,9 @@
                     <span id="app_name"> </span>
                     <i class="zmdi zmdi-search zmdi-hc-2x" style="position: absolute;right: 38px"></i>
                     <i class="zmdi zmdi-apps zmdi-hc-2x" style="position: absolute;right: 12px"></i>
+
                 </div>
+                <div id="catog-div"> <span id="all-cateogries"> </span> </div>
                 <div class="power"></div>
                 <div class="volume"></div>
 

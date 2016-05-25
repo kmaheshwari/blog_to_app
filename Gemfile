@@ -26,12 +26,13 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
-# Use SCSS for stylesheets
-gem 'sass-rails', '~> 5.0'
 
+gem 'sidekiq'                       #background jobs
+gem 'sidetiq'                        #repeat jobs for sidekiq workers
+gem 'sinatra' ,require: false
+gem "foreman"
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

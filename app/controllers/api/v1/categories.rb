@@ -7,7 +7,7 @@ module API
       resource :categories do
         desc "Return all categories"
         get "", root: :categories do
-          fetch_categories
+          fetch_categories current_url+"/categories", app_key
         end
 
         desc "Return a category"
@@ -15,10 +15,10 @@ module API
           requires :id, type: String, desc: "ID of the category"
         end
         get ":id", root: "category" do
-          fetch id: permitted_params[:id]
+          fetch(params[:id],current_url+"/posts",app_key)
         end 
       end
-    
+
     end
   end
 end

@@ -16,6 +16,4 @@
 //= require bootstrap-select
 //= require_tree .
 //= require_tree ./inc
-
-
-
+//= require_self

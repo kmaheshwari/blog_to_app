@@ -30,8 +30,12 @@ module API
         end
         #api authentication
         before do
-          access=App.where(access_token: headers['Authorization'])
-          error!('Unauthorized', 401) unless not access.empty?
+          access=App.find_by_access_token(headers['Authorization'])
+          if !access.nil?
+            error!('Unauthorized', 401) unless not access.access_token.nil?
+          else  
+            error!('Unauthorized', 401)
+          end  
         end
 
       end

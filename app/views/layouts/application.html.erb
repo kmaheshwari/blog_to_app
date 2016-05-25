@@ -5,7 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all' %>
   
   <%= csrf_meta_tags %>
-  <%= javascript_include_tag 'application'%>
+  
+
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -183,7 +184,7 @@
 	                     <img src="assets/profile-pics/1.jpg" alt="">
 	                 </div>
 
-	                 <div class="sp-info">
+	                 <div class="sp-info toggled">
 	                     Malinda Hollaway
 
 	                     <i class="zmdi zmdi-caret-down"></i>
@@ -198,7 +199,8 @@
 	                     <a href=""><i class="zmdi zmdi-settings"></i> Settings</a>
 	                 </li>
 	                 <li>
-	                     <a href=""><i class="zmdi zmdi-time-restore"></i> Logout</a>
+	                     <%= link_to destroy_author_session_path, method: :delete do %><i class="zmdi zmdi-time-restore"></i> Logout</a>
+	                     <%end%>
 	                 </li>
 	             </ul>
 	         </div>
@@ -220,13 +222,9 @@
 	                 </ul>
 	             </li>
 	             
-	             <li><a href="/customize"><i class="zmdi zmdi-calendar"></i> Customize App</a></li>
+	             <li><a href="/apps/new"><i class="zmdi zmdi-calendar"></i> Customize App</a></li>
 	             <li><a href="/support"><i class="zmdi zmdi-calendar"></i> Support</a></li>
-	             
-	             
-
-	            
-	             
+	           
 	         </ul>
 	     </aside>
 
@@ -306,8 +304,12 @@
 	             </div>
 	         </div>
 	     </aside>
+	     	<section id="content">
+    			<div class="container">
 <%= yield %>
+			</section>
 		</section>
+		</div>
 
         <footer id="footer">
             Copyright &copy; 2015 Material Admin
@@ -322,6 +324,6 @@
         </footer>
 
     
-
+        <%= javascript_include_tag 'application'%>
 </body>
 </html>

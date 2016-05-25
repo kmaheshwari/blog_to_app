@@ -6,16 +6,17 @@ gem 'rails', '4.2.4'
 # Use sqlite3 as the database for Active Record
 gem 'pg'
 gem 'bootstrap-sass', '~> 3.3.6'    # Bootstrap For rails
-gem "font-awesome-rails"
 gem 'bootstrap-select-rails'
-
+gem 'carrierwave'
 gem 'devise'
+gem "font-awesome-rails"
 # Rails-Grape Api
 gem 'grape'
 # HTTP Client
 gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -30,9 +31,6 @@ gem 'sass-rails', '~> 5.0'
 
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 
 group :development, :test do

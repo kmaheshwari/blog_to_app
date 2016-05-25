@@ -5,6 +5,7 @@ module PostHelper
 		posts = $redis.get("posts"+"#{app_key}")
 		if posts.nil?
 		  posts=HTTParty.get("http://"+base_uri)
+		  byebug
 		  posts.each {|post| post.slice!(*@@attributes)}
 		  $redis.set("posts"+"#{app_key}", posts)
 		  posts

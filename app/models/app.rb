@@ -1,5 +1,6 @@
 class App < ActiveRecord::Base
 	belongs_to :author
+	before_create :generate_access_token
 	mount_uploader :app_icon, IconUploader
 	validates :app_name, uniqueness: true
      
@@ -11,5 +12,9 @@ class App < ActiveRecord::Base
 
     mount_uploader :app_icon, IconUploader
 
-
+    def generate_access_token
+    begin
+      self.access_token = SecureRandom.hex
+    end while self.class.exists?(access_token: access_token)
+  end
 end

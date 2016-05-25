@@ -26,5 +26,7 @@ function changecolor(value)
 {
      var color_value = $("#color-element").val()
      $("#header-app").css("background-color", "#"+color_value)
+     $(".show-color").css("background-color", "#"+color_value)
+     $("#color-element").css("background-color", "#fff")
 }    
 

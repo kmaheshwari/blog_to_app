@@ -50,10 +50,8 @@ class BlogUpdate
             end
             $redis.set("tags"+app.access_token,tag_hash)
           end
-          byebug
         end
       end
     end
-    
   end
 end

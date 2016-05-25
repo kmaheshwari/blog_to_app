@@ -3,14 +3,13 @@ class App < ActiveRecord::Base
 
 	validates :app_name, uniqueness: true
      
-     # validates :app_name, presence: true
-	
-	validates_presence_of :app_name
+    validates_presence_of :app_name
 
-	
+	validates_presence_of :app_url
 
+	validates_presence_of :contact_email
 
-	  mount_uploader :app_icon, IconUploader
+    mount_uploader :app_icon, IconUploader
 
 
 end

@@ -52,8 +52,9 @@
 
                     <label for="exampleInputPassword1">Choose Categories</label>
                     <br>
-                        <select class="selectpicker" multiple data-max-options="5"
-                                title='Choose any 5 categories' tabindex="-98">
+
+                        <select class="selectpicker" multiple data-max-options="3"
+                                title='Choose any 3 categories' tabindex="-98" onchange="catog()">
                             <option>Mustard</option>
                             <option>Ketchup</option>
                             <option>Relish</option>
@@ -61,6 +62,8 @@
                             <option>Steamed</option>
                             <option>Toasted</option>
                         </select>
+
+                    
                         </div>
                         
                         
@@ -69,7 +72,9 @@
                                 <div class="fg-line dropdown">
 
      <input type="text" class="jscolor" value="57ABC5"
-     data-toggle="dropdown" id="color-element" onchange="changecolor(this)" style="color: rgb(0, 0, 0); background-image: none; background-color: rgb(87, 171, 197);">
+     data-toggle="dropdown" id="color-element" onchange="changecolor(this)">
+
+
 
                                 </div>
 
@@ -116,7 +121,7 @@
                     </div>
 
 
-            <div class="col-sm-4 col-sm-offset-1" id="phone"> <!-- smartphone -->
+  <div class="col-sm-4 col-sm-offset-1" id="phone"> <!-- smartphone -->
 
                 <div id ="above-nav" class="col-sm-12">
                 
@@ -139,7 +144,14 @@
 
   <i class="zmdi zmdi-apps zmdi-hc-2x" style="position: absolute;right: 12px"></i>
 
+
             </div>
+  <div id="catog-div"> <span id="all-cateogries"> </span> </div>
+
+
+
+
+
 
 
  </div>   <!-- smartphone ends -->

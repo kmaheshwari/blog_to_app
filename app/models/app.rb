@@ -13,8 +13,9 @@ class App < ActiveRecord::Base
     mount_uploader :app_icon, IconUploader
 
     def generate_access_token
-    begin
-      self.access_token = SecureRandom.hex
-    end while self.class.exists?(access_token: access_token)
+    self.access_token = loop do
+      random_token = SecureRandom.urlsafe_base64(nil, false)
+      break random_token unless self.class.exists?(access_token: random_token)
+    end
   end
 end

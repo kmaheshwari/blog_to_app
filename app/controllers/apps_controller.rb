@@ -1,7 +1,11 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_action :authenticate_author!
+<<<<<<< HEAD
+  before_create :generate_access_token
+=======
   
+>>>>>>> development
   # GET /apps
   # GET /apps.json
   def index
@@ -100,5 +104,13 @@ class AppsController < ApplicationController
       params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
     end
 
+<<<<<<< HEAD
+    def generate_access_token
+    begin
+      self.access_token = SecureRandom.hex
+    end while self.class.exists?(access_token: access_token)
+  end
+=======
 
+>>>>>>> development
 end

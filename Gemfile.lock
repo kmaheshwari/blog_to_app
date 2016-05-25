@@ -228,7 +228,6 @@ DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
   bootstrap-select-rails
   byebug
-  coffee-rails (~> 4.1.0)
   devise
   font-awesome-rails
   grape

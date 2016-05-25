@@ -23,18 +23,16 @@
                         </div>
 
                         <div class="form-group fg-line">
-                            <label for="exampleInputEmail1">App URL</label>
+                            <label for="exampleInputEmail1">Blog URL</label>
                         
-                            <%= f.text_field :app_url ,:class=>"form-control input-sm" ,:placeholder=>
-             "Your app url goes here."
-             %>     
+                            <%= f.text_field :app_url ,:class=>"form-control input-sm" ,:placeholder=>"Your app url goes here."%>     
                         </div>
                     
                         <div class="form-group fg-line">
                             <label for="exampleInputPassword1">Contact Email</label>
                            
                         
-                        <%=  f.email_field :contact_email , :class=> "form-control input-sm" %>
+                            <%=  f.email_field :contact_email , :class=> "form-control input-sm" %>
 
                         </div>
 
@@ -53,13 +51,10 @@
                             </select>
                         </div>
                         
-                        
                          <div class="form-group fg-line">
                             <label for="exampleInputPassword1">Primary Color</label>
                             <div class="fg-line dropdown">
-                                 <input type="text" class="jscolor" value="57ABC5"     data-toggle="dropdown" id="color-element" >
-
-                                <span id="color-box" onclick="changecolor(this)"> <b> Apply Color </b> </span>
+                                 <input type="text" class="jscolor" value="57ABC5"     data-toggle="dropdown" id="color-element" onchange="changecolor(this)" style="color: rgb(0, 0, 0); background-image: none; background-color: rgb(87, 171, 197);">
 
                             </div>
 
@@ -77,26 +72,26 @@
 
 
                 
-            <div class="form-group fg-line">
-                <p class="f-500 c-black m-b-20"><span style="color:#5E5E5E">App Icon</span></p>
+                        <div class="form-group fg-line">
+                            <p class="f-500 c-black m-b-20"><span style="color:#5E5E5E">App Icon</span></p>
 
-                <div class="fileinput fileinput-new" data-provides="fileinput">
-                    <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
-                    <div>
-                        <span class="btn btn-info btn-file">
-                            <span class="fileinput-new">Select image</span>
-                            <span class="fileinput-exists">Change</span>
-                        <%= f.file_field :app_icon %>
-                        </span>
+                            <div class="fileinput fileinput-new" data-provides="fileinput">
+                                <div class="fileinput-preview thumbnail" data-trigger="fileinput"></div>
+                                <div>
+                                    <span class="btn btn-info btn-file">
+                                        <span class="fileinput-new">Select image</span>
+                                        <span class="fileinput-exists">Change</span>
+                                    <%= f.file_field :app_icon %>
+                                    </span>
 
-                        <a href="#" class="btn btn-danger fileinput-exists"
-                           data-dismiss="fileinput">Remove</a>
-                    </div>
-                </div>
-            </div>
+                                    <a href="#" class="btn btn-danger fileinput-exists"
+                                       data-dismiss="fileinput">Remove</a>
+                                </div>
+                            </div>
+                        </div>
       
-            <input type="submit" class="btn btn-primary btn-lg waves-effect" value="Generate APK Now"> 
-            </input>
+                        <input type="submit" class="btn btn-primary btn-lg waves-effect" value="Generate APK Now"> 
+                        </input>
 
 
         <% end %>   <!-- form ends here -->
@@ -128,4 +123,3 @@
 
     <br/>
 </div>
-

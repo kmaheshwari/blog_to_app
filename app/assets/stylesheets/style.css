@@ -1,9 +1,10 @@
 
 #phone{
-   border-top:30px solid black;border-bottom:40px solid black;
-   border-right: 4px solid black; border-left: 4px solid black;
-   height: 500px;width:320px;
-   border-radius: 20px 10px 10px;color: #fff;
+   border-top:40px solid black;border-bottom:60px solid black;
+   border-right: 6px solid black; border-left: 6px solid black;
+   height: 500px;width:260px;
+   border-radius: 25px 25px 25px 25px;
+   color: #fff;
 
    }
 

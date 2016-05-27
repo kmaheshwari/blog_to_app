@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate_author! ,except: [:register]
+
+  before_filter :authenticate_author!
 
   # GET /apps
   # GET /apps.json
@@ -68,7 +69,16 @@ class AppsController < ApplicationController
     end
   end
 
-  def posts
+  def analytics
+  end  
+
+  def customize
+  end
+
+  def faq
+  end  
+
+  def monetize
   end
 
   def push_notification
@@ -77,8 +87,7 @@ class AppsController < ApplicationController
   def all_notification
   end
 
-  def customize
-  end
+  
 
   def support
   end

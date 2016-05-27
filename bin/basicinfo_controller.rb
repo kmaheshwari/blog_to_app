@@ -1,0 +1,3 @@
+class BasicinfoController < Devise::RegistrationsController
+  # ...
+end

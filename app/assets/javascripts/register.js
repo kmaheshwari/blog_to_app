@@ -40,12 +40,10 @@ $(document).ready(function(){
 	    $('.form').validate({ // initialize plugin
 			ignore:":not(:visible)",			
 			rules: {
-				name     : "required",
-				email    : {required : true, email:true},
-				country  : "required",
-				username : "required",
-				password : "required",
-				rpassword: { required : true, equalTo: "#password"},
+
+				email     : {required : true, email:true},
+				url  : {required : true, url:true},
+				
 			}
 	    });
 

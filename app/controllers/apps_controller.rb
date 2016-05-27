@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_author! ,except: [:register]
+   before_filter :authenticate_author! ,except: [:register]
 
   # GET /apps
   # GET /apps.json

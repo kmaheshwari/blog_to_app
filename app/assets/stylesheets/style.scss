@@ -17,11 +17,11 @@ html, body{
 }
 @font-face{
 	font-family:'Montserrat-Regular';
-	/*src:url(../fonts/Montserrat-Regular.ttf) format('truetype');*/
+	src:url('Montserrat-Regular.ttf') format('truetype');
 }
 @font-face{
 	font-family: 'Muli-Regular';
-	/*src:url(../fonts/Muli-Regular.ttf) format('truetype');*/
+	src:url('Muli-Regular.ttf') format('truetype');
 }
 body a{
 	transition:0.5s all;

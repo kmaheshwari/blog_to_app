@@ -11,7 +11,4 @@ class Category
 			category=HTTParty.get(base_uri+"/#{category_id}")																																																																																																																																																																																																													
 		end
 	end	
-		
-
-	
 end	

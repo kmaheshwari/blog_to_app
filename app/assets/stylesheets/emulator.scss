@@ -1,0 +1,272 @@
+/*smart phone*/
+#phone
+{
+  border-color: black;
+  border-style: solid;
+  border-width:20px 10px 60px 10px;
+  height: 500px;width:260px;
+  border-radius: 22px;
+  color: #fff;
+  padding: 0px;
+  box-shadow: 2px -2px 2px #888888;
+}
+/*circles on top of phone*/
+.line
+{
+  background-color: #000;
+  color: #000;
+  height:20px;
+  z-index: 100; 
+  margin-left: 0px;
+  padding-bottom: 10px;
+}
+.small-circle
+{
+  width:7px;
+  height:7px;
+  border-radius:5px;
+  background:#161616;
+  margin-top: 2px; 
+  border-style: inset;
+  border-width:0px 0px 1px 0px;
+  margin-left: 20px;
+}
+.center-circle
+{
+  @extend .small-circle !optional;
+  width:11px;
+  height:11px;
+  margin-top: 0px;
+  margin-left: 68%;
+}
+/*buttons on phone*/
+.power
+{
+  background:#212020;
+  height: 35px;
+  border-radius: 20px;
+  width:4px;
+  margin-left: 250px;
+  z-index: -1;
+}
+.volume
+{
+  background:#212020;
+  height: 80px;
+  border-radius: 20px;
+  width:4px;
+  margin-left: -13px;
+}
+/*top phone navbar*/
+#top-nav
+{
+  background-color: #8a00e6;height: 20px; width: 100%;position:absolute;left:0;right:0;
+  color: #fff;
+}
+#top-nav-content
+{
+  position: absolute;right: 0px;
+}
+/*main app navbar*/
+#header-app
+{
+  background-color: #8a00e6;
+  height: 75px;
+  padding-top: 10px;
+  margin-top: 0;
+  font-size: 20px;
+  border: 0;
+  color: #fff;
+  font-weight: normal;
+  a
+  {
+    background: transparent;
+    border: 0;
+    font-weight: normal;
+    color: #fff;
+    box-shadow: none;
+    overflow: visible;
+    font-size: 15px;
+    padding-top: 3px;
+  }
+
+}
+#mypanel
+{
+  max-width: 200px;
+  width: 100px; height: 400px; margin: 22px 5px;
+}
+#app_name
+{
+position: absolute;left: 42px;
+font-size:18px;
+max-width: 130px;
+overflow: hidden;
+text-overflow: clip;
+white-space: nowrap;
+}
+.show-color
+{
+height: 23px;
+width: 23px;
+border: 1px solid black;
+margin-left: 15px;
+}
+.catog-div
+{
+  background-color: #8a00e6;;
+  margin-top: 35px;
+  font-size: 14px;
+  position: absolute;
+  left: 0px;
+  right: 0px;
+  width: 100%; 
+}
+#all-categories
+{
+  position: absolute;
+  left: 20px;
+  overflow: hidden;
+  max-width: 215px;
+  text-overflow: clip;
+  white-space: nowrap;
+}
+
+.blog-main
+{
+  background-color: #f3f3f3;
+  height: 72%;
+  .image
+  {
+  height: 150px;
+  width: 100%;
+  z-index: 100;
+  margin-top: 0;
+  }
+  .title
+  {
+  @extend .catog-div !optional;
+  font-weight: normal;
+  padding: 8px;
+  color: #fff;
+  font-size: 15px;
+  margin-top: 0px;
+  margin-bottom: 10px;
+  max-height: auto;
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+  }
+  .list-articles
+  {
+    background-color: #ffffff !important;
+    padding: 10px;
+    hr
+    {
+      margin: 10px;
+    }
+  }
+  .in-title
+  {
+    @extend .title !optional;
+    background-color: #fff;
+    color: #000;
+    padding: 10px;
+    font-size: 15px;
+  }
+  .author
+  {
+    color:#a8aab5;
+    height: 30px;
+    padding: 10px;
+    margin-bottom: 10px;
+    margin-top: 45px;
+  }
+  .a_author
+  {
+    @extend .author !optional;
+    padding: 5px 0;
+    margin: 0;
+  }
+  .content
+  {
+   padding: 10px;
+   color:#a8aab5;
+  }
+  .trending
+  {
+    color: #000;
+    margin-top: 50px;
+    font-size: 15px;
+    padding: 10px;
+  }
+}
+.arrow
+{
+  margin-top: 250px;
+  padding-left: 80px;
+  font-size: 20px;
+}
+.list
+{
+  background-color: #fff;
+  margin-top: 10px;
+  width: 100%; 
+  height: 20px;
+  color: #000;
+  list-style: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  padding-left: 10px;
+}
+.alist
+{
+  @extend .list !optional;
+  overflow: visible;
+  text-overflow: ellipsis;
+  height: auto;
+}
+.ui-panel-inner
+{
+  padding: 0;
+}
+.back
+{
+  height: 40%;
+  width: 100%;
+  background-color:#8a00e6; 
+  margin: 0;
+  padding: 20px 20px 0px 10px;
+}
+.email
+{
+  color: #fff;
+  font-size: 13px;
+  padding-top: 20px;
+  padding-bottom: 10px;
+}
+.profile-image
+{
+  height: 40px;
+  max-width: 40px;
+  border-radius:30px;
+  background-color: #f5f5f5;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.panel-list
+{
+  padding-top: 10px;
+  list-style: none;
+  li
+  {
+    padding: 10px;
+  }
+}
+#header-article
+{
+  @extend #header-app !optional;
+  height:40px ;
+}
+
+

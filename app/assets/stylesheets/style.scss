@@ -47,6 +47,7 @@
       border-radius: 20px;
       width:4px;
       margin-left: 250px;
+      z-index: -1;
     }
     .volume
     {
@@ -69,12 +70,16 @@
    /*main app navbar*/
    #header-app
    {
-    background-color: #57ABC5;position:absolute;left:0; right: 0; height: 75px
+    background-color: #57ABC5;position:absolute;left:0; right: 0; height: 75px;
    }
    #app_name
    {
     position: absolute;left: 42px;
     font-size:18px;
+    max-width: 130px;
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
    }
    .show-color
    {
@@ -83,7 +88,7 @@
     border: 1px solid black;
     margin-left: 15px;
    }
-   #catog-div
+   .catog-div
    {
     background-color: #57ABC5;
     margin-top: 64px;
@@ -93,15 +98,28 @@
     left: 0px;
     right: 0px;
     width: 100%;
+    text-overflow: clip;
+    white-space: nowrap; 
     }
     #all-categories
     {
       position: absolute;
       left: 20px;
+      overflow: hidden;
+      max-width: 215px;
+      text-overflow: clip;
+      white-space: nowrap;
     }
   .image
   {
     height: 50%;
     width: 100%;
-    
+    z-index: 100;
+    margin-top: 0;
+  }
+  .title
+  {
+    @extend .catog-div !optional;
+    margin-top: 0px;  
+    height: 50px;
   }

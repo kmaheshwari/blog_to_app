@@ -9,7 +9,8 @@ function changecolor(value)
      var color_value = $("#valueInput").val()
      $("#header-app").css("background-color", "#"+color_value);
      $("#all-categories").css("background-color", "#"+color_value)
-     $("#catog-div").css("background-color", "#"+color_value)
+     $(".catog-div").css("background-color", "#"+color_value)
+     $(".title").css("background-color", "#"+color_value)
 }     
 
 

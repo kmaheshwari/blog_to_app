@@ -1,18 +1,17 @@
 class PaymentsController < ApplicationController
+  skip_before_filter :verify_authenticity_token, :only => :create
   def new
   end
 
   def create
-    if stripe_token = params[:stripe_token]
-      if current_user.do_deposit_transaction(params[:payment_type], stripe_token)
-        flash[:notice] = 'Card charged successfully'
-      else
-        flash[:alert] = 'Some error happened while charging you, please double check your card details'
-      end
-    else
-      flash[:alert] = 'You did not submit the form correctly'
-    end
+    @customer = Stripe::Customer.create(
+    :email => params[:stripeEmail],
+    :source  => params[:stripeToken]
+  )
 
-    redirect_to payments_path
-  end
+  
+rescue Stripe::CardError => e
+  flash[:error] = e.message
+  redirect_to new_charge_path
+end
 end

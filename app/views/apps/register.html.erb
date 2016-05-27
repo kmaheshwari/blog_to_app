@@ -1,0 +1,123 @@
+
+ <head>
+  
+   <link rel="stylesheet" href="assets/register-form.css"> 
+
+ </head>
+ <body>
+   
+   <div class="container">
+    <br><br>
+
+    <form class="form-horizontal form" id="farm">
+    
+      <div class="col-md-8 col-md-offset-2">    
+        <div class="progress">
+          <div class="progress-bar progress-bar-success progress-bar-striped active" role="progressbar" aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        
+        <div class="box row-fluid"> 
+            <br>
+            <div class="step">
+                  <div class="form-group">
+                    <label for="name" class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="name" class="form-control" id="name" placeholder="Name">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="email" class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="email" class="form-control" id="email" placeholder="email">
+                    </div>
+                  </div>              
+                  <div class="form-group">
+                    <label for="country" class="col-sm-2 control-label">Country</label>
+                    <div class="col-sm-10">
+                      <select class="form-control" name="country" id="country">
+                        <option value="">Select</option>
+                        <option value="in">India</option>
+                        <option value="au">Australia</option>
+                        <option value="us">USA</option>
+                        <option value="ja">Japan</option>
+                        <option value="sg">Singapore</option>
+                        <option value="my">Malaysia</option>
+                      </select>
+                    </div>
+                  </div>
+            </div>
+
+            <div class="step">
+                  <div class="form-group">
+                    <label for="username" class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                      <input type="text" name="username" value="" class="form-control" id="username" placeholder="Username">
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label for="password" class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" name="password" value="" class="form-control" id="password" placeholder="Password">
+                    </div>
+                  </div>              
+                  <div class="form-group">
+                    <label for="rpassword" class="col-sm-2 control-label">Retype Password</label>
+                    <div class="col-sm-10">
+                      <input type="password" name="rpassword" class="form-control" id="rpassword" placeholder="Retype password">
+                    </div>
+                  </div>                
+            </div>
+            <div class="step display">
+                <h4>Confirm Details</h4>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Name</label>
+                    <div class="col-sm-10">
+                        <label data-id="name"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Email</label>
+                    <div class="col-sm-10">
+                        <label data-id="email"></label>
+                    </div>
+                  </div>              
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Country</label>
+                    <div class="col-sm-10">
+                        <label data-id="country"></label>
+                    </div>
+                  </div>              
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Username</label>
+                    <div class="col-sm-10">
+                        <label data-id="username"></label>
+                    </div>
+                  </div>
+                  <div class="form-group">
+                    <label class="col-sm-2 control-label">Password</label>
+                    <div class="col-sm-10">
+                        <label data-id="password"></label>
+                    </div>
+                  </div>              
+            </div>
+
+            <div class="row">
+              <div class="col-sm-12">
+                  <div class="pull-right">
+                    <button type="button" class="action btn-sky text-capitalize back btn">Back</button>
+                    <button type="button" class="action btn-sky text-capitalize next btn">Next</button>
+                    <button type="button" class="action btn-hot text-capitalize submit btn">Submit</button>
+                  </div>
+              </div>
+            </div>          
+
+        </div>
+        
+      </div> 
+    </form> 
+   </div>
+
+ </body>
+
+  <script type="text/javascript" src="assets/register.js"></script> 
+

@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate_author!
+  before_filter :authenticate_author! ,except: [:register]
 
   # GET /apps
   # GET /apps.json
@@ -82,6 +82,8 @@ class AppsController < ApplicationController
 
   def support
   end
+
+
    
   private
     # Use callbacks to share common setup or constraints between actions.

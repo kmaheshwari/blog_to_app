@@ -5,10 +5,13 @@ Rails.application.routes.draw do
   devise_for :authors
   root 'apps#index'
   resources :apps
-  get 'posts' => 'apps#posts'
+  get '/analytics' => 'apps#analytics'
+  get '/customize' => 'apps#customize'
+  get '/faq' => 'apps#faq'
+  get '/monetize' => 'apps#monetize'
+  get '/posts' => 'apps#posts'
   get 'new_notification' => 'apps#push_notification'
   get 'all_notification' => 'apps#all_notification'
-  get 'customize' => 'apps#customize'
   get 'support' => 'apps#support'
   get 'registration' => 'static#registration'
 

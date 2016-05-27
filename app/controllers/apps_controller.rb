@@ -68,7 +68,16 @@ class AppsController < ApplicationController
     end
   end
 
-  def posts
+  def analytics
+  end  
+
+  def customize
+  end
+
+  def faq
+  end  
+
+  def monetize
   end
 
   def push_notification
@@ -77,8 +86,7 @@ class AppsController < ApplicationController
   def all_notification
   end
 
-  def customize
-  end
+  
 
   def support
   end

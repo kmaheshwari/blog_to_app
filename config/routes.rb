@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  # resources :payments
   require 'sidekiq/web'
   mount API::Base, at: "/"
   mount Sidekiq::Web ,at: '/sidekiq'
@@ -11,7 +12,8 @@ Rails.application.routes.draw do
   get 'customize' => 'apps#customize'
   get 'support' => 'apps#support'
   get 'registration' => 'static#registration'
-
+  get 'payments' => 'payments#new'
+  post 'payments' => 'payments#create'
   def after_sign_in_path_for(user)
            apps_path(user)
       end

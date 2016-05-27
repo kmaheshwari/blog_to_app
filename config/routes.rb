@@ -10,7 +10,7 @@ Rails.application.routes.draw do
   get 'all_notification' => 'apps#all_notification'
   get 'customize' => 'apps#customize'
   get 'support' => 'apps#support'
-  get '/registration' => 'static#registration'
+  get 'registration' => 'static#registration'
 
   def after_sign_in_path_for(user)
            apps_path(user)

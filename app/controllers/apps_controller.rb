@@ -28,26 +28,20 @@ class AppsController < ApplicationController
     @app = App.new
     
    
-     @app.author_id     =   params[:app][:author_id]
-     @app.app_name      =   params[:app_name]
-     @app.app_url       =   params[:app][:app_url]
-     @app.app_icon      =   params[:app][:app_icon] 
-     @app.contact_email =   params[:app][:contact_email]
+    @app.author_id = params[:app][:author_id]
+    @app.app_name = params[:app_name]
+    @app.app_url = params[:app][:app_url]
+    @app.app_icon = params[:app][:app_icon] 
+    @app.contact_email = params[:app][:contact_email]
 
     if @app.save
-
           flash[:notice] = 'Successfully create app'
     else
           flash[:notice] = 'Some error ocured'
     end
 
-     redirect_to root_path
-    
-
-    
-
-    
-      end
+    redirect_to root_path
+  end
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json

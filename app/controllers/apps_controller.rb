@@ -1,6 +1,7 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate_author!
+
   # GET /apps
   # GET /apps.json
   def index
@@ -92,4 +93,5 @@ class AppsController < ApplicationController
     def app_params
       params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
     end
+
 end

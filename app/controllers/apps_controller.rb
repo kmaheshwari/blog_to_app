@@ -1,6 +1,8 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_author!
+
+  before_filter :authenticate_author!
+
   # GET /apps
   # GET /apps.json
   def index
@@ -28,26 +30,20 @@ class AppsController < ApplicationController
     @app = App.new
     
    
-     @app.author_id     =   params[:app][:author_id]
-     @app.app_name      =   params[:app_name]
-     @app.app_url       =   params[:app][:app_url]
-     @app.app_icon      =   params[:app][:app_icon] 
-     @app.contact_email =   params[:app][:contact_email]
+    @app.author_id = params[:app][:author_id]
+    @app.app_name = params[:app_name]
+    @app.app_url = params[:app][:app_url]
+    @app.app_icon = params[:app][:app_icon] 
+    @app.contact_email = params[:app][:contact_email]
 
     if @app.save
-
           flash[:notice] = 'Successfully create app'
     else
           flash[:notice] = 'Some error ocured'
     end
 
-     redirect_to root_path
-    
-
-    
-
-    
-      end
+    redirect_to root_path
+  end
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
@@ -73,7 +69,16 @@ class AppsController < ApplicationController
     end
   end
 
-  def posts
+  def analytics
+  end  
+
+  def customize
+  end
+
+  def faq
+  end  
+
+  def monetize
   end
 
   def push_notification
@@ -82,11 +87,12 @@ class AppsController < ApplicationController
   def all_notification
   end
 
-  def customize
-  end
+  
 
   def support
   end
+
+
    
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -98,4 +104,5 @@ class AppsController < ApplicationController
     def app_params
       params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
     end
+
 end

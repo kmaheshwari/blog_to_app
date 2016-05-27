@@ -9,10 +9,6 @@ Rails.application.routes.draw do
 devise_for :authors, :controllers => {:registrations => "authors/registrations"}
 
 
-get 'authorinfo' =>'basicinfo#authorinfo'
-
-post 'user_create' =>"basicinfo#user_create"
-
   get 'posts' => 'apps#posts'
   get 'new_notification' => 'apps#push_notification'
   get 'all_notification' => 'apps#all_notification'

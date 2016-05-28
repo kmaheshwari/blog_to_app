@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   mount API::Base, at: "/"
   mount Sidekiq::Web ,at: '/sidekiq'
  
-  root 'apps#customize'
+  root 'apps#index'
   resources :apps
 
 devise_for :authors, :controllers => {:registrations => "authors/registrations"}

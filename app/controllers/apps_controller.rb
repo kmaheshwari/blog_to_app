@@ -16,19 +16,24 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
-    @app = App.new
-
-  end
+    end
 
   # GET /apps/1/edit
   def edit
-  end
+    @app = App.find_by(:author_id =>current_author.id)
+ end
 
   # POST /apps
   # POST /apps.json
   def create
+  end
+
+  # PATCH/PUT /apps/1
+  # PATCH/PUT /apps/1.json
+  def update
     @app = App.new
     
+   binding.pry
    
     @app.author_id = params[:app][:author_id]
     @app.app_name = params[:app_name]
@@ -43,20 +48,8 @@ class AppsController < ApplicationController
     end
 
     redirect_to root_path
-  end
+    
 
-  # PATCH/PUT /apps/1
-  # PATCH/PUT /apps/1.json
-  def update
-    respond_to do |format|
-      if @app.update(app_params)
-        format.html { redirect_to @app, notice: 'App was successfully updated.' }
-        format.json { render :show, status: :ok, location: @app }
-      else
-        format.html { render :edit }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
-    end
   end
 
   # DELETE /apps/1
@@ -97,7 +90,7 @@ class AppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-      @app = App.find(params[:id])
+    @app = App.find_by(:author_id =>current_author.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

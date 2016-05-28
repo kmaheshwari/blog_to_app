@@ -33,7 +33,7 @@ end
         @app.author_id = @find_author_id
 
 
-        @app.app_url = params[:url]
+        @app.app_url = params[:blog_url]
 
         @app.save
 

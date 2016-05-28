@@ -24,6 +24,6 @@ devise_for :authors, :controllers => {:registrations => "authors/registrations"}
 
 
   def after_sign_in_path_for(user)
-           apps_path(user)
+           customize_path(user)
       end
 end

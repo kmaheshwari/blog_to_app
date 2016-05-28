@@ -14,11 +14,12 @@ before_action :set_pass, only: [:new]
 
 def set_pass
 
-  @temp_pass = SecureRandom.hex(8)
+  @temp_pass = SecureRandom.hex(5)
 end
 
  
   def create
+    binding.pry
     
     super
 

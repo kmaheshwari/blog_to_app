@@ -31,7 +31,7 @@ $(document).ready(function() {
                     categories: 
                     {
                         required: true,
-                        // email: true
+                        
                     },
                 },
             });

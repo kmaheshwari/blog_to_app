@@ -36,11 +36,20 @@ class AppsController < ApplicationController
    binding.pry
    
     @app.app_name = params[:app_name]
-    @app.app_icon = params[:app][:app_icon] 
     @app.contact_email = params[:email]
 
     if @app.save
-          flash[:notice] = 'Successfully create app'
+           
+           params[:categories].each do |category|
+               @app_cateogry = Appcategory.new
+               @app_cateogry.app_id = @app.id
+               @app_cateogry.category_name = category
+               @app_cateogry.save
+            end   
+
+      flash[:notice] = 'Successfully create app'
+    
+    
     else
           flash[:notice] = 'Some error ocured'
     end

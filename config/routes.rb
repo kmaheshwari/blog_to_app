@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
   require 'sidekiq/web'
   mount API::Base, at: "/"
+
+  
   mount Sidekiq::Web ,at: '/sidekiq'
  
   root 'apps#index'

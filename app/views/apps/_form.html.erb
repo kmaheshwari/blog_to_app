@@ -1,17 +1,86 @@
-<%= form_for(@app) do |f| %>
-  <% if @app.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@app.errors.count, "error") %> prohibited this app from being saved:</h2>
+<div class="grid-system">
+  <div class="grid-form1 questions">
+    <p>You can customize your app logo, color scheme, main menus and sliders with few clicks and make it even better - just like the way you want and generate APK file within few minutes.</p><hr/>
+    <div class="row">
+      <div class="col-md-6">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Name</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Name of your app">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputPassword3" class="col-sm-2 control-label hor-form">Logo</label>
+            <div class="col-sm-10">
+              <input type="file" id="exampleInputFile" placeholder="Your app logo">
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Categories</label>
+            <div class="col-sm-10">
+              <select multiple="" class="form-control1">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                  <option>Option 4</option>
+                  <option>Option 5</option>
+              </select>
+            </div>
+          </div>
 
-      <ul>
-      <% @app.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Colors</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
+            <div class="col-sm-10">
+              <input type="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">About</label>
+            <div class="col-sm-10">
+              <select multiple="" class="form-control1">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                  <option>Option 4</option>
+                  <option>Option 5</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Privacy</label>
+            <div class="col-sm-10">
+              <select multiple="" class="form-control1">
+                  <option>Option 1</option>
+                  <option>Option 2</option>
+                  <option>Option 3</option>
+                  <option>Option 4</option>
+                  <option>Option 5</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default">Generate APK</button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="col-md-6">
+
+        <img src="assets/app.png" width="50%" style="display: block; margin-left: auto; margin-right: auto"/>
+
+      </div>
     </div>
-  <% end %>
-
-  <div class="actions">
-    <%= f.submit %>
   </div>
-<% end %>
+</div>
+<!--//faq-->

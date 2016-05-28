@@ -1,31 +1,31 @@
 module CategoryHelper
 	include HTTParty
-	base_uri 'beingmango.com/wp-json/wp/v2/categories'
 	@@attributes=["id","name","slug"]	
-	def fetch_categories
-		categories = $redis.get("categories")
+	def fetch_categories base_uri, app_key
+		categories = $redis.get("categories"+"#{app_key}")
 		if categories.nil?
-		  categories=HTTParty.get(base_uri)
+		  categories=HTTParty.get("http://"+base_uri)
 		  categories.each {|category| category.slice!(*@@attributes)}
-		  $redis.set("categories", categories)
+		  $redis.set("categories"+"#{app_key}", categories)
+		  categories
 		else
-			eval categories	
-		end
+		  eval categories  
+		end	
 	end	
 
-	def fetch id
-		category_id=id[:id].to_i
-		category=$redis.get("categories")
-		category=eval category
+	def fetch id, base_uri, app_key
+		category_id=id.to_i
+		categories = $redis.get("categories"+"#{app_key}")
 
-		if category.nil?
-			category=HTTParty.get(base_uri+"/#{category_id}")
+		if categories.nil?
+			category=HTTParty.get("http://"+base_uri+"/#{category_id}")
 			category.slice!(*@@attributes)
 		else
+			categories=eval categories
 			record={}
-			category.map do |p|
-				if p["id"]==category_id
-					record=p
+			categories.map do |category|
+				if category["id"]==category_id
+					record=category
 					break
 				end	
 			end

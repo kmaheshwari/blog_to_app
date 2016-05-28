@@ -12,8 +12,8 @@
 //
 //= require jquery
 //= require jquery_ujs 
-//= require bootstrap-sprockets
-//= require bootstrap-select
+
+//= require jquery.validate
 //= require_tree .
-//= require_tree ./inc
+//= require bootstrap-sprockets
 //= require_self

@@ -16,7 +16,8 @@ module API
           end
 
           def current_url
-              base_url=App.find_by_access_token(headers['Authorization']).app_url
+              # base_url=App.find_by_access_token(headers['Authorization']).app_url
+              base_url="http://www.beingmango.com"
               base_url+="/wp-json/wp/v2"
           end  
 

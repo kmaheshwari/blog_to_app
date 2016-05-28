@@ -14,5 +14,7 @@ class App < ActiveRecord::Base
 
     mount_uploader :app_icon, IconUploader
 
+    has_many :appcategories
+
 
 end

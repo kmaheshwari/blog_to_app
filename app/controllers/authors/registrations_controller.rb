@@ -14,17 +14,20 @@ before_action :set_pass, only: [:new]
 
 def set_pass
 
-  @temp_pass = SecureRandom.hex(5)
+  $temp_pass = SecureRandom.hex(5)
 end
 
  
   def create
-    binding.pry
     
     super
 
 
         # binding.pry
+
+        SignupMail.perform_async($temp_pass)
+
+
 
        @find_author_id =  Author.find_by(:email => params[:author][:email]).id
 

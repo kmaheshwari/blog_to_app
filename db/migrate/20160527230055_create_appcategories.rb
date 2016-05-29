@@ -1,6 +1,6 @@
 class CreateAppcategories < ActiveRecord::Migration
   def change
-  	drop_table :appcatogries
+  	# drop_table :appcatogries
     create_table :appcategories do |t|
       t.string :category_name
       t.integer :app_id

@@ -8,19 +8,20 @@ Rails.application.routes.draw do
   root 'apps#index'
   resources :apps
 
-devise_for :authors, :controllers => {:registrations => "authors/registrations"}
+  devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
 
 
-  get 'posts' => 'apps#posts'
-  get 'new_notification' => 'apps#push_notification'
-  get 'all_notification' => 'apps#all_notification'
+  get '/posts' => 'apps#posts'
+  get '/new_notification' => 'apps#push_notification'
+  get '/all_notification' => 'apps#all_notification'
   get '/analytics' => 'apps#analytics'
   get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
-  get '/posts' => 'apps#posts'
+
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
+
   get 'support' => 'apps#support'
   # get 'registration' => 'static#registration'
   def after_sign_in_path_for(user)

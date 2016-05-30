@@ -16,7 +16,7 @@ gem 'grape'
 gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+gem 'nokogiri'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
 

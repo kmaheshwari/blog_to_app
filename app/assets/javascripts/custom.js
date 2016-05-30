@@ -34,3 +34,30 @@ $(function() {
         element.addClass('active');
     }
 });
+function catog()
+
+{
+       var catog = " "
+       catog = $(".dropdown-toggle").attr("title");
+       var chop_catog = catog.split(",");
+
+       if (chop_catog[1] == undefined)
+       {
+          $("#cat1").html(chop_catog[0].toUpperCase());
+       
+       }
+
+       else if (chop_catog[2] != undefined )
+       {
+          $("#cat1").html(chop_catog[0].toUpperCase());
+          $("#cat2").html(chop_catog[1].toUpperCase());
+          $("#cat3").html(chop_catog[2].toUpperCase());
+       }  
+
+       else if (chop_catog[1] != undefined && chop_catog[2] == undefined )
+       {
+          $("#cat1").html(chop_catog[0].toUpperCase());
+          $("#cat2").html(chop_catog[1].toUpperCase());
+       }  
+
+}

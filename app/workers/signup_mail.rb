@@ -4,13 +4,12 @@ class SignupMail
 
 
 
-	def perform(temp_pass)
+	def perform(author_email,temp_pass)
 
-		@temp_pass = temp_pass
-
-     user = "rjv834@gmail.com"
-
-    SendPassword.send_signup_email(user,@temp_pass).deliver
+		@temp_pass    = temp_pass
+        @author_email = author_email
+    
+    SendPassword.send_signup_email(@author_email,@temp_pass).deliver
       
 
   end

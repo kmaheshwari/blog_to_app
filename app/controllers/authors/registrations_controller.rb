@@ -6,9 +6,9 @@ layout :false
 before_action :set_pass, only: [:new]
 
   # GET /resource/sign_up
-  # def new
-  #   super
-  # end
+  def new
+    super
+  end
 
   # POST /resource
 
@@ -21,7 +21,7 @@ end
   def create
     #binding.pry
     @next=0
-    # super
+    super
       @valid_url=check_site(params[:blog_url])
 
       if @valid_url 
@@ -30,6 +30,8 @@ end
         @author.email = params[:email]
         @author.password = params[:author][:password]
         @author.save
+        # to create session
+        sign_in @author
         # byebug
         @find_author_id =  Author.find_by(:email => params[:email]).id
         @app = App.new
@@ -41,6 +43,8 @@ end
       else
         @next=0
       end 
+
+      # super
       # byebug
 end
 
@@ -49,7 +53,7 @@ end
   def sign_up_params
 
   
-    allow = [:email ,:password]
+    allow = [:email ,:password, :app_url]
     params.require(resource_name).permit(allow)
   end
 

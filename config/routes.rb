@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   root 'apps#index'
   resources :apps
 
-devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
+  devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
 
 
   get '/posts' => 'apps#posts'

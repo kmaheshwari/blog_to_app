@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 'registration' => 'static#registration'
   get 'payments' => 'payments#new'
   post 'payments' => 'payments#create'
+  get 'payment_fail' => 'payments#payment_fail'
   def after_sign_in_path_for(user)
            apps_path(user)
       end

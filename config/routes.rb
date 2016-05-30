@@ -5,8 +5,6 @@ Rails.application.routes.draw do
 
 
   
-  mount Sidekiq::Web ,at: '/sidekiq'
- 
   root 'apps#index'
   resources :apps
 

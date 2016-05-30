@@ -11,7 +11,6 @@ Rails.application.routes.draw do
   get 'customize' => 'apps#customize'
   get 'support' => 'apps#support'
   get 'registration' => 'static#registration'
-  get 'emulator' => 'static#emulator'
   def after_sign_in_path_for(user)
            apps_path(user)
       end

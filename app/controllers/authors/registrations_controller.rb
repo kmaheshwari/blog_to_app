@@ -19,14 +19,21 @@ end
 
  
   def create
-    binding.pry
+    #binding.pry
     
     super
 
 
         # binding.pry
+        @author = Author.new
 
-       @find_author_id =  Author.find_by(:email => params[:author][:email]).id
+  
+        @author.email = params[:email]
+        @author.password = params[:author][:password]
+
+        @author.save
+
+       @find_author_id =  Author.find_by(:email => params[:email]).id
 
         @app = App.new
 
@@ -36,7 +43,7 @@ end
         @app.app_url = params[:blog_url]
 
         @app.save
-
+# byebug
 end
 
   private

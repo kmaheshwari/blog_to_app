@@ -25,7 +25,9 @@ end
 
         # binding.pry
 
-        SignupMail.perform_async($temp_pass)
+        @author_email  = params[:author][:email]
+
+        SignupMail.perform_async(@author_email,$temp_pass)
 
 
 

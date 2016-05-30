@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527230055) do
+ActiveRecord::Schema.define(version: 20160530073512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20160527230055) do
     t.integer  "app_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "appcolours", force: :cascade do |t|
+    t.integer  "app_id"
+    t.string   "top_bar_colour"
+    t.string   "brand_colour"
+    t.string   "accent_colour"
+    t.string   "article_colour"
+    t.string   "background_colour"
+    t.string   "article_writer_colour"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "apps", force: :cascade do |t|
@@ -55,5 +67,6 @@ ActiveRecord::Schema.define(version: 20160527230055) do
   add_index "authors", ["reset_password_token"], name: "index_authors_on_reset_password_token", unique: true, using: :btree
 
   add_foreign_key "appcategories", "apps"
+  add_foreign_key "appcolours", "apps"
   add_foreign_key "apps", "authors"
 end

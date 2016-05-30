@@ -61,7 +61,7 @@
     
   
   <div class="form-group">
-  <form class="form-horizontal" action="payments" method="POST">
+  <form class="form-horizontal" id="form-29" action="payments" method="POST">
     <div class="col-sm-6">
       <h2 style="text-align: center;">$29 Self Host</h2>
       <p style="text-align: center;">
@@ -73,7 +73,9 @@
         ✓ 24*7 customer support<br/>
         ✓ Backend CMS to manage app
       </p>
-      <center> <script
+      <input type="hidden" name="amount" value="290">
+      <center>
+      <script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_4ayR1Le2S8qNY9GgGEH3RnHn"
     data-amount="290"
@@ -82,6 +84,7 @@
     data-image="/img/documentation/checkout/marketplace.png"
     data-locale="auto"
     data-zip-code="true"
+    plan = "1"
     data-label="Pay and Let us Publish Your App">
   </script></center>
        </form>
@@ -98,6 +101,7 @@
         ✓ App Store Optimization<br/>
         ✓ Something else write here
       </p>
+      <input type="hidden" name="amount" value="490">
        <center><script
     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
     data-key="pk_test_4ayR1Le2S8qNY9GgGEH3RnHn"

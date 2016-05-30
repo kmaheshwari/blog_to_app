@@ -9,7 +9,13 @@ class PaymentsController < ApplicationController
     :email => params[:stripeEmail],
     :source  => params[:stripeToken]
   )
-
+    # byebug
+@charge = Stripe::Charge.create(
+    :customer    => @customer.id,
+    :amount      => params[:amount],
+    :description => 'Rails Stripe customer',
+    :currency    => 'usd'
+  )
   
 rescue Stripe::CardError => e
   flash[:error] = e.message

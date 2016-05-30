@@ -1,7 +1,8 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
 
-  before_filter :authenticate_author!
+  before_filter :authenticate_author! 
+
 
   # GET /apps
   # GET /apps.json
@@ -16,47 +17,46 @@ class AppsController < ApplicationController
 
   # GET /apps/new
   def new
-    @app = App.new
-
-  end
+    end
 
   # GET /apps/1/edit
   def edit
-  end
+    @app = App.find_by(:author_id =>current_author.id)
+ end
 
   # POST /apps
   # POST /apps.json
   def create
-    @app = App.new
-    
-   
-    @app.author_id = params[:app][:author_id]
-    @app.app_name = params[:app_name]
-    @app.app_url = params[:app][:app_url]
-    @app.app_icon = params[:app][:app_icon] 
-    @app.contact_email = params[:app][:contact_email]
-
-    if @app.save
-          flash[:notice] = 'Successfully create app'
-    else
-          flash[:notice] = 'Some error ocured'
-    end
-
-    redirect_to root_path
   end
 
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
   def update
-    respond_to do |format|
-      if @app.update(app_params)
-        format.html { redirect_to @app, notice: 'App was successfully updated.' }
-        format.json { render :show, status: :ok, location: @app }
-      else
-        format.html { render :edit }
-        format.json { render json: @app.errors, status: :unprocessable_entity }
-      end
+    @app = App.find_by(:author_id =>current_author.id)
+    
+   
+    @app.app_name = params[:app_name]
+    @app.contact_email = params[:email]
+
+    if @app.save
+           
+           params[:categories].each do |category|
+               @app_cateogry = Appcategory.new
+               @app_cateogry.app_id = @app.id
+               @app_cateogry.category_name = category
+               @app_cateogry.save
+            end   
+
+      flash[:notice] = 'Successfully create app'
+    
+    
+    else
+          flash[:notice] = 'Some error ocured'
     end
+
+    redirect_to root_path
+    
+
   end
 
   # DELETE /apps/1
@@ -90,14 +90,25 @@ class AppsController < ApplicationController
   
 
   def support
+    
   end
 
-
+  # check if url is a wordpress blog: returns true for wordpress blog
+  def check_site
+    app_url = 'http://builtwith.com/' + @app.app_url
+    @response = Nokogiri::HTML(open(app_url))
+    @data= false
+    @response.css('.techItem a').each do |link|
+      if link.content == "WordPress"
+        @data = true
+      end
+    end
+  end
    
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-      @app = App.find(params[:id])
+    @app = App.find_by(:author_id =>current_author.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

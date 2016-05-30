@@ -3,24 +3,29 @@ Rails.application.routes.draw do
   mount API::Base, at: "/"
   mount Sidekiq::Web ,at: '/sidekiq'
 
+
+  
+  mount Sidekiq::Web ,at: '/sidekiq'
+ 
   root 'apps#index'
   resources :apps
 
-devise_for :authors, :controllers => {:registrations => "authors/registrations"}
+  devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
 
 
-get 'authorinfo' =>'basicinfo#authorinfo'
-
-post 'user_create' =>"basicinfo#user_create"
-
-  get 'posts' => 'apps#posts'
+  get '/posts' => 'apps#posts'
   get 'new_notification' => 'apps#push_notification'
   get 'all_notification' => 'apps#all_notification'
   get 'customize' => 'apps#customize'
-    get 'support' => 'apps#support'
+  get '/faq' => 'apps#faq'
+  get '/monetize' => 'apps#monetize'
 
+  get '/new_notification' => 'apps#push_notification'
+  get '/all_notification' => 'apps#all_notification'
 
+  get 'support' => 'apps#support'
+  # get 'registration' => 'static#registration'
   def after_sign_in_path_for(user)
-           apps_path(user)
+           customize_path(user)
       end
 end

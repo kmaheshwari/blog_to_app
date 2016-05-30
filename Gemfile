@@ -16,7 +16,6 @@ gem 'grape'
 gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-gem 'jquery_mobile_rails'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
 
@@ -24,6 +23,14 @@ gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
+
+# mail dependencies
+gem 'sendgrid-ruby'
+gem 'sendgrid'
+gem 'mail'
+gem 'json'
+# mail dependencies
+
 
 gem 'sass-rails'
 gem 'sidekiq'                       #background jobs

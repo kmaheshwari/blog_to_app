@@ -1,0 +1,53 @@
+
+<div class="block-header">       <h2>Sign up</h2>  </div>
+
+<hr>
+          <div class="card">
+
+
+
+      <%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
+        <%= devise_error_messages! %>
+
+
+        
+        <div class="form-group col-sm-12">
+ 
+       <label class="col-sm-2"> Your Blog's Url</label> 
+       <div class="col-sm-4">
+       <input type="text" name="blog_url" id ="blog_url" class="form-control col-sm-3" value="http://"> 
+       </div>
+       
+       </div>
+
+
+        <div class="form-group col-sm-12">
+
+         <%= f.label :email ,:class=>"col-sm-2" %>
+         <div class="col-sm-4">
+
+          <%= f.email_field :email, class: "form-control",autofocus: true ,required: true %>
+
+
+        </div>
+        </div>
+
+        <br><br>
+
+        <div class="field">
+
+     <%= f.hidden_field :password, autocomplete: "off" ,:value=> $temp_pass %>
+   
+   </div>
+
+
+        
+
+        <div class="actions">
+          <%= f.submit "Next" %>
+        </div>
+      <% end %>
+
+
+</div>
+

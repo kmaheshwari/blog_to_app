@@ -20,30 +20,28 @@ end
  
   def create
     #binding.pry
-    
-    super
+    @next=0
+    # super
+      @valid_url=check_site(params[:blog_url])
 
-
+      if @valid_url 
         # binding.pry
         @author = Author.new
-
-  
         @author.email = params[:email]
         @author.password = params[:author][:password]
-
         @author.save
-
-       @find_author_id =  Author.find_by(:email => params[:email]).id
-
+        # byebug
+        @find_author_id =  Author.find_by(:email => params[:email]).id
         @app = App.new
-
         @app.author_id = @find_author_id
-
-
         @app.app_url = params[:blog_url]
-
         @app.save
-# byebug
+        @next=1
+
+      else
+        @next=0
+      end 
+      # byebug
 end
 
   private
@@ -53,6 +51,19 @@ end
   
     allow = [:email ,:password]
     params.require(resource_name).permit(allow)
+  end
+
+  def check_site(url)
+    url=url[7..-1]
+    app_url = 'http://builtwith.com/q=' + url
+    @response = Nokogiri::HTML(open(app_url))
+    @data= false
+    @response.css('.techItem a').each do |link|
+      if link.content == "WordPress"
+        @data = true
+      end
+    end
+    @data
   end
 
    end

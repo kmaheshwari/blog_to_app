@@ -18,8 +18,8 @@ devise_for :authors, :controllers => {:registrations => "authors/registrations"}
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
   get '/posts' => 'apps#posts'
-  get 'new_notification' => 'apps#push_notification'
-  get 'all_notification' => 'apps#all_notification'
+  get '/new_notification' => 'apps#push_notification'
+  get '/all_notification' => 'apps#all_notification'
   get 'support' => 'apps#support'
   # get 'registration' => 'static#registration'
 

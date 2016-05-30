@@ -6,7 +6,9 @@ class ApplicationController < ActionController::Base
    before_action :current_app
 
     def current_app
-      @app_path = App.find_by(:author_id =>current_author.id)
+    	if author_signed_in?
+            @app_path = App.find_by(:author_id =>current_author.id)
+        end
     end
   
 end

@@ -136,11 +136,13 @@
                            
                            <i class="fa fa-dashboard nav_icon "></i>
                            	<span class="nav-label">
+
+                           	<% if author_signed_in? %>
                            	<%= link_to "Edit" , edit_app_path(@app_path) ,:class=>"hvr-bounce-to-right"%> </span>
-                            
+                            <% end %>
 	                   
 	                    </li>
-	                    
+
 						<li>
 	                        <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Push Notifications</span> </a>
 	                    </li>

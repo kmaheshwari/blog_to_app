@@ -25,6 +25,14 @@ gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 
+# mail dependencies
+gem 'sendgrid-ruby'
+gem 'sendgrid'
+gem 'mail'
+gem 'json'
+# mail dependencies
+
+
 gem 'sass-rails'
 gem 'sidekiq'                       #background jobs
 gem 'sidetiq'                        #repeat jobs for sidekiq workers

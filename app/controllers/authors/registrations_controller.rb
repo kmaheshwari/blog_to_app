@@ -14,7 +14,7 @@ before_action :set_pass, only: [:new]
 
 def set_pass
 
-  @temp_pass = SecureRandom.hex(8)
+  $temp_pass = SecureRandom.hex(5)
 end
 
  
@@ -25,6 +25,10 @@ end
 
         # binding.pry
 
+        SignupMail.perform_async($temp_pass)
+
+
+
        @find_author_id =  Author.find_by(:email => params[:author][:email]).id
 
         @app = App.new
@@ -32,7 +36,7 @@ end
         @app.author_id = @find_author_id
 
 
-        @app.app_url = params[:url]
+        @app.app_url = params[:blog_url]
 
         @app.save
 

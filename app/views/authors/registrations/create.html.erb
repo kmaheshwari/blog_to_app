@@ -43,7 +43,7 @@
 							<p style="text-align: center;">In order tp enable realtime data transfer from your blog to app, you need to enable WordPress REST APIs.</p>
 							<img src="assets/plugin.png" width="300" style="display: block;margin-left: auto;margin-right: auto;padding-top: 5%"/>
 							<div class="login-do" style="padding-top: 8%">
-								<a href="/apps" class="hvr-shutter-in-horizontal">Install Now</a>
+								<a href="/apps/edit" class="hvr-shutter-in-horizontal">Install Now</a>
 							</div>  
 						</div>
 						<div class="clearfix"> </div>
@@ -51,7 +51,10 @@
 				</div>
 			</div>
 		<% else %>
-			<p>Not Wordpress Blog!</p>
+			<script type="text/javascript">
+    			window.location.href="/authors/sign_up"  // put your correct path in a string here
+    			alert("Not a wordpress blog")
+  			</script>
 		<%end%>
 
 	<script src="assets/jquery.nicescroll.js"></script>

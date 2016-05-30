@@ -21,28 +21,28 @@ end
   def create
     #binding.pry
     @next=0
-    super
-      @valid_url=check_site(params[:blog_url])
+    # super
+    @valid_url=check_site(params[:blog_url])
 
-      if @valid_url 
-        # binding.pry
-        @author = Author.new
-        @author.email = params[:email]
-        @author.password = params[:author][:password]
-        @author.save
-        # to create session
-        sign_in @author
-        # byebug
-        @find_author_id =  Author.find_by(:email => params[:email]).id
-        @app = App.new
-        @app.author_id = @find_author_id
-        @app.app_url = params[:blog_url]
-        @app.save
-        @next=1
+    if @valid_url 
+      # binding.pry
+      @author = Author.new
+      @author.email = params[:email]
+      @author.password = params[:author][:password]
+      @author.save
+      # to create session
+      sign_in @author
+      # byebug
+      @find_author_id =  Author.find_by(:email => params[:email]).id
+      @app = App.new
+      @app.author_id = @find_author_id
+      @app.app_url = params[:blog_url]
+      @app.save
+      @next=1
 
-      else
-        @next=0
-      end 
+    else
+      @next=0
+    end 
 
       # super
       # byebug

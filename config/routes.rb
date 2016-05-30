@@ -21,11 +21,7 @@ devise_for :authors, :controllers => {:registrations => "authors/registrations"}
   get 'new_notification' => 'apps#push_notification'
   get 'all_notification' => 'apps#all_notification'
   get 'support' => 'apps#support'
-  # get 'registration' => 'static#registration'
 
 
 
-  def after_sign_in_path_for(user)
-           customize_path(user)
-      end
 end

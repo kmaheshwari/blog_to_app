@@ -111,6 +111,17 @@
 			                <li><a href="calendar.html"><i class="fa fa-calendar"></i>Calender</a></li>
 			                <li><a href="inbox.html"><i class="fa fa-clipboard"></i>Tasks</a></li>
 
+
+			               <li>
+			                <%= link_to  edit_author_registration_path do %>
+                         
+                              <i class="fa fa-sign-out"></i> Reset Password
+
+			            <% end %>
+
+			                </li>
+
+
 			                <li>			          			         
 			                	<%= link_to destroy_author_session_path, :method => :delete do %>
 			                	    <i class="fa fa-sign-out"></i>Logout
@@ -131,17 +142,15 @@
 	                    <li>
 	                        <a href="/apps" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboards</span> </a>
 	                    </li>
-	                    <li>
 
-                           
-                           <i class="fa fa-dashboard nav_icon "></i>
-                           	<span class="nav-label">
-
-                           	<% if author_signed_in? %>
-                           	<%= link_to "Edit" , edit_app_path(@app_path) ,:class=>"hvr-bounce-to-right"%> </span>
-                            <% end %>
-	                   
+	                    
+						<% if author_signed_in? %>
+                          
+						<li>	
+	                  <a href="/apps/<%= @app.id %>/edit" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Customize App</span> </a>
 	                    </li>
+	                    
+	                    <% end %>
 
 						<li>
 	                        <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-inbox nav_icon"></i> <span class="nav-label">Push Notifications</span> </a>

@@ -2,11 +2,11 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
    before_filter :authenticate_author! ,except: [:register]
 
-
   # GET /apps
   # GET /apps.json
   def index
     @apps = App.all
+    
   end
 
   # GET /apps/1
@@ -20,8 +20,7 @@ class AppsController < ApplicationController
 
   # GET /apps/1/edit
   def edit
-    @app = App.find_by(:author_id =>current_author.id)
- end
+  end
 
   # POST /apps
   # POST /apps.json

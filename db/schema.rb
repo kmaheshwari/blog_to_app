@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160527231218) do
+ActiveRecord::Schema.define(version: 20160530073512) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,6 +21,18 @@ ActiveRecord::Schema.define(version: 20160527231218) do
     t.integer  "app_id"
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
+  end
+
+  create_table "appcolours", force: :cascade do |t|
+    t.integer  "app_id"
+    t.string   "top_bar_colour"
+    t.string   "brand_colour"
+    t.string   "accent_colour"
+    t.string   "article_colour"
+    t.string   "background_colour"
+    t.string   "article_writer_colour"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "apps", force: :cascade do |t|
@@ -64,5 +76,6 @@ ActiveRecord::Schema.define(version: 20160527231218) do
   end
 
   add_foreign_key "appcategories", "apps"
+  add_foreign_key "appcolours", "apps"
   add_foreign_key "apps", "authors"
 end

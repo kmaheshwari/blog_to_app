@@ -39,12 +39,14 @@
     <div class="login-bottom">
 
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
+
           
       <div class="col-md-12">
         <div class=" login-mail">
           <input type="text" name="email" required="" placeholder="Email" >
           <i class="fa fa-user"></i>
           
+
         </div>
         <div class="login-mail">
           <input type="text" name="blog_url"  id ="blog_url" value="http://" required="">
@@ -52,11 +54,13 @@
           
         </div>    
         <div class="field">
+
           <%= f.hidden_field :password, autocomplete: "off" ,:value=> @temp_pass %>
         </div>
       </div>
         <div class="login-do hvr-shutter-in-horizontal">
               <%= f.submit "Proceed to Next Step" %>
+
         </div>
         <div class="clearfix"> </div>
       <% end %>

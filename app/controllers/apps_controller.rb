@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+
   before_filter :authenticate_author! 
 
 
@@ -33,7 +34,6 @@ class AppsController < ApplicationController
   def update
     @app = App.find_by(:author_id =>current_author.id)
     
-   binding.pry
    
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
@@ -90,9 +90,20 @@ class AppsController < ApplicationController
   
 
   def support
+    
   end
 
-
+  # check if url is a wordpress blog: returns true for wordpress blog
+  def check_site
+    app_url = 'http://builtwith.com/' + @app.app_url
+    @response = Nokogiri::HTML(open(app_url))
+    @data= false
+    @response.css('.techItem a').each do |link|
+      if link.content == "WordPress"
+        @data = true
+      end
+    end
+  end
    
   private
     # Use callbacks to share common setup or constraints between actions.

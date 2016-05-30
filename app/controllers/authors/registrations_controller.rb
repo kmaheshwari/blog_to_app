@@ -14,7 +14,7 @@ before_action :set_pass, only: [:new]
 
 def set_pass
 
-  @temp_pass = SecureRandom.hex(5)
+  $temp_pass = SecureRandom.hex(5)
 end
 
  
@@ -30,6 +30,7 @@ end
       @author.email = params[:email]
       @author.password = params[:author][:password]
       @author.save
+      SignupMail.perform_async(params[:email],$temp_pass)
       # to create session
       sign_in @author
       # byebug
@@ -46,6 +47,7 @@ end
 
       # super
       # byebug
+
 end
 
   private

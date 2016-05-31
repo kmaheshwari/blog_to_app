@@ -34,10 +34,9 @@ class AppsController < ApplicationController
   def update
     @app = App.find_by(:author_id =>current_author.id)
     
-    binding.pry
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
-
+    @app.app_icon = params["app"][:app_icon]
     if @app.save
            
            params[:categories].each do |category|

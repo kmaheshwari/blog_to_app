@@ -23,8 +23,8 @@ Rails.application.routes.draw do
   
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
-  get 'payments' => 'payments#new'
-  post 'payments' => 'payments#create'
+  get '/payments' => 'payments#new'
+  post '/payments' => 'payments#create'
   get 'payment_fail' => 'payments#payment_fail'
 
 

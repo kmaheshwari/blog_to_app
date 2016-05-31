@@ -109,6 +109,14 @@
 			              <ul class="dropdown-menu " role="menu">
 			                <li><a href="password.html"><i class="fa fa-user"></i>Edit Profile</a></li>
 
+
+			                <li>			          			         
+			                	<%= link_to edit_author_registration_path do %>
+			                	    <i class="fa fa-sign-out"></i>Reset Password
+			                	<% end %>
+			                </li>
+
+
 			                <li>			          			         
 			                	<%= link_to destroy_author_session_path, :method => :delete do %>
 			                	    <i class="fa fa-sign-out"></i>Logout

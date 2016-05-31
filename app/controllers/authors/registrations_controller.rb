@@ -3,6 +3,9 @@ class Authors::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
 layout "step-form"
 
+
+
+
 before_action :set_pass, only: [:new]
 
   # GET /resource/sign_up
@@ -90,7 +93,15 @@ end  #create ends
     @data
   end
 
-   
+   def edit
+       super
+       respond_to do |format| 
+       
+        format.html {render :layout => "application"}
+
+     end
+ end
+ 
 
 
 
@@ -99,10 +110,7 @@ end  #class ends
 
 
   # GET /resource/edit
-  # def edit
-  #   super
-  # end
-
+  
   # PUT /resource
   # def update
   #   super

@@ -11,7 +11,8 @@
 
 	<%= stylesheet_link_tag    'application', media: 'all' %>
   	<%= csrf_meta_tags %>
-	<%= javascript_include_tag 'application'%>  
+	<%= javascript_include_tag 'application'%> 
+ 
 
 </head>
 <body>
@@ -157,6 +158,7 @@
         </nav>
         <div id="page-wrapper" class="gray-bg dashbard-1">
        		<div class="content-main">
+       	
   				<%= yield %>
 				<div class="copy">
 

@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
 
 
+
   get '/posts' => 'apps#posts'
 
   get '/new_notification' => 'apps#push_notification'
@@ -28,7 +29,9 @@ Rails.application.routes.draw do
   get 'payment_fail' => 'payments#payment_fail'
 
 
-  def after_sign_in_path_for(user)
-           customize_path(user)
-  end
+  get 'support' => 'apps#support'
+
+  # get 'registration' => 'static#registration'
+
+
 end

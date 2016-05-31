@@ -21,11 +21,11 @@ end
   def create
 
   if Author.exists?(:email => params[:email])
-      flash[:success] = "Email Already taken!!"
+      flash[:alert] = "Email Already taken"
       redirect_to new_author_registration_path
 
    elsif App.exists?(:app_url => params[:blog_url])
-      flash[:success] = "Blog Url Already registered!!"
+      flash[:alert] = "Blog Url Already registered"
       redirect_to new_author_registration_path
          
        

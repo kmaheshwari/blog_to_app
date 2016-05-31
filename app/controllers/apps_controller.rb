@@ -120,12 +120,16 @@ class AppsController < ApplicationController
   # check if url is a wordpress blog: returns true for wordpress blog
   def check_site
     app_url = 'http://builtwith.com/' + @app.app_url
-    @response = Nokogiri::HTML(open(app_url))
-    @data= false
-    @response.css('.techItem a').each do |link|
-      if link.content == "WordPress"
-        @data = true
+    begin
+      @response = Nokogiri::HTML(open(app_url))
+      @data= false
+      @response.css('.techItem a').each do |link|
+        if link.content == "WordPress"
+          @data = true
+        end
       end
+    rescue
+      flash[:alert] = "Enter a valid url"
     end
   end
    

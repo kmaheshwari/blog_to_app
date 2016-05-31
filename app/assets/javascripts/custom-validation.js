@@ -11,7 +11,7 @@ rules: {
                 messages: {
                            "author[email]": {required: "Username can't be empty"},
 
-                           "author[password]": {required: "password Cant be Empty"}
+                           "author[password]": {required: "Password can't be empty"}
 
                           }
             });

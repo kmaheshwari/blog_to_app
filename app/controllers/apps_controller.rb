@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+  protect_from_forgery with: :null_session
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
 
@@ -87,6 +88,11 @@ class AppsController < ApplicationController
   end  
 
   def monetize
+    @apps=App.where(author_id: current_author.id)
+  end
+
+  def get_monetize
+    # byebug
   end
 
   def push_notification

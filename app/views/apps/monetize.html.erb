@@ -5,11 +5,11 @@
     <hr>
     <div class="row">
       <div class="col-md-12">
-      	<form class="form-horizontal">
+      	<form class="form-horizontal" action="get_monetize" method="POST">
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Platform</label>
             <div class="col-sm-10">
-              <select class="form-control1">
+              <select class="form-control1" name="platform">
                   <option>AdMob</option>
               </select>
             </div>
@@ -17,25 +17,31 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Phone Ad Unit</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
+              <input type="text" class="form-control" name="phone_ad_unit" id="inputEmail3" placeholder="Enter Phone Ad Unit" required="">
             </div>
           </div>
+          <form class="form-horizontal" action="get_monetize" method="POST">
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Tablet Ad unit</label>
+            <label class="col-sm-2 control-label hor-form">App Name</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+              <select class="form-control1" name="app_name" required="">
+                <%@apps.each do |app| %>
+                  <option ><%= app.app_name.titlecase() %></option>
+                <%end%>
+              </select>
             </div>
           </div>
+          
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Interstitial Ad Unit ID</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+              <input type="text" class="form-control" name="add_unit_id" id="inputEmail3" placeholder="Enter Interstitial Ad Unit ID" required="">
             </div>
           </div>          
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Interval</label>
             <div class="col-sm-10">
-              <select class="form-control1">
+              <select class="form-control1" name="interval" required="">
                   <option>2</option>
                   <option>3</option>
                   <option>4</option>

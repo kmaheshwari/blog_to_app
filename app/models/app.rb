@@ -10,6 +10,6 @@ class App < ActiveRecord::Base
 	validates_presence_of :contact_email
 
     mount_uploader :app_icon, IconUploader
-
+    has_many :payments
 
 end

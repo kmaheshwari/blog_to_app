@@ -5,10 +5,6 @@ class AuthorsController < ApplicationController
 
 
 	def basicinfo
-
-		@author = Author.new
-
-
 	end
 
 

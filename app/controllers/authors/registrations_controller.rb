@@ -30,15 +30,16 @@ end
       @author.email = params[:email]
       @author.password = params[:author][:password]
       @author.save
-      SignupMail.perform_async(params[:email],$temp_pass)
       # to create session
-      sign_in @author
-      # byebug
+      
       @find_author_id =  Author.find_by(:email => params[:email]).id
       @app = App.new
       @app.author_id = @find_author_id
       @app.app_url = params[:blog_url]
       @app.save
+      sign_in @author
+      SignupMail.perform_async(params[:email],$temp_pass)
+      
       @next=1
 
     else

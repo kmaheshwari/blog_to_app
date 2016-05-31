@@ -44,13 +44,16 @@
           
       <div class="col-md-12">
         <div class=" login-mail">
-          <input type="text" name="email"  placeholder="Email">
+
+          <input type="email" name="email" required="" placeholder="Email" >
+
           <i class="fa fa-user"></i>
           
 
         </div>
         <div class="login-mail">
-          <input type="text" name="blog_url"  id ="blog_url" value="http://">
+          <!-- <span class="prefix">http://</span> -->
+          <input type="url" name="blog_url"  required="" id ="blog_url" value="http://" >
           <i class="fa fa-lock "></i>
           
         </div>    
@@ -67,5 +70,7 @@
       <% end %>
     </div>
   </div>
+
+</script>
 
   

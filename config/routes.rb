@@ -21,7 +21,7 @@ Rails.application.routes.draw do
   get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
-  
+  post '/get_monetize' => 'apps#get_monetize'
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
   get 'payments' => 'payments#new'

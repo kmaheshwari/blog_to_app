@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+  # protect_from_forgery 
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
   include CategoryHelper
@@ -90,6 +91,15 @@ class AppsController < ApplicationController
   end  
 
   def monetize
+    @apps=App.where(author_id: current_author.id)
+  end
+
+  def get_monetize
+    @app_id = App.find_by(app_name: params["app_name"]).id
+    @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app_id)
+    @new_monetize.save
+    redirect_to root_path
+    # byebug
   end
 
   def push_notification

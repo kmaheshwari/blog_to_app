@@ -1,5 +1,4 @@
-
-$(document).ready(function() {
+ $(document).ready(function() {
 
 $("#loginform").validate({
 rules: {
@@ -31,13 +30,11 @@ rules: {
                     app_name: { required: true, },
 
                     "#categories": { required: true }
-                    
-                },
 
                 messages: {
                            app_name: {required: "Name of app is missing",},
                           }
-            });
+            }});
 
 
   $("#reset-form").validate({
@@ -72,7 +69,7 @@ rules: {
 
 
 
-});
+ });
 
 
 

@@ -51,6 +51,8 @@ end
                 @app.author_id = @find_author_id
                 @app.app_url = params[:blog_url]
                 @app.save
+                @app_colours=@app.appcolours.new
+                @app_colours.save
                 @next=1
 
         else

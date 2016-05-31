@@ -34,3 +34,10 @@ $(function() {
         element.addClass('active');
     }
 });
+
+
+$(function(){
+   $(".placeholder").multiselect({
+   selectedText: "# of # selected"
+    }); 
+});

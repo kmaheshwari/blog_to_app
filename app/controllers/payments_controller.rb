@@ -17,8 +17,8 @@ class PaymentsController < ApplicationController
       :currency    => 'usd'
     )
   # byebug
-    @app_id=App.find_by(author_id: current_author.id).id
-  @pay=Payment.new(customer_id: @customer.id,amount:params[:amount],app_id: @app_id,status: @charge["status"])
+    # @app_id=App.find_by(author_id: current_author.id).id
+  @pay=Payment.new(customer_id: @customer.id,amount:params[:amount],status: @charge["status"])
   @pay.save
   rescue Stripe::CardError => e
     flash[:error] = e.message

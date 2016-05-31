@@ -7,6 +7,16 @@
     
 }
 
+.alert-danger
+{
+  background-color: red;
+  border-radius: 0px 0px 0px 0px;
+  background-color:#d95459;
+  color: #fff;
+  font-weight: bold;
+  height:45px;
+}
+
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;

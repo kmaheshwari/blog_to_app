@@ -1,19 +1,5 @@
- $(document).ready(function() {
+  $(document).ready(function() {
 
-$("#loginform").validate({
-rules: {
-                   "author[email]": { required: true},
-                    
-                    "author[password]": {required: true}
-                    },
-
-                messages: {
-                           "author[email]": {required: "Username can't be empty"},
-
-                           "author[password]": {required: "Password can't be empty"}
-
-                          }
-            });
 
 
   $("#basicform").validate({

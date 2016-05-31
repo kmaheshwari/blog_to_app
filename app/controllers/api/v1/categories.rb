@@ -7,18 +7,9 @@ module API
       resource :categories do
         desc "Return all categories"
         get "", root: :categories do
-          fetch_categories current_url+"/categories", app_key
+          fetch_categories current_url+"get_category_index"
         end
-
-        desc "Return a category"
-        params do
-          requires :id, type: String, desc: "ID of the category"
-        end
-        get ":id", root: "category" do
-          fetch(params[:id],current_url+"/posts",app_key)
-        end 
       end
-
     end
   end
 end

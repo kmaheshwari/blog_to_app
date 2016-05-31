@@ -75,7 +75,7 @@ class AppsController < ApplicationController
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to root_path
+    redirect_to payments_path
     
 
   end

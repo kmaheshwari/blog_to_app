@@ -4,15 +4,4 @@ class AuthorsController < ApplicationController
 
 
 
-	def basicinfo
-	end
-
-
-	def user_create
-         
-  #       @app = App.new
-		# @app.app_url = params[:url]
-		# @app.author_id = @authod.id
-	end
-
 end

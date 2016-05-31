@@ -17,15 +17,21 @@
       </div>
     </div>
   </nav>
+  
+  <% flash.each do |key, value| %>
+  <%= content_tag :div, value, class: "flash #{key}" %>
+<% end %>
+
+
   <div class="login" style="background-color: #F3F3F4">
     <div class="login-bottom">
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
+      <%= form_for(resource, as: resource_name,:validate=> true, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
 
           
       <div class="col-md-12">
         <div class=" login-mail">
-          <input type="text" name="email" required="" placeholder="Email" >
+          <input type="text" name="email"  placeholder="Email">
           <i class="fa fa-user"></i>
           
 

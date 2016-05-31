@@ -21,6 +21,8 @@ gem 'nokogiri'
 gem 'rack-cors', :require => 'rack/cors'
 
 gem 'jquery-validation-rails'
+gem 'client_side_validations'
+
 
 gem 'redis'
 gem 'redis-namespace'

@@ -11,7 +11,7 @@ $(document).ready(function() {
                        }
                       ,
                     
-                    "author_email[]": 
+                    email: 
                     {
                         required: true,
                         email: true

@@ -13,19 +13,22 @@ Rails.application.routes.draw do
 
 
   get '/posts' => 'apps#posts'
-  get 'new_notification' => 'apps#push_notification'
-  get 'all_notification' => 'apps#all_notification'
-  get 'customize' => 'apps#customize'
 
+  get '/new_notification' => 'apps#push_notification'
+  get '/all_notification' => 'apps#all_notification'
+  get '/analytics' => 'apps#analytics'
+  get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
-  get 'support' => 'apps#support'
-
+  
+  get '/new_notification' => 'apps#push_notification'
+  get '/all_notification' => 'apps#all_notification'
   get 'payments' => 'payments#new'
   post 'payments' => 'payments#create'
   get 'payment_fail' => 'payments#payment_fail'
 
+
   def after_sign_in_path_for(user)
            customize_path(user)
-      end
+  end
 end

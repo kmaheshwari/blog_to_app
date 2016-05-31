@@ -15,8 +15,13 @@ $(document).ready(function() {
                     app_name: { required: true, }
                       ,
                     
-                    categories: { required: true,},
                 },
+
+                messages: {
+                           app_name: {
+                            required: true,
+                           },
+                          }
             });
 
 

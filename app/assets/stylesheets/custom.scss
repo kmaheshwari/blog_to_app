@@ -7,6 +7,11 @@
     
 }
 
+.error
+{
+ 
+}
+
 .alert-danger
 {
   background-color: red;
@@ -408,4 +413,24 @@ margin-left: 15px;
   height: 19px;
   padding-top: 3px;
   width: 17px;
+}
+@media (max-width: 992px) {
+  .grid-form1
+  {
+    height: 1400px;
+  }
+}
+@media (max-width: 486px) {
+  .grid-form1
+  {
+    height: 1500px;
+  }
+  .nexus
+  {
+    margin-left: 0;
+  }
+  #phone
+  {
+    margin-left: 3px;
+  }
 }

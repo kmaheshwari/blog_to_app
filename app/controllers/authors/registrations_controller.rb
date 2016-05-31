@@ -19,36 +19,51 @@ end
 
  
   def create
-    #binding.pry
-    @next=0
-    # super
-    @valid_url=check_site(params[:blog_url])
+    
+  if Author.exists?(:email => params[:email])
+      flash[:success] = "Email Already taken!!"
+      redirect_to new_author_registration_path
 
-    if @valid_url 
-      # binding.pry
-      @author = Author.new
-      @author.email = params[:email]
-      @author.password = params[:author][:password]
-      @author.save
-      SignupMail.perform_async(params[:email],$temp_pass)
-      # to create session
-      sign_in @author
-      # byebug
-      @find_author_id =  Author.find_by(:email => params[:email]).id
-      @app = App.new
-      @app.author_id = @find_author_id
-      @app.app_url = params[:blog_url]
-      @app.save
-      @next=1
+   elsif App.exists?(:app_url => params[:blog_url])
+      flash[:success] = "Blog Url Already registered!!"
+      redirect_to new_author_registration_path
+         
+       
+  else 
+        @next=0
+        @valid_url=check_site(params[:blog_url])
 
-    else
-      @next=0
-    end 
+        if @valid_url 
+          # binding.pry
+                @author = Author.new
+                @author.email = params[:email]
+                @author.password = params[:author][:password]
+                @author.save
+                SignupMail.perform_async(params[:email],$temp_pass)
+                # to create session
+                sign_in @author
+                # byebug
+                @find_author_id =  Author.find_by(:email => params[:email]).id
+                @app = App.new
+                @app.author_id = @find_author_id
+                @app.app_url = params[:blog_url]
+                @app.save
+                @next=1
+
+        else
+                @next=0
+        end                 #valid url if ends
 
       # super
       # byebug
 
-end
+  end  #Author exist
+
+end  #create ends
+
+
+
+
 
   private
  
@@ -58,6 +73,9 @@ end
     allow = [:email ,:password, :app_url]
     params.require(resource_name).permit(allow)
   end
+
+
+
 
   def check_site(url)
     url=url[7..-1]
@@ -72,7 +90,13 @@ end
     @data
   end
 
-   end
+   
+
+
+
+end  #class ends
+
+
 
   # GET /resource/edit
   # def edit

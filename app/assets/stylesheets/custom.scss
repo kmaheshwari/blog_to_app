@@ -7,6 +7,16 @@
     
 }
 
+.alert-danger
+{
+  background-color: red;
+  border-radius: 0px 0px 0px 0px;
+  background-color:#d95459;
+  color: #fff;
+  font-weight: bold;
+  height:48px;
+}
+
 @media(min-width:768px) {
     #page-wrapper {
         position: inherit;
@@ -121,6 +131,10 @@
   src:url('Roboto-Regular.ttf') format('truetype');
 }
 @font-face{
+  font-family: 'Roboto-Medium';
+  src:url('Roboto-Medium.ttf') format('truetype');
+}
+@font-face{
   font-family: 'Roboto-Light';
   src:url('Roboto-Light.ttf') format('truetype');
 }
@@ -192,14 +206,14 @@ html,body
 
 #app_name
 {
-position: absolute;left: 42px;
-font-family: 'Roboto-Regular';
-font-size:14px;
-padding-left: 10px;
-max-width: 130px;
-overflow: hidden;
-text-overflow: clip;
-white-space: nowrap;
+  position: absolute;left: 42px;
+  font-family: 'Roboto-Medium';
+  font-size:14px;
+  padding-left: 10px;
+  max-width: 130px;
+  overflow: hidden;
+  text-overflow: clip;
+  white-space: nowrap;
 }
 .show-color
 {
@@ -241,9 +255,9 @@ margin-left: 15px;
   {
   @extend .catog-div !optional;
   font-weight: normal;
-  padding: 12px 8px 8px 12px;
+  padding: 8px 8px 8px 12px;
   color: #fff;
-  font-size: 13px;
+  font-size: 14px;
   font-family: 'Roboto-Regular';
   margin-top: 0px;
   margin-bottom: 10px;

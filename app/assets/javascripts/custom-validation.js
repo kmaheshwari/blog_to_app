@@ -2,6 +2,7 @@
 // $(document).ready(function() {
 
 
+
 //   $("#basicform").validate({
 //                 rules: {
 //                     blog_url:
@@ -35,6 +36,7 @@
 //                     },
 //                 },
 //             });
+
 
 
 

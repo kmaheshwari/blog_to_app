@@ -61,19 +61,10 @@ ActiveRecord::Schema.define(version: 20160530073512) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "referral_link"
   end
 
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true, using: :btree
   add_index "authors", ["reset_password_token"], name: "index_authors_on_reset_password_token", unique: true, using: :btree
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "stripe_card_token"
-    t.string   "app_id"
-    t.string   "plan_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-  end
 
   add_foreign_key "appcategories", "apps"
   add_foreign_key "appcolours", "apps"

@@ -27,9 +27,8 @@ rules: {
 
   $("#app-form").validate({
                 rules: {
-                    app_name: { required: true, },
-
-                    "#categories": { required: true }
+                    app_name: { required: true },
+                    categories: {required: true }
 
                 messages: {
                            app_name: {required: "Name of app is missing",},

@@ -34,18 +34,25 @@ class AppsController < ApplicationController
   def update
     @app = App.find_by(:author_id =>current_author.id)
     
-   
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
-
+    @app.app_icon = params["app"][:app_icon]
     if @app.save
            
-           params[:categories].each do |category|
-               @app_cateogry = Appcategory.new
-               @app_cateogry.app_id = @app.id
-               @app_cateogry.category_name = category
-               @app_cateogry.save
-            end   
+      if params[:categories]
+
+      params[:categories].each do |category|
+          if !(Appcategory.exists?(:app_id => @app.id) and Appcategory.exists?(:category_name => category))
+
+                     @app_cateogry = Appcategory.new
+                     @app_cateogry.app_id = @app.id
+                     @app_cateogry.category_name = category
+                     @app_cateogry.save
+          end   
+     
+       end #params[:categories].each ends
+
+     end  #if params[:categories] ends
 
       flash[:notice] = 'Successfully create app'
     

@@ -17,27 +17,25 @@ module API
 
           def current_url
               # base_url=App.find_by_access_token(headers['Authorization']).app_url
-              base_url="http://www.beingmango.com"
-              base_url+="/wp-json/wp/v2"
+              base_url="androidhive.info"
+              base_url+="/?json="
           end  
 
-          def app_key
-              headers['Authorization']
-          end  
+            
 
           def logger
             Rails.logger
           end
         end
         #api authentication
-        before do
-          access=App.find_by_access_token(headers['Authorization'])
-          if !access.nil?
-            error!('Unauthorized', 401) unless not access.access_token.nil?
-          else  
-            error!('Unauthorized', 401)
-          end  
-        end
+        #before do
+         # access=App.find_by_access_token(headers['Authorization'])
+          #if !access.nil?
+           # error!('Unauthorized', 401) unless not access.access_token.nil?
+          #else  
+           # error!('Unauthorized', 401)
+          #end  
+        #end
 
       end
     end

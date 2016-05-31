@@ -17,15 +17,34 @@
       </div>
     </div>
   </nav>
-  <div class="login" style="background-color: #F3F3F4">
-    <div class="login-bottom">
+  
 
-      <%= form_for(resource, as: resource_name, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
+
+  <div class="login" style="background-color: #F3F3F4">
+    
+<div class="col-sm-offset-4 col-xs-offset-1 col-sm-4 col-xs-10"> 
+
+<% flash.each do |key, value| %>
+  <% alert_class = "alert alert-danger text-center"%>
+
+  <%= content_tag :div, class: "alert alert-#{alert_class}" do %>
+    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true" style="color: #fff"><b>&times; </b> </span></button>
+    <%= value %>
+  <% end %>
+<% end %>
+
+
+</div>
+
+<br>
+    <div class="login-bottom">
+      <%= form_for(resource, as: resource_name,:validate=> true, url: registration_path(resource_name),html: {class: "form-horizontal" , id: "basicform"}) do |f| %>
 
           
       <div class="col-md-12">
         <div class=" login-mail">
-          <input type="text" name="email" required="" placeholder="Email" >
+          <input type="text" name="email"  placeholder="Email">
           <i class="fa fa-user"></i>
           
 
@@ -37,7 +56,7 @@
         </div>    
         <div class="field">
 
-          <%= f.hidden_field :password, autocomplete: "off" ,:value=> @temp_pass %>
+          <%= f.hidden_field :password, autocomplete: "off" ,:value=> $temp_pass %>
         </div>
       </div>
         <div class="login-do hvr-shutter-in-horizontal">

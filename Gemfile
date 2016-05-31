@@ -22,6 +22,7 @@ gem 'rack-cors', :require => 'rack/cors'
 
 gem 'jquery-validation-rails'
 
+
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'

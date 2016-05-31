@@ -58,20 +58,21 @@
             </div>
           </div>
 
-          <div class="form-group">
-            <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
-            <div class="col-sm-10">
-                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
-                     <input type="text" class="jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control" data-toggle="dropdown" id="top-bar" onchange="changecolor('#top-bar', '#top-nav')" style="color: rgb(0, 0, 0);">
-                </div>                        
+          <%= f.fields_for :appcolours do |ac| %>
+            <div class="form-group">
+              <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
+              <div class="col-sm-10">
+                   <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                       <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')" %>
+                  </div>                        
+              </div>
             </div>
-          </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Brand colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
-                     <input type="text" class="jscolor{valueElement:'brand', styleElement:'styleInput'} form-control" data-toggle="dropdown" id="brand" onchange="changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title'); " style="color: rgb(0, 0, 0);">
+                     <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');" %>
                 </div>                        
             </div>
           </div>
@@ -80,7 +81,8 @@
             <label class="col-sm-2 control-label hor-form">Accent colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
-                     <input type="text" class="jscolor{valueElement:'accent', styleElement:'styleInput'} form-control" data-toggle="dropdown" id="accent" onchange="changeAccentColor('#accent', '.home')" style="color: rgb(0, 0, 0);">
+                     <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')" %>
+                     
                 </div>                        
             </div>
           </div>
@@ -89,7 +91,7 @@
             <label class="col-sm-2 control-label hor-form">Article colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
-                     <input type="text" class="jscolor{valueElement:'article', styleElement:'styleInput'} form-control" data-toggle="dropdown" id="article" onchange="changeTextColor('#article', '.a_title')" style="color: rgb(0, 0, 0);">
+                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')" %>
                 </div>                        
             </div>
           </div>
@@ -98,19 +100,19 @@
             <label class="col-sm-2 control-label hor-form">Article-writer colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
-                     <input type="text" class="jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control" data-toggle="dropdown" id="article-writer" onchange="changeTextColor('#article-writer', '.a_author')" style="color: rgb(0, 0, 0);">
+                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')" %>
                 </div>                        
             </div>
           </div>
           
-
+        <%end%>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
               <button type="submit" class="btn btn-default">Generate APK</button>
             </div>
           </div>  
 
-        <% end %>
+    <% end %>
       </div>
       <div class="col-md-6">
 

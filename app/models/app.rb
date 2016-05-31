@@ -10,5 +10,5 @@ class App < ActiveRecord::Base
 
     
     has_many :payments
-
+    belongs_to :monetize
 end

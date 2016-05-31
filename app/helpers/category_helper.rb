@@ -7,4 +7,18 @@ module CategoryHelper
 	  categories.each {|category| category.slice!(*@@attributes)}
 	  categories
 	end	
+
+	def populate base_uri
+		categories=HTTParty.get(base_uri+"/?json=get_category_index")
+		categories=categories["categories"]
+		if !@categories.nil?
+			categories.each {|category| category.slice!("title")}
+
+			pages=HTTParty.get(base_uri+"/?json=get_page_index")
+			pages=pages["pages"]
+			pages.each {|page| page.slice!("title")}
+			
+			{"categories" => categories, "pages"=>pages}
+		end	
+	end	
 end

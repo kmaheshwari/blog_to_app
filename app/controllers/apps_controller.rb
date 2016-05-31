@@ -3,7 +3,7 @@ class AppsController < ApplicationController
   # protect_from_forgery 
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
-
+  include CategoryHelper
 
   # GET /apps
   # GET /apps.json
@@ -82,6 +82,9 @@ class AppsController < ApplicationController
 
   def customize
     @app = App.find_by(:author_id =>current_author.id)
+    @data=populate @app.app_url
+    @categories=@data["categories"]
+    @pages=@data["pages"]
   end
 
   def faq

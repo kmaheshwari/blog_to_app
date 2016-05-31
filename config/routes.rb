@@ -18,11 +18,7 @@ Rails.application.routes.draw do
   get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
-  devise_scope :author do
-    namespace :authors do
-      get '/app_customization' => 'registrations#customize_app'
-    end  
-  end  
+  
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
 

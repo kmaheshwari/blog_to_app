@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
-
+  layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
 
 
@@ -22,7 +22,7 @@ class AppsController < ApplicationController
   # GET /apps/1/edit
   def edit
     @app = App.find_by(:author_id =>current_author.id)
- end
+  end
 
   # POST /apps
   # POST /apps.json
@@ -73,6 +73,7 @@ class AppsController < ApplicationController
   end  
 
   def customize
+    @app = App.find_by(:author_id =>current_author.id)
   end
 
   def faq

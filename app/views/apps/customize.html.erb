@@ -1,3 +1,102 @@
-<div>
-    <%= render 'form' %>
+<nav class="navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <h1> <a class="navbar-brand" href="index.html">Grappr</a></h1>         
+    </div>
+    <div class=" border-bottom">
+        <div class="full-left">
+            Submit Blog Details
+            <div class="clearfix"> </div>
+        </div>
+        <!-- Brand and toggle get grouped for better mobile display --> 
+        <!-- Collect the nav links, forms, and other content for toggling -->   
+        <div class="clearfix">
+        </div>
+      
+            
+    </div>
+</nav>
+<div class="grid-system" style="background-color: #F3F3F4">
+    <div class="grid-form1 questions">
+        <p>You can customize your app logo, color scheme, main menus and sliders with few clicks and make it even better - just like the way you want and generate APK file within few minutes.</p><hr/>
+        <div class="row">
+            <div class="col-md-6">
+                <%= form_for @app, :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
+
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Name</label>
+                            <div class="col-sm-10">                              
+                              <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app">
+                            </div>
+                          </div>
+                          
+                          <div class="form-group">
+                            <label for="inputPassword3" class="col-sm-2 control-label hor-form">Logo</label>
+                            <div class="col-sm-10">
+                              <%= f.file_field :app_icon%>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label hor-form">Categories</label>
+                            <div class="col-sm-10">
+                              <select multiple="multiple" class="form-control1" id ="cateogries" name="categories">
+                                  <option>Option 1</option>
+                                  <option>Option 2</option>
+                                  <option>Option 3</option>
+                                  <option>Option 4</option>
+                                  <option>Option 5</option>
+                              </select>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Colors</label>
+                            <div class="col-sm-10">
+                              
+                            </div>
+                          </div>
+
+
+                          <div class="form-group">
+                            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
+                            <div class="col-sm-10">
+                              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label hor-form">About</label>
+                            <div class="col-sm-10">
+                              <textarea name="about" class="form-control"> </textarea>
+                            </div>
+                          </div>
+
+                          <div class="form-group">
+                            <label class="col-sm-2 control-label hor-form">Privacy</label>
+                            <div class="col-sm-10">
+                              
+                              <input type="text" name="privacy" class="form-control"></input>
+                            </div>
+                          </div>
+                          
+
+                          <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                              <button type="submit" class="btn btn-default">Generate APK</button>
+                            </div>
+                          </div>
+
+                <% end %>
+            </div>
+            <div class="col-md-6">
+                <%= image_tag 'app.png', width: "40%", style: "display:block; margin-left:auto; margin-right:auto" %>
+            </div>
+        </div>
+    </div>
 </div>

@@ -36,7 +36,9 @@ class AppsController < ApplicationController
     
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
-    @app.app_icon = params["app"][:app_icon]
+    if params["app"][:app_icon]
+      @app.app_icon = params["app"][:app_icon]
+    end
     if @app.save
            
       if params[:categories]

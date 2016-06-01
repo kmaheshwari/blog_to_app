@@ -22,13 +22,7 @@ $(document).ready(function() {
                             required: true,
                            },
                           }
-            });
-
-
-
-
-
-
+                });
 
 });
 

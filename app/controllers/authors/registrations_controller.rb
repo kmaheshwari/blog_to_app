@@ -33,7 +33,7 @@ end
         @next=0
         @valid_url=check_site(params[:blog_url])
 
-        if @valid_url 
+        if @valid_url == 1
           # binding.pry
                 @author = Author.new
                 @author.email = params[:email]
@@ -52,8 +52,10 @@ end
                 @app_colours.save
                 @next=1
 
-        else
+        elsif @valid_url ==0 
                 @next=0
+        else
+                @next=-1
         end                 #valid url if ends
 
       # super
@@ -63,38 +65,31 @@ end
 
 end  #create ends
 
-
-
+  def check_site(url)
+    url=url[7..-1]
+    app_url = 'http://builtwith.com/q=' + url
+    @data= 0
+    begin
+      @response = Nokogiri::HTML(open(app_url))
+      @response.css('.techItem a').each do |link|
+        if link.content == "WordPress"
+          @data = 1
+        end
+      end
+      @data
+    rescue
+      -1
+    end
+  end
 
 
   private
  
   def sign_up_params
 
-  
     allow = [:email ,:password, :app_url]
     params.require(resource_name).permit(allow)
-  end
-
-
-
-
-  def check_site(url)
-    url=url[7..-1]
-    app_url = 'http://builtwith.com/q=' + url
-    @response = Nokogiri::HTML(open(app_url))
-    @data= false
-    @response.css('.techItem a').each do |link|
-      if link.content == "WordPress"
-        @data = true
-      end
-    end
-    @data
-  end
-
-   
-
-
+  end 
 
 end  #class ends
 

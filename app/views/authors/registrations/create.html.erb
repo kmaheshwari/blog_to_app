@@ -32,9 +32,15 @@
 			</form>
 		</div>
 	</div>
-<% else %>
+<% elsif @next == 0 %>
 	<script type="text/javascript">
-		window.location.href="/authors/sign_up"  // put your correct path in a string here
-		alert("Not a wordpress blog")
-		</script>
+		event.preventDefault();
+		window.location.href="/authors/sign_up"; // put your correct path in a string here
+		alert("Not a wordpress blog");
+	</script>
+<%else%>
+	<script type="text/javascript">
+		window.location.href="/authors/sign_up";  // put your correct path in a string here
+		alert("Enter a valid url");
+	</script>
 <%end%>

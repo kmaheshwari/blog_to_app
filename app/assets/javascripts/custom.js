@@ -39,7 +39,7 @@ $(function() {
 $(function(){
    $(".placeholder").multiselect({
    selectedText: "# of # selected"
-    });    
+    }); 
 });
 function changecolor(color, element)
 {

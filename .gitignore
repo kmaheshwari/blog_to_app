@@ -15,3 +15,5 @@
 /log/*
 !/log/.keep
 /tmp
+# Ignore Carrierwave Uploads
+/public/uploads/

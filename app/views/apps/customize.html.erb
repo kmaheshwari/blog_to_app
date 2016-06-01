@@ -1,3 +1,4 @@
+<% if not @data.nil? %>
 <nav class="navbar-default navbar-static-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -30,7 +31,7 @@
     <p>You can customize your app logo, color scheme, main menus and sliders with few clicks and make it even better - just like the way you want and generate APK file within few minutes.</p>  
 
 
-<%= form_for @app , :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
+  <%= form_for @app , :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
 
 
           <div class="form-group">
@@ -95,7 +96,8 @@
             </div>
           </div>  
 
-<% end %>
+  <% end %>
+
 
       </div> <!-- form div ends -->
 
@@ -172,5 +174,8 @@
 
 
 </div> <!-- grid system ends-->
-
+<% else %>
+   <div class="notice"><%= flash[:notice] %></div>
+  <%= render 'apps/plugin' %>
+<% end %>
 

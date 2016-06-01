@@ -52,9 +52,16 @@
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label hor-form">Pages</label>
+            <label class="col-sm-2 control-label hor-form">About us</label>
             <div class="col-sm-10">
-              <%= select_tag "pages","<option>About</option><option>Privacy Policy</option>".html_safe ,class: "form-control1 placeholder", id:"pages",  multiple: true %>
+              <%= select_tag "about_us","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"about_us"%>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Privacy Policy</label>
+            <div class="col-sm-10">
+              <%= select_tag "privacy_policy","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"privacy_policy"%>
             </div>
           </div>
 
@@ -113,7 +120,8 @@
           </div>  
 
     <% end %>
-      </div>
+      </div>      
+      <!-- col-md-6 end -->
       <div class="col-md-6">
 
         <div class="container">

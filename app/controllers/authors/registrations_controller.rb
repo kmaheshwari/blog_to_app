@@ -82,14 +82,14 @@ end  #create ends
     end
   end
 
-   def edit
-       super
-       respond_to do |format| 
+ #   def edit
+ #       super
+ #       respond_to do |format| 
        
-        format.html {render :layout => "application"}
+ #        format.html {render :layout => "application"}
 
-     end
- end
+ #     end
+ # end
  
   private
  

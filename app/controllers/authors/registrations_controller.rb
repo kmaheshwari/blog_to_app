@@ -20,48 +20,48 @@ end
  
   def create
 
-  if Author.exists?(:email => params[:email])
-      flash[:alert] = "Email Already taken"
-      redirect_to new_author_registration_path
+    if Author.exists?(:email => params[:email])
+        flash[:alert] = "Email Already taken"
+        redirect_to new_author_registration_path
 
-   elsif App.exists?(:app_url => params[:blog_url])
-      flash[:alert] = "Blog Url Already registered"
-      redirect_to new_author_registration_path
+    elsif App.exists?(:app_url => params[:blog_url])
+        flash[:alert] = "Blog Url Already registered"
+        redirect_to new_author_registration_path
+           
          
-       
-  else 
-        @next=0
-        @valid_url=check_site(params[:blog_url])
+    else 
+          @next=0
+          @valid_url=check_site(params[:blog_url])
 
-        if @valid_url == 1
-          # binding.pry
-                @author = Author.new
-                @author.email = params[:email]
-                @author.password = params[:author][:password]
-                @author.save
-                SignupMail.perform_async(params[:email],$temp_pass)
-                # to create session
-                sign_in @author
-                # byebug
-                @find_author_id =  Author.find_by(:email => params[:email]).id
-                @app = App.new
-                @app.author_id = @find_author_id
-                @app.app_url = params[:blog_url]
-                @app.save
-                @app_colours=@app.appcolours.new
-                @app_colours.save
-                @next=1
+          if @valid_url == 1
+            # binding.pry
+                  @author = Author.new
+                  @author.email = params[:email]
+                  @author.password = params[:author][:password]
+                  @author.save
+                  SignupMail.perform_async(params[:email],$temp_pass)
+                  # to create session
+                  sign_in @author
+                  # byebug
+                  @find_author_id =  Author.find_by(:email => params[:email]).id
+                  @app = App.new
+                  @app.author_id = @find_author_id
+                  @app.app_url = params[:blog_url]
+                  @app.save
+                  @app_colours=@app.appcolours.new
+                  @app_colours.save
+                  @next=1
 
-        elsif @valid_url ==0 
-                @next=0
-        else
-                @next=-1
-        end                 #valid url if ends
+          elsif @valid_url ==0 
+                  @next=0
+          else
+                  @next=-1
+          end                 #valid url if ends
 
-      # super
-      # byebug
+        # super
+        # byebug
 
-  end  #Author exist
+    end  #Author exist
 
 end  #create ends
 
@@ -82,14 +82,11 @@ end  #create ends
     end
   end
 
- #   def edit
- #       super
- #       respond_to do |format| 
-       
- #        format.html {render :layout => "application"}
 
- #     end
- # end
+   def edit
+    super
+    ResetPassword.perform_async(current_author.email)
+  end
  
   private
  

@@ -23,6 +23,8 @@ end
  
   def create
 
+    binding.pry
+
   if Author.exists?(:email => params[:email])
       flash[:alert] = "Email Already taken"
       redirect_to new_author_registration_path

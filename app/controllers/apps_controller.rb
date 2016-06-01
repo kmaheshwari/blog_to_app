@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+  # protect_from_forgery 
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
   include CategoryHelper
@@ -33,7 +34,7 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1.json
   def update
     @app = App.find_by(:author_id =>current_author.id)
-    
+    binding.pry
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
     @app.app_icon = params["app"][:app_icon]
@@ -44,15 +45,28 @@ class AppsController < ApplicationController
       params[:categories].each do |category|
           if !(Appcategory.exists?(:app_id => @app.id) and Appcategory.exists?(:category_name => category))
 
-                     @app_cateogry = Appcategory.new
-                     @app_cateogry.app_id = @app.id
-                     @app_cateogry.category_name = category
-                     @app_cateogry.save
+             @app_category = Appcategory.new
+             @app_category.app_id = @app.id
+             @app_category.category_name = category
+             @app_category.save
           end   
      
        end #params[:categories].each ends
+     end
 
-     end  #if params[:categories] ends
+       if params[:pages]
+
+          params[:pages].each do |page|
+              if !(AppPage.exists?(:app_id => @app.id) and AppPage.exists?(:page => page))
+
+                 @app_page = AppPage.new
+                 @app_page.app_id = @app.id
+                 @app_page.page = page
+                 @app_page.save
+              end   
+       
+         end #params[:pages].each ends
+      end
 
       flash[:notice] = 'Successfully create app'
     
@@ -61,7 +75,7 @@ class AppsController < ApplicationController
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to root_path
+    redirect_to payments_path
     
 
   end
@@ -93,6 +107,15 @@ class AppsController < ApplicationController
   end  
 
   def monetize
+    @apps=App.where(author_id: current_author.id)
+  end
+
+  def get_monetize
+    @app_id = App.find_by(app_name: params["app_name"]).id
+    @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app_id)
+    @new_monetize.save
+    redirect_to root_path
+    # byebug
   end
 
   def push_notification
@@ -110,12 +133,16 @@ class AppsController < ApplicationController
   # check if url is a wordpress blog: returns true for wordpress blog
   def check_site
     app_url = 'http://builtwith.com/' + @app.app_url
-    @response = Nokogiri::HTML(open(app_url))
-    @data= false
-    @response.css('.techItem a').each do |link|
-      if link.content == "WordPress"
-        @data = true
+    begin
+      @response = Nokogiri::HTML(open(app_url))
+      @data= false
+      @response.css('.techItem a').each do |link|
+        if link.content == "WordPress"
+          @data = true
+        end
       end
+    rescue
+      flash[:alert] = "Enter a valid url"
     end
   end
    
@@ -127,7 +154,7 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email)
+      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email, appcolours: [])
     end
 
 end

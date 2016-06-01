@@ -10,7 +10,7 @@ $(document).ready(function() {
                        }
                       ,
                     
-                    categories: 
+                    "author[categories]": 
                     {
                         required: true,
                         // email: true

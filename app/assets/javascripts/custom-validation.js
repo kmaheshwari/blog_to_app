@@ -12,20 +12,33 @@ $(document).ready(function() {
 
   $("#app-form").validate({
                 rules: {
-                    app_name: { required: true, }
-                      ,
+                    app_name: { required: true, },
+
+                    cateogories: { required: true, }
                     
                 },
 
                 messages: {
                            app_name: {
-                            required: true,
+                            required: "Enter Your App name",
                            },
                           }
+                });
+
+  $("#loginform").validate({
+              rules: {
+                   "author[email]": { required: true},
+                    
+                    "author[password]": {required: true}
+                    },
+
+                messages: {
+                           "author[email]": {required: "Username can't be empty"},
+
+                           "author[password]": {required: "Password can't be empty"}
+
+                          }
             });
-
-
-
 
 
 

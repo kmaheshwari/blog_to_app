@@ -23,7 +23,6 @@ end
  
   def create
 
-    binding.pry
 
   if Author.exists?(:email => params[:email])
       flash[:alert] = "Email Already taken"
@@ -44,7 +43,6 @@ end
                 @author.email = params[:email]
                 @author.password = params[:author][:password]
                 @author.save
-                SignupMail.perform_async(params[:email],$temp_pass)
                 # to create session
                 sign_in @author
                 # byebug

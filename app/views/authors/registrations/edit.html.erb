@@ -1,7 +1,5 @@
 <div class="block-header"> </div>
 
-              <%= devise_error_messages! %>
-
 
           <div class="card col-sm-offset-2 col-sm-5">
             <h2>Reset Your Password</h2>
@@ -12,6 +10,8 @@
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
               <% end %>
+
+              <%= devise_error_messages! %>
 
 
               <div class="field">
@@ -27,7 +27,7 @@
 
               <div class="field">
                 <label>Confirm Password</label>
-                <%= f.password_field :password_confirm, autocomplete: "off" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>
 
 

@@ -1,5 +1,6 @@
 class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
+  # protect_from_forgery 
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
   include CategoryHelper
@@ -33,7 +34,6 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1.json
   def update
     @app = App.find_by(:author_id =>current_author.id)
-    
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
     if params["app"][:app_icon]
@@ -76,7 +76,7 @@ class AppsController < ApplicationController
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to root_path
+    redirect_to payments_path
     
 
   end
@@ -97,14 +97,26 @@ class AppsController < ApplicationController
   def customize
     @app = App.find_by(:author_id =>current_author.id)
     @data=populate @app.app_url
-    @categories=@data["categories"]
-    @pages=@data["pages"]
+    if @data.nil?
+      @categories=nil
+    else  
+      @categories=@data
+    end  
   end
 
   def faq
   end  
 
   def monetize
+    @apps=App.where(author_id: current_author.id)
+  end
+
+  def get_monetize
+    @app_id = App.find_by(app_name: params["app_name"]).id
+    @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app_id)
+    @new_monetize.save
+    redirect_to root_path
+    # byebug
   end
 
   def push_notification

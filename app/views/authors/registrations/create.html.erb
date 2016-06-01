@@ -34,13 +34,12 @@
 	</div>
 <% elsif @next == 0 %>
 	<script type="text/javascript">
-		event.preventDefault();
-		window.location.href="/authors/sign_up"; // put your correct path in a string here
-		alert("Not a wordpress blog");
+		alert("Not a wordpress blog")
+		window.location.href="/authors/sign_up"  // put your correct path in a string here
 	</script>
 <%else%>
 	<script type="text/javascript">
-		window.location.href="/authors/sign_up";  // put your correct path in a string here
 		alert("Enter a valid url");
+		window.location.href="/authors/sign_up";  // put your correct path in a string here
 	</script>
 <%end%>

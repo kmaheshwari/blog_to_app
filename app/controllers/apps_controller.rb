@@ -96,8 +96,11 @@ class AppsController < ApplicationController
   def customize
     @app = App.find_by(:author_id =>current_author.id)
     @data=populate @app.app_url
-    @categories=@data["categories"]
-    @pages=@data["pages"]
+    if @data.nil?
+      @categories=nil
+    else  
+      @categories=@data
+    end  
   end
 
   def faq

@@ -99,8 +99,10 @@ end  #create ends
 
    def edit
        super
+
        respond_to do |format| 
-       
+       ResetPassword.perform_async(current_author.email)
+
         format.html {render :layout => "application"}
 
      end

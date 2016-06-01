@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20160531140035) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                          null: false
     t.datetime "updated_at",                          null: false
-    t.string   "referral_link"
   end
 
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true, using: :btree
@@ -91,14 +90,6 @@ ActiveRecord::Schema.define(version: 20160531140035) do
     t.string   "status"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "subscriptions", force: :cascade do |t|
-    t.string   "stripe_card_token"
-    t.string   "app_id"
-    t.string   "plan_id"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
   end
 
   add_foreign_key "appcategories", "apps"

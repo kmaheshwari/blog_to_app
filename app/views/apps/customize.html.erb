@@ -175,7 +175,9 @@
 
 </div> <!-- grid system ends-->
 <% else %>
-   <div class="notice"><%= flash[:notice] %></div>
+   <div class="alert alert-danger text-center" style="margin-top:140px;width:50%;margin-left:350px;position:absolute">
+  <strong>Alert ! </strong> First Install Plugin and then continue
+</div>
   <%= render 'apps/plugin' %>
 <% end %>
 

@@ -1,3 +1,4 @@
+<% if not @data.nil? %>
 <nav class="navbar-default navbar-static-top" role="navigation">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -27,9 +28,11 @@
   <div class="grid-form1 questions" >
     <p>You can customize your app logo, color scheme, main menus and sliders with few clicks and make it even better - just like the way you want and generate APK file within few minutes.</p>  
 
+
     <div class="row">
       <div class="col-md-6">   <!-- form div -->
         <%= form_for @app , :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
+
 
 
           <div class="form-group">
@@ -122,7 +125,9 @@
             </div>
           </div>  
 
+
     <% end %>
+
 
       </div> <!-- col-md-6 ends -->
 
@@ -199,5 +204,10 @@
 
 
 </div> <!-- grid system ends-->
-
+<% else %>
+   <div class="alert alert-danger text-center" style="margin-top:140px;width:50%;margin-left:350px;position:absolute">
+  <strong>Alert ! </strong> First Install Plugin and then continue
+</div>
+  <%= render 'apps/plugin' %>
+<% end %>
 

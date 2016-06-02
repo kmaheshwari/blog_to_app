@@ -31,7 +31,7 @@ end
          
        
   else 
-        @next=0
+        # @next=0
         @valid_url=check_site(params[:blog_url])
 
         if @valid_url 
@@ -50,10 +50,10 @@ end
                 @app.save
                 @app_colours=@app.appcolours.new
                 @app_colours.save
-                @next=1
+                $next=1
 
         else
-                @next=0
+                $next=0
         end                 #valid url if ends
 
       # super

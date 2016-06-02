@@ -99,6 +99,7 @@ class AppsController < ApplicationController
     @data=populate @app.app_url
     if @data.nil?
       @categories=nil
+      flash[:notice] = "First Install Plugin"
     else  
       @categories=@data
     end  

@@ -28,13 +28,11 @@ class AppsController < ApplicationController
     @page_data=page_populate @app.app_url
     if @category_data.nil?
       @categories=nil
-      flash[:notice] = "First Install Plugin"
     else  
       @categories=@category_data
     end
     if @page_data.nil?
       @pages=nil
-      flash[:notice] = "First Install Plugin"
     else  
       @pages=@page_data
     end
@@ -114,7 +112,6 @@ class AppsController < ApplicationController
     @data=populate @app.app_url
     if @data.nil?
       @categories=nil
-      flash[:notice] = "First Install Plugin"
     else  
       @categories=@data
     end  

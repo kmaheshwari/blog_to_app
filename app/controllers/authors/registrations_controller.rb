@@ -35,7 +35,6 @@ end
         @valid_url=check_site(params[:blog_url])
 
         if @valid_url 
-          # binding.pry
                 @author = Author.new
                 @author.email = params[:email]
                 @author.password = params[:author][:password]
@@ -48,7 +47,7 @@ end
                 @app.author_id = @find_author_id
                 @app.app_url = params[:blog_url]
                 @app.save
-                @app_colours=@app.appcolours.new
+                @app_colours=@app.build_appcolour
                 @app_colours.save
                 $next=1
 

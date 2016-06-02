@@ -19,6 +19,18 @@ module PageHelper
 		#else
 		#	{}
 		#end	
-
 	end	
+	def page_populate base_uri
+		pages=HTTParty.get(base_uri+"/?json=get_page_index")
+		
+		if !pages.nil?
+			pages=pages["pages"]
+			if pages=="pages" || pages.nil?
+				nil
+			else	
+				pages.each {|page| page.slice!("title")}
+				pages
+			end	
+		end	
+	end
 end

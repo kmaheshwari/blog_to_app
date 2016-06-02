@@ -19,41 +19,51 @@ end
 
  
   def create
-
-    if Author.exists?(:email => params[:email])
+    @author =  Author.find_by(:email => params[:email])
+    if Author.exists?(:email => params[:email],:author_active => true)
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
-
-    elsif App.exists?(:app_url => params[:blog_url])
+        byebug
+    elsif not (@author.nil? and @author.author_active)
+      # 
+      if App.exists?(:app_url => params[:blog_url])
+        # byebug
         flash[:alert] = "Blog Url Already registered"
         redirect_to new_author_registration_path
-           
+      end     
          
        
   else 
         @next=0
         @valid_url=check_site(params[:blog_url])
-
+        
         if @valid_url 
           # binding.pry
+            if not @author.nil?
+                @author.update(password: params[:author][:password])
+                @app =App.find_by(author_id: @author.id)
+                @app.update(app_url: params[:blog_url])
+            else 
                 @author = Author.new
                 @author.email = params[:email]
                 @author.password = params[:author][:password]
                 @author.save
+            
                 # to create session
-                sign_in @author
+                # sign_in @author
                 # byebug
-                @find_author_id =  Author.find_by(:email => params[:email]).id
+                
                 @app = App.new
-                @app.author_id = @find_author_id
+                @app.author_id = @author.id
                 @app.app_url = params[:blog_url]
                 @app.save
-                @app_colours=@app.appcolours.new
-                @app_colours.save
-                @next=1
-
+                
+              end
+              @app_colours=@app.appcolours.new
+              @app_colours.save
+              @next=1
         else
-                @next=0
+              @next=0
         end                 #valid url if ends
 
       # super

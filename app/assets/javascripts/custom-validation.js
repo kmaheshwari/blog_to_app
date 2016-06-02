@@ -14,6 +14,8 @@ $(document).ready(function() {
                 rules: {
                     app_name: { required: true, },
 
+                    "categories[]": {required: true}
+
                     
                     
                 },
@@ -22,6 +24,9 @@ $(document).ready(function() {
                 {
                            app_name: {
                             required: "Enter Your App name",
+                           },
+                           "categories[]": {
+                            required: "Enter categories you want to display",
                            }
                 }
                 

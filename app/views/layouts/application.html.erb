@@ -108,8 +108,8 @@
 						<li class="dropdown">
 			              <a href="#" class="dropdown-toggle dropdown-at" data-toggle="dropdown"><span class=" name-caret">Rackham<i class="caret"></i></span><img src="assets/wo.jpg" alt=""></a>
 			              <ul class="dropdown-menu " role="menu">
-			                <li><a href="password.html"><i class="fa fa-user"></i>Edit Profile</a></li>
-
+			                
+			                
 
 			                <li>			          			         
 			                	<%= link_to edit_author_registration_path do %>
@@ -139,7 +139,9 @@
 	                        <a href="/apps" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
 	                    </li>
 	                    <li>
-                        	<a href="/apps/edit" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Customize App</span> </a>
+                        	<%= link_to edit_app_path(current_app), class: 'hvr-bounce-to-right' do%>
+                        		<i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Customize App</span>
+                        	<%end%>
                     	</li>
     					<li>
                             <a href="#" class=" hvr-bounce-to-right"><i class="fa fa-indent nav_icon"></i> <span class="nav-label">Push Notifications</span><span class="fa arrow"></span></a>

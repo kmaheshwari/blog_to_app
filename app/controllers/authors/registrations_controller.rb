@@ -3,9 +3,6 @@ class Authors::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
 layout "step-form"
 
-
-
-
 before_action :set_pass, only: [:new]
 
   # GET /resource/sign_up
@@ -23,13 +20,14 @@ end
  
   def create
 
-  if Author.exists?(:email => params[:email])
-      flash[:alert] = "Email Already taken"
-      redirect_to new_author_registration_path
+    if Author.exists?(:email => params[:email])
+        flash[:alert] = "Email Already taken"
+        redirect_to new_author_registration_path
 
-   elsif App.exists?(:app_url => params[:blog_url])
-      flash[:alert] = "Blog Url Already registered"
-      redirect_to new_author_registration_path
+    elsif App.exists?(:app_url => params[:blog_url])
+        flash[:alert] = "Blog Url Already registered"
+        redirect_to new_author_registration_path
+           
          
        
   else 
@@ -42,7 +40,6 @@ end
                 @author.email = params[:email]
                 @author.password = params[:author][:password]
                 @author.save
-                SignupMail.perform_async(params[:email],$temp_pass)
                 # to create session
                 sign_in @author
                 # byebug
@@ -66,46 +63,36 @@ end
 
 end  #create ends
 
+  def check_site(url)
+    url=url[7..-1]
+    app_url = 'http://builtwith.com/q=' + url
+    @data= 0
+    begin
+      @response = Nokogiri::HTML(open(app_url))
+      @response.css('.techItem a').each do |link|
+        if link.content == "WordPress"
+          @data = 1
+        end
+      end
+      @data
+    rescue
+      -1
+    end
+  end
 
 
-
-
+   def edit
+    super
+    ResetPassword.perform_async(current_author.email)
+  end
+ 
   private
  
   def sign_up_params
 
-  
     allow = [:email ,:password, :app_url]
     params.require(resource_name).permit(allow)
-  end
-
-
-
-
-  def check_site(url)
-    url=url[7..-1]
-    app_url = 'http://builtwith.com/q=' + url
-    @response = Nokogiri::HTML(open(app_url))
-    @data= false
-    @response.css('.techItem a').each do |link|
-      if link.content == "WordPress"
-        @data = true
-      end
-    end
-    @data
-  end
-
-   def edit
-       super
-       respond_to do |format| 
-       
-        format.html {render :layout => "application"}
-
-     end
- end
- 
-
-
+  end 
 
 end  #class ends
 

@@ -11,9 +11,9 @@ module CategoryHelper
 	def populate base_uri
 		categories=HTTParty.get(base_uri+"/?json=get_category_index")
 		
-		if !categories.nil?	
+		if !categories.nil?
 			categories=categories["categories"]
-			if categories=="categories"
+			if categories=="categories" || categories.nil?
 				nil
 			else	
 				categories.each {|category| category.slice!("title")}

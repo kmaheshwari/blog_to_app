@@ -14,16 +14,18 @@ $(document).ready(function() {
                 rules: {
                     app_name: { required: true, },
 
-                    cateogories: { required: true, }
+                    
                     
                 },
 
-                messages: {
+                messages: 
+                {
                            app_name: {
                             required: "Enter Your App name",
-                           },
-                          }
-                });
+                           }
+                }
+                
+              });
 
   $("#loginform").validate({
               rules: {
@@ -39,9 +41,6 @@ $(document).ready(function() {
 
                           }
             });
-
-
-
 
 });
 

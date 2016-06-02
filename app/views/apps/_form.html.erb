@@ -14,17 +14,22 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Name</label>
             <div class="col-sm-10">
-              
-              <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app">
-
+              <%if @app_draft.nil? %>
+                <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app" >
+              <%else%>
+                <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app" value="<%= @app_draft.app_name%>">
+              <%end%>
             </div>
           </div>
           
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label hor-form">Logo</label>
             <div class="col-sm-10">
-
-              <%= f.file_field :app_icon%>
+              <%if @app_draft.nil? %>
+                <%= f.file_field :app_icon%>
+              <%else%>
+                <%= f.file_field :app_icon, :value => @app_draft.app_icon%>
+              <%end%>
             </div>
           </div>
 
@@ -47,7 +52,11 @@
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
             <div class="col-sm-10">
+            <%if @app_draft.nil? %>
               <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+            <%else%>
+              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email" value="<%= @app_draft.contact_email%>">
+            <%end%>
             </div>
           </div>
 
@@ -55,13 +64,23 @@
             <label class="col-sm-2 control-label hor-form">About us</label>
             <div class="col-sm-10">
               <%= select_tag "about_us","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"about_us"%>
+              <%if not @app_draft.nil? %>
+              <script type="text/javascript">
+                $('#about_us').val('<%= @app_draft.about_us%>'); //value of your default option
+              </script>
+            <%end%>
             </div>
           </div>
 
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Privacy Policy</label>
             <div class="col-sm-10">
-              <%= select_tag "privacy_policy","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"privacy_policy"%>
+            <%= select_tag "privacy_policy","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"privacy_policy"%>
+            <%if not @app_draft.nil? %>
+              <script type="text/javascript">
+                $('#privacy_policy').val('<%= @app_draft.privacy_policy%>'); //value of your default option
+              </script>
+            <%end%>
             </div>
           </div>
 
@@ -70,7 +89,11 @@
               <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
               <div class="col-sm-10">
                    <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                   <%if @app_draft.nil? %>
                        <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')" %>
+                   <%else%>
+                      <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')",value: @app_draft.top_bar_colour %>
+                   <%end%>
                   </div>                         
               </div>
             </div>
@@ -79,7 +102,11 @@
             <label class="col-sm-2 control-label hor-form">Brand colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                  <%if @app_draft.nil? %>
                      <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');" %>
+                  <%else%>
+                      <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');", value: @app_draft.brand_colour %>
+                  <%end%>
                 </div>                        
             </div>
           </div>
@@ -88,7 +115,11 @@
             <label class="col-sm-2 control-label hor-form">Accent colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                  <%if @app_draft.nil? %>
                      <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')" %>
+                  <%else%>
+                     <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')", value: @app_draft.accent_colour %>
+                  <%end%>
                      
                 </div>                        
             </div>
@@ -98,7 +129,11 @@
             <label class="col-sm-2 control-label hor-form">Article colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                  <%if @app_draft.nil? %>
                      <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')" %>
+                  <%else%>
+                      <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')", value: @app_draft.article_colour %>
+                  <%end%>
                 </div>                        
             </div>
           </div>
@@ -107,7 +142,11 @@
             <label class="col-sm-2 control-label hor-form">Article-writer colour</label>
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                  <%if @app_draft.nil? %>
                      <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')" %>
+                  <%else%>
+                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')",value: @app_draft.article_writer_colour %>
+                  <%end%>
                 </div>                        
             </div>
           </div>

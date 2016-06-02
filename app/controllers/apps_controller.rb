@@ -23,6 +23,7 @@ class AppsController < ApplicationController
   # GET /apps/1/edit
   def edit
     @app = App.find_by(:author_id =>current_author.id)
+    @app_draft = AppDraft.find_by(app_id: current_app.id,author_id: current_app.author_id)
   end
 
   # POST /apps

@@ -4,7 +4,7 @@ class BlogUpdate
   include Sidetiq::Schedulable
 
   recurrence backfill: true do
-      minutely(15)
+      hourly(24)
   end
 
   def perform

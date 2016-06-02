@@ -11,28 +11,41 @@ $(document).ready(function() {
 
 
   $("#app-form").validate({
-                rules: {
-                    app_name: { required: true, },
 
-                    "categories[]": {required: true}
+                 onkeyup: function (element, event) {
+                        if (event.which === 9 && this.elementValue(element) === "") {
+                            return;
+                        } else {
+                            this.element(element);
+                        }
+                    },
 
-                    
-                    
-                },
+                    rules: {
+                        app_name: { required: true, },
+                        email: { required: true, }
+                        },
 
-                messages: 
-                {
-                           app_name: {
-                            required: "Enter Your App name",
-                           },
-                           "categories[]": {
-                            required: "Enter categories you want to display",
-                           }
-                }
-                
+                    messages: 
+                    {
+                               app_name: {
+                                required: "Enter Your App name",
+                               }
+                    },
+                      errorPlacement: function(error, element) {
+                        if (element.attr("name") == "app_name") {
+                          error.insertAfter("#inputEmail3");
+                        } else {
+                          error.insertAfter(element);
+                        }
+                      }
+              
+
               });
 
+
+
   $("#loginform").validate({
+    
               rules: {
                    "author[email]": { required: true},
                     

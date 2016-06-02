@@ -24,7 +24,7 @@ end
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
         byebug
-    elsif not (@author.nil? and @author.author_active)
+    elsif not @author.nil? and not @author.author_active
       # 
       if App.exists?(:app_url => params[:blog_url])
         # byebug
@@ -34,10 +34,11 @@ end
          
        
   else 
-        @next=0
+        # @next=0
         @valid_url=check_site(params[:blog_url])
         
         if @valid_url 
+
           # binding.pry
             if not @author.nil?
                 @author.update(password: params[:author][:password])
@@ -57,13 +58,14 @@ end
                 @app.author_id = @author.id
                 @app.app_url = params[:blog_url]
                 @app.save
-                
-              end
-              @app_colours=@app.appcolours.new
-              @app_colours.save
-              @next=1
+            end
+                @app_colours=@app.build_appcolour
+                @app_colours.save
+                $next=1
+
         else
-              @next=0
+                $next=0
+
         end                 #valid url if ends
 
       # super

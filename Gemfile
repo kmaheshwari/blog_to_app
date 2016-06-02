@@ -16,20 +16,31 @@ gem 'grape'
 gem 'httparty'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
+gem 'nokogiri'
 # Cross Origin Resource Sharing
 gem 'rack-cors', :require => 'rack/cors'
+
+gem 'jquery-validation-rails'
+
 
 gem 'redis'
 gem 'redis-namespace'
 gem 'redis-rails'
 gem 'redis-rack-cache'
 
+# mail dependencies
+gem 'sendgrid-ruby'
+gem 'sendgrid'
+gem 'mail'
+gem 'json'
+# mail dependencies
+
+
 gem 'sass-rails'
 gem 'sidekiq'                       #background jobs
 gem 'sidetiq'                        #repeat jobs for sidekiq workers
 gem 'sinatra' ,require: false
-
+gem 'stripe-rails'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
 

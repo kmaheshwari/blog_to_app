@@ -386,6 +386,7 @@ nav.navbar.navbar-static-top {
 	color:#B3AEAE;
 	font-size: 0.9em;	
 }
+
 .navbar-left-right input[type="submit"]{
 	background: url(../images/search.png) 0px 2px no-repeat;
 	width:16px;
@@ -1387,14 +1388,16 @@ label.control-label {
 .login-mail i{
 	color: #999;
 }
-.login-mail input[type="text"],.login-mail input[type="password"]{
+.login-mail input[type="text"],.login-mail input[type="email"],.login-mail input[type="url"],.login-mail input[type="password"]{
 	border: none;
 	outline:none;
 	font-size: 0.9em;
     color: #999;
-    width: 89%;
+    width: 90%;
     font-family: 'Muli-Regular';
 }
+
+
 .login-do input[type="submit"]{
 	border: none;
     outline: none;
@@ -2840,3 +2843,4 @@ ul.dropdown-menu.dropdown-menu-right {
     font-size: 1.6em;
 }
 }
+

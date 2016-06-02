@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>BlogToApp</title>
+
+  <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+  <%= stylesheet_link_tag    'application', media: 'all' %>
+    <%= csrf_meta_tags %>
+  <%= javascript_include_tag 'application'%>  
+
+</head>
+<body>
+	<div id="wrapper">
+    <div class="scrollbar1"></div>
+		<%= yield %>
+	</div>
+  
+  <div class="copy">
+    <p> &copy; 2016 Minimal. All Rights Reserved | Design by <a href="http://w3layouts.com/" target="_blank">W3layouts</a> </p>     
+  </div>
+  <div class="clearfix"> </div>	
+	
+</body>
+</html>

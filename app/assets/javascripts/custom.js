@@ -34,3 +34,25 @@ $(function() {
         element.addClass('active');
     }
 });
+
+
+$(function(){
+   $(".placeholder").multiselect({
+   selectedText: "# of # selected"
+    });    
+});
+function changecolor(color, element)
+{
+    var color_value = $(color).val()
+    $(element).css("background-color", "#"+color_value);
+}
+function changeAccentColor(color, element)
+{
+    var color_value = $(color).val()
+    $(element).css("border-bottom-color", "#"+color_value);
+} 
+function changeTextColor(color, element)
+{
+    var color_value = $(color).val()
+    $(element).css("color", "#"+color_value);
+}  

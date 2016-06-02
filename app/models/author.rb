@@ -5,4 +5,7 @@ class Author < ActiveRecord::Base
          :recoverable, :rememberable, :trackable
 
   has_many :apps
+
+  validates_presence_of :email
+
 end

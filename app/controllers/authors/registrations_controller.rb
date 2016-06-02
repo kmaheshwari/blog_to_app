@@ -20,22 +20,24 @@ end
  
   def create
     @author =  Author.find_by(:email => params[:email])
+    #check email with active user exits
     if Author.exists?(:email => params[:email],:author_active => true)
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
-    elsif App.exists?(:app_url => params[:blog_url])
-      # 
-      if not @author.nil? and @author.author_active
-        # byebug
+    #check uniqueness of blog_url if email exist
+    elsif App.exists?(:app_url => params[:blog_url]) and not @author.nil? and @author.author_active
+      # @author_app=1
+      flash[:alert] = "Blog Url Already registered"
+      redirect_to new_author_registration_path
+    #check uniqueness of blog_url and if email not exist 
+    elsif App.exists?(:app_url => params[:blog_url]) and @author.nil?
         flash[:alert] = "Blog Url Already registered"
         redirect_to new_author_registration_path
-      end     
-         
-       
-  else 
-        # @next=0
+      
+      else
+        $next=0
         @valid_url=check_site(params[:blog_url])
-        
+        # byebug
         if @valid_url 
 
           # binding.pry
@@ -58,14 +60,15 @@ end
                 @app.app_url = params[:blog_url]
                 @app.save
             end
-                @app_colours=@app.build_appcolour
-                @app_colours.save
-                $next=1
+            @app_colours=@app.build_appcolour
+            @app_colours.save
+            $next=1
 
         else
                 $next=0
 
-        end                 #valid url if ends
+        end  
+                       #valid url if ends
 
       # super
       # byebug

@@ -20,6 +20,8 @@ end
  
   def create
 
+    binding.pry
+
     if Author.exists?(:email => params[:email])
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
@@ -81,8 +83,9 @@ end  #create ends
 
 
    def edit
-    super
     ResetPassword.perform_async(current_author.email)
+
+    super
   end
  
   private

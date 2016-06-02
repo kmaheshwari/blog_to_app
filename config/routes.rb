@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   post '/payments' => 'payments#create'
   get 'payment_fail' => 'payments#payment_fail'
   post '/check_site'=> 'registrations#check_site'
+  post 'save_draft' => 'apps#save_draft'
 
   get 'support' => 'apps#support'
 

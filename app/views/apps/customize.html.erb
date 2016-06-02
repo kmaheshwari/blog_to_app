@@ -60,7 +60,7 @@
                 <% else %> 
                   <select multiple="multiple" class="form-control1 placeholder" id ="cateogries" name="categories[]">
                   <% @categories.each do |category| %>
-                      <option value=""><%= category["title"] %></option>
+                      <option value="<%= category["title"] %>"><%= category["title"] %></option>
                   <% end %> 
                 <% end %>   
               </select>

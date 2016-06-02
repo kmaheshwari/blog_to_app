@@ -55,19 +55,10 @@ class AppsController < ApplicationController
        end #params[:categories].each ends
      end
 
-       if params[:pages]
-
-          params[:pages].each do |page|
-              if !(AppPage.exists?(:app_id => @app.id) and AppPage.exists?(:page => page))
-
-                 @app_page = AppPage.new
-                 @app_page.app_id = @app.id
-                 @app_page.page = page
-                 @app_page.save
-              end   
-       
-         end #params[:pages].each ends
-      end
+    @final_draft = AppDraft.find_by(app_id: current_app.id,author_id: current_app.author_id)
+    if not @final_draft.nil?
+      @final_draft.destroy
+    end
 
       flash[:notice] = 'Successfully create app'
     
@@ -146,7 +137,16 @@ class AppsController < ApplicationController
       flash[:alert] = "Enter a valid url"
     end
   end
-   
+  
+  def save_draft
+    @old_draft = AppDraft.find_by(app_id: params["app_id"],author_id: params["author_id"])
+    if @old_draft.nil?
+      @draft = AppDraft.new(app_id: params["app_id"], author_id: params["author_id"],app_icon: params[:app_icon], app_name: params[:app_name],about_us: params[:about_us], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params[:privacy_policy], contact_email: params[:email],categories: params["categories[]"] )
+      @draft.save
+    else
+      @old_draft.update(app_id: params["app_id"], author_id: params["author_id"],app_icon: params[:app_icon], app_name: params[:app_name],about_us: params[:about_us],top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], privacy_policy: params[:privacy_policy], contact_email: params[:email],categories: params["categories[]"] )
+    end
+  end 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
@@ -155,7 +155,7 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email, appcolours: [])
+      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email, :appcolours_attributes => [:id,:app_id,:top_bar_colour, :brand_colour, :accent_colour, :article_colour, :article_writer_colour])
     end
 
 end

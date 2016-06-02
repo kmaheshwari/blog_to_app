@@ -48,7 +48,8 @@ end
                   @app.author_id = @find_author_id
                   @app.app_url = params[:blog_url]
                   @app.save
-                  @app_colours=@app.appcolours.new
+                  @app_colours=@app.build_appcolour
+                  @app_colours.app_id = @app.id
                   @app_colours.save
                   @next=1
 

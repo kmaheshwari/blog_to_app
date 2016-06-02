@@ -65,13 +65,13 @@
             </div>
           </div>
 
-          <%= f.fields_for :appcolours do |ac| %>
+          <%= f.fields_for :appcolour, @app.build_appcolour do |ac| %>
             <div class="form-group">
               <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
               <div class="col-sm-10">
                    <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                        <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')" %>
-                  </div>                        
+                  </div>                         
               </div>
             </div>
 
@@ -115,7 +115,12 @@
         <%end%>
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
-              <button type="submit" class="btn btn-default">Generate APK</button>
+              <button type="button" class="btn btn-default" id="save_draft" data-app = "<%= current_app.id%>" data-author = "<%= current_app.author_id%>" >Save as Draft</button>
+            </div>
+          </div>
+          <div class="form-group">
+            <div class="col-sm-offset-2 col-sm-10">
+              <button type="submit" class="btn btn-default" >Generate APK</button>
             </div>
           </div>  
 

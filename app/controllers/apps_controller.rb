@@ -108,7 +108,7 @@ class AppsController < ApplicationController
   end  
 
   def monetize
-    @apps=App.where(author_id: current_author.id)
+    @apps=App.find_by(author_id: current_author.id)
   end
 
   def get_monetize

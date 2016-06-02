@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   # protect_from_forgery 
   layout "step-form", only: [:customize]
-  before_filter :authenticate_author! 
+  before_filter :authenticate_author! ,:except => [:customize,:update]
   include CategoryHelper
   include PageHelper
 
@@ -46,7 +46,7 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
   def update
-    @app = App.find_by(:author_id =>current_author.id)
+    @app = App.find_by(:author_id =>$current_author.id)
     @app.app_name = params[:app_name]
     @app.contact_email = params[:email]
     if params["app"][:app_icon]
@@ -108,13 +108,15 @@ class AppsController < ApplicationController
   end  
 
   def customize
-    @app = App.find_by(:author_id =>current_author.id)
+    @app = App.find_by(:author_id =>$current_author.id)
     @data=populate @app.app_url
     if @data.nil?
       @categories=nil
     else  
       @categories=@data
     end  
+  end
+  def get_customize
   end
 
   def faq
@@ -163,7 +165,7 @@ class AppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-    @app = App.find_by(:author_id =>current_author.id)
+    @app = App.find_by(:author_id =>$current_author.id)
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

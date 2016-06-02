@@ -60,6 +60,7 @@ end
                 @app.app_url = params[:blog_url]
                 @app.save
             end
+            $current_author=@author
             @app_colours=@app.build_appcolour
             @app_colours.save
             $next=1

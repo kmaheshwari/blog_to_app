@@ -4,6 +4,7 @@ class AppsController < ApplicationController
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
   include CategoryHelper
+  include PageHelper
 
   # GET /apps
   # GET /apps.json
@@ -23,6 +24,18 @@ class AppsController < ApplicationController
   # GET /apps/1/edit
   def edit
     @app = App.find_by(:author_id =>current_author.id)
+    @category_data=populate @app.app_url
+    @page_data=page_populate @app.app_url
+    if @category_data.nil?
+      @categories=nil
+    else  
+      @categories=@category_data
+    end
+    if @page_data.nil?
+      @pages=nil
+    else  
+      @pages=@page_data
+    end
   end
 
   # POST /apps
@@ -108,7 +121,7 @@ class AppsController < ApplicationController
   end  
 
   def monetize
-    @apps=App.where(author_id: current_author.id)
+    @apps=App.find_by(author_id: current_author.id)
   end
 
   def get_monetize

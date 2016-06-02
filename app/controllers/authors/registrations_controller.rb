@@ -23,10 +23,9 @@ end
     if Author.exists?(:email => params[:email],:author_active => true)
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
-        byebug
-    elsif not @author.nil? and not @author.author_active
+    elsif App.exists?(:app_url => params[:blog_url])
       # 
-      if App.exists?(:app_url => params[:blog_url])
+      if not @author.nil? and @author.author_active
         # byebug
         flash[:alert] = "Blog Url Already registered"
         redirect_to new_author_registration_path

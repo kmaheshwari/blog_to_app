@@ -11,16 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603081854) do
+ActiveRecord::Schema.define(version: 20160603082701) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "app_pages", force: :cascade do |t|
-    t.string   "page"
+  create_table "app_drafts", force: :cascade do |t|
+    t.string   "app_icon"
+    t.string   "app_name"
+    t.string   "categories"
+    t.string   "about_us"
+    t.string   "privacy_policy"
+    t.string   "top_bar_colour"
+    t.string   "contact_email"
+    t.string   "brand_colour"
+    t.string   "article_colour"
+    t.string   "accent_colour"
+    t.string   "article_writer_colour"
+    t.integer  "author_id"
     t.integer  "app_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
   end
 
   create_table "appcategories", force: :cascade do |t|
@@ -53,6 +64,9 @@ ActiveRecord::Schema.define(version: 20160603081854) do
     t.integer  "author_id"
     t.string   "contact_email"
     t.string   "access_token"
+    t.string   "about_us"
+    t.string   "privacy_policy"
+    t.string   "app_logo"
   end
 
   create_table "authors", force: :cascade do |t|

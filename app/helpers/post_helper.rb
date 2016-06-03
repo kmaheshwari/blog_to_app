@@ -45,6 +45,9 @@ module PostHelper
 		post=post["post"]
 		post.slice!(*@@single_attributes)
 
+		if post["content"].match(/[\s?]style=".*?"/)
+			post["content"]=post["content"].gsub!(/[\s?]style=".*?"/,"")
+		end	
 
 		post["author"]=post["author"]["name"]
 		if !post["thumbnail_images"].nil?

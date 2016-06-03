@@ -98,6 +98,16 @@ ActiveRecord::Schema.define(version: 20160603082701) do
     t.datetime "updated_at",    null: false
   end
 
+  create_table "order_states", force: :cascade do |t|
+    t.string   "app_version_name"
+    t.string   "app_status"
+    t.date     "generated_date"
+    t.string   "download_link"
+    t.integer  "author_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
   create_table "payments", force: :cascade do |t|
     t.string   "customer_id"
     t.integer  "app_id"
@@ -111,5 +121,6 @@ ActiveRecord::Schema.define(version: 20160603082701) do
   add_foreign_key "appcolours", "apps"
   add_foreign_key "apps", "authors"
   add_foreign_key "monetizes", "apps"
+  add_foreign_key "order_states", "authors"
   add_foreign_key "payments", "apps"
 end

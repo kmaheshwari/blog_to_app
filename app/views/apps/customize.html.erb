@@ -56,7 +56,7 @@
                 <% if @categories.nil? %>
                   <%= select_tag "categories", "<option selected='selected'>No Categories To Show</option>".html_safe ,class: "form-control1 placeholder",  multiple: true %>     
                 <% else %>
-                  <%= select_tag "categories", options_for_select(@categories.collect {|c| [ c['title'] ] }) ,class: "form-control1 placeholder",  multiple: true %>
+                  <%= select_tag "categories", options_for_select(@categories.collect {|c| [ c['title'] ] }) ,class: "form-control1 placeholder", multiple: true,required: true %>
                 <% end %>  
             </div>
           </div>
@@ -196,9 +196,17 @@
 
 </div> <!-- grid system ends-->
 <% else %>
-   <div class="alert alert-danger text-center" style="margin-top:140px;width:50%;margin-left:350px;position:absolute">
+
+<div class="text-center alert alert-danger alert-dismissible fade in" role="alert"  style="margin-top:140px;width:50%;margin-left:350px;position:absolute">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
   <strong>Alert ! </strong> First Install Plugin and then continue
 </div>
+
+
   <%= render 'apps/plugin' %>
 <% end %>
+
+
 

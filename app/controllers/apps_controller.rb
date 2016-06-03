@@ -2,14 +2,14 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   # protect_from_forgery 
   layout "step-form", only: [:customize]
-  before_filter :authenticate_author! 
+  before_filter :authenticate_author! ,:except => [:customize,:update]
   include CategoryHelper
   include PageHelper
 
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @apps = OrderState.where(author_id: current_author.id)
   end
 
   # GET /apps/1
@@ -24,7 +24,7 @@ class AppsController < ApplicationController
   # GET /apps/1/edit
   def edit
     @app = App.find_by(:author_id =>current_author.id)
-    @app_draft = AppDraft.find_by(app_id: current_app.id,author_id: current_app.author_id)
+    @app_draft = AppDraft.find_by(app_id: @app.id,author_id: @app.author_id)
     @category_data=populate @app.app_url
     @page_data=page_populate @app.app_url
     if @category_data.nil?
@@ -47,7 +47,10 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
   def update
-    @app = App.find_by(:author_id =>current_author.id)
+    if current_author
+      $current_author = current_author
+    end
+    @app = App.find_by(:author_id =>$current_author.id)
     @app.update(app_params)
     if params["app"][:app_icon]
       @app.app_icon = params["app"][:app_icon]
@@ -68,20 +71,25 @@ class AppsController < ApplicationController
        end #params[:categories].each ends
      end
 
-    @final_draft = AppDraft.find_by(app_id: current_app.id,author_id: current_app.author_id)
+    @final_draft = AppDraft.find_by(app_id: @app.id,author_id: @app.author_id)
     if not @final_draft.nil?
       @final_draft.destroy
     end
 
       flash[:notice] = 'Successfully create app'
-    
+      
     
     else
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to payments_path
-    
+    if not current_author
+      redirect_to payments_path
+    else 
+      @app_order = OrderState.new()
+      @app_order.update(app_version_name: @app.app_name,app_status: "pending",generated_date: Date.today,author_id: current_author.id )
+      redirect_to root_path
+    end
 
   end
 
@@ -99,7 +107,7 @@ class AppsController < ApplicationController
   end  
 
   def customize
-    @app = App.find_by(:author_id =>current_author.id)
+    @app = App.find_by(:author_id =>$current_author.id)
     @data=populate @app.app_url
     if @data.nil?
       @categories=nil
@@ -107,7 +115,7 @@ class AppsController < ApplicationController
       @categories=@data
     end  
   end
-
+  
   def faq
   end  
 
@@ -163,7 +171,11 @@ class AppsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-    @app = App.find_by(:author_id =>current_author.id)
+      if current_author
+        @app = App.find_by(:author_id =>current_author.id)
+      else
+        @app = App.find_by(:author_id =>$current_author.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

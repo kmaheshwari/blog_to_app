@@ -139,7 +139,7 @@
 	                        <a href="/apps" class=" hvr-bounce-to-right"><i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Dashboard</span> </a>
 	                    </li>
 	                    <li>
-                        	<%= link_to edit_app_path(current_app), class: 'hvr-bounce-to-right' do%>
+                        	<%= link_to edit_app_path(App.find_by(author_id: current_author.id)), class: 'hvr-bounce-to-right' do%>
                         		<i class="fa fa-dashboard nav_icon "></i><span class="nav-label">Customize App</span>
                         	<%end%>
                     	</li>

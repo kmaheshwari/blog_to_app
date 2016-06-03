@@ -18,12 +18,14 @@ class PaymentsController < ApplicationController
     )
 
   # byebug
-  @app_id=App.find_by(author_id: $current_author.id).id
+  @app=App.find_by(author_id: $current_author.id)
+  @app_id=@app.id
   @pay=Payment.new(customer_id: @customer.id,amount:params[:amount],app_id: @app_id,status: @charge["status"])
 
         if  @pay.save
           sign_in $current_author
           $current_author.update(author_active: true)
+          
           PaymentMail.perform_async(current_author.email)
         end
         

@@ -19,7 +19,6 @@ end
 
  
   def create
-
     @author =  Author.find_by(:email => params[:email])
     #check email with active user exits
     if Author.exists?(:email => params[:email],:author_active => true)
@@ -34,9 +33,8 @@ end
     #check uniqueness of blog_url and if email not exist 
     elsif App.exists?(:app_url => params[:blog_url]) and @author.nil?
         flash[:notice] = "Blog Url Already registered"
-        redirect_to new_author_registration_path
-      
-      else
+        redirect_to new_author_registration_path    
+    else
         $next=0
         @valid_url=check_site(params[:blog_url])
         # byebug
@@ -61,10 +59,11 @@ end
                 @app.author_id = @author.id
                 @app.app_url = params[:blog_url]
                 @app.save
+                @app_colours=@app.build_appcolour
+                @app_colours.app_id = @app.id
+                @app_colours.save
             end
             $current_author=@author
-            @app_colours=@app.build_appcolour
-            @app_colours.save
             $next=1
 
         else

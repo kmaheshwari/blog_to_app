@@ -26,7 +26,7 @@
 				        <% if app.app_status == "pending"%>
 				        	<button type="submit" class="btn btn-success">Pending App Build</button>
 				        <% else %>
-				        	<td><a href="<%=app.download_link%>"<button type="submit" class="btn btn-danger">Download APK</button></a>
+				        	<a href="<%=app.download_link%>"<button type="submit" class="btn btn-danger">Download APK</button></a>
 				        <% end %>
 				        </td>
 				      </tr>

@@ -19,9 +19,11 @@ end
 
  
   def create
+
     @author =  Author.find_by(:email => params[:email])
     #check email with active user exits
     if Author.exists?(:email => params[:email],:author_active => true)
+
         flash[:alert] = "Email Already taken"
         redirect_to new_author_registration_path
     #check uniqueness of blog_url if email exist
@@ -97,8 +99,9 @@ end  #create ends
 
 
    def edit
-    super
     ResetPassword.perform_async(current_author.email)
+
+    super
   end
  
   private

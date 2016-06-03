@@ -146,11 +146,11 @@
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Article colour</label>
             <div class="col-sm-10">
-                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')",value: '1a1a1a' %>
+                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title');", value: '1a1a1a' %>
                   <%else%>
-                      <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')", value: @app_draft.article_colour %>
+                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title');", value: @app_draft.article_colour %>
                   <%end%>
                 </div>                        
             </div>
@@ -161,7 +161,7 @@
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')",value: '808080' %>
+                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author');",value: '808080' %>
                   <%else%>
                      <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')",value: @app_draft.article_writer_colour %>
                   <%end%>

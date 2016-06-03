@@ -44,8 +44,8 @@ $(function(){
         loadColour();
         $(document).on("click", "#save_draft", function(){
             var formdata = $("#app-form").serialize();
-            console.log($(this).data('app'));
             saveDraft($(this).data('app'),$(this).data('author'), formdata);
+            $('#saved').toggle();
         });
    });
 });

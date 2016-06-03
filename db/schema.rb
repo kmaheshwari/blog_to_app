@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 20160603081854) do
     t.inet     "last_sign_in_ip"
     t.datetime "created_at",                             null: false
     t.datetime "updated_at",                             null: false
-    t.string   "referral_link"
     t.boolean  "author_active",          default: false
   end
 

@@ -21,7 +21,7 @@
 				      <tr>
 				        <td><%=app.app_version_name%></td>
 				        <td><%= app.app_status %></td>
-				        <td><%= app.generated_date %></td>
+				        <td><%= app.generated_date.strftime("%d-%m-%Y") %></td>
 				        <td>
 				        <% if app.app_status == "pending"%>
 				        	<button type="submit" class="btn btn-success">Pending App Build</button>

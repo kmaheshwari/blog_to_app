@@ -24,6 +24,7 @@ class AppsController < ApplicationController
   # GET /apps/1/edit
   def edit
     @app = App.find_by(:author_id =>current_author.id)
+    @app_draft = AppDraft.find_by(app_id: @app.id,author_id: @app.author_id)
     @category_data=populate @app.app_url
     @page_data=page_populate @app.app_url
     if @category_data.nil?
@@ -46,9 +47,11 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1
   # PATCH/PUT /apps/1.json
   def update
+    if current_author
+      $current_author = current_author
+    end
     @app = App.find_by(:author_id =>$current_author.id)
-    @app.app_name = params[:app_name]
-    @app.contact_email = params[:email]
+    @app.update(app_params)
     if params["app"][:app_icon]
       @app.app_icon = params["app"][:app_icon]
     end
@@ -68,29 +71,25 @@ class AppsController < ApplicationController
        end #params[:categories].each ends
      end
 
-       if params[:pages]
-
-          params[:pages].each do |page|
-              if !(AppPage.exists?(:app_id => @app.id) and AppPage.exists?(:page => page))
-
-                 @app_page = AppPage.new
-                 @app_page.app_id = @app.id
-                 @app_page.page = page
-                 @app_page.save
-              end   
-       
-         end #params[:pages].each ends
-      end
+    @final_draft = AppDraft.find_by(app_id: @app.id,author_id: @app.author_id)
+    if not @final_draft.nil?
+      @final_draft.destroy
+    end
 
       flash[:notice] = 'Successfully create app'
-    
+      
     
     else
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to payments_path
-    
+    if not current_author
+      redirect_to payments_path
+    else 
+      @app_order = OrderState.new()
+      @app_order.update(app_version_name: @app.app_name,app_status: "pending",generated_date: Date.today,author_id: current_author.id )
+      redirect_to root_path
+    end
 
   end
 
@@ -116,20 +115,25 @@ class AppsController < ApplicationController
       @categories=@data
     end  
   end
-  def get_customize
-  end
-
+  
   def faq
   end  
 
   def monetize
     @apps=App.find_by(author_id: current_author.id)
+    @monetize=@apps.monetize
   end
 
   def get_monetize
     @app_id = App.find_by(app_name: params["app_name"]).id
-    @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app_id)
-    @new_monetize.save
+    @app=App.find(@app_id)
+    if @app.monetize.nil?
+      @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app.id)
+      @new_monetize.save
+    else
+      @monetize=@app.monetize
+      @monetize.update(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"])
+    end    
     redirect_to root_path
     # byebug
   end
@@ -161,16 +165,29 @@ class AppsController < ApplicationController
       flash[:alert] = "Enter a valid url"
     end
   end
-   
+  
+  def save_draft
+    @old_draft = AppDraft.find_by(app_id: params["app_id"],author_id: params["author_id"])
+    if @old_draft.nil?
+      @draft = AppDraft.new(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["file_path"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"] )
+      @draft.save
+    else
+      @old_draft.update(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["file_path"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"]  )
+    end
+  end 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app
-    @app = App.find_by(:author_id =>$current_author.id)
+      if current_author
+        @app = App.find_by(:author_id =>current_author.id)
+      else
+        @app = App.find_by(:author_id =>$current_author.id)
+      end
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email, appcolours: [])
+      params.require(:app).permit(:app_icon,:app_icon_cache, :app_name,:app_url,:author_id,:contact_email,:about_us,:privacy_policy, :appcolour_attributes => [:id,:app_id,:top_bar_colour, :brand_colour, :accent_colour, :article_colour, :article_writer_colour])
     end
 
 end

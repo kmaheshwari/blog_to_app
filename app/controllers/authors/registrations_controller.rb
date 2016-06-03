@@ -24,16 +24,16 @@ end
     #check email with active user exits
     if Author.exists?(:email => params[:email],:author_active => true)
 
-        flash[:alert] = "Email Already taken"
+        flash[:notice] = "Email Already taken"
         redirect_to new_author_registration_path
     #check uniqueness of blog_url if email exist
     elsif App.exists?(:app_url => params[:blog_url]) and not @author.nil? and @author.author_active
       # @author_app=1
-      flash[:alert] = "Blog Url Already registered"
+      flash[:notice] = "Blog Url Already registered"
       redirect_to new_author_registration_path
     #check uniqueness of blog_url and if email not exist 
     elsif App.exists?(:app_url => params[:blog_url]) and @author.nil?
-        flash[:alert] = "Blog Url Already registered"
+        flash[:notice] = "Blog Url Already registered"
         redirect_to new_author_registration_path
       
       else

@@ -83,14 +83,19 @@ class AppsController < ApplicationController
       end
 
       flash[:notice] = 'Successfully create app'
-    
+      
     
     else
           flash[:notice] = 'Some error ocured'
     end
 
-    redirect_to payments_path
-    
+    if not current_author
+      redirect_to payments_path
+    else 
+      @app_order = OrderState.new()
+      @app_order.update(app_version_name: @app.app_name,app_status: "pending",generated_date: Date.today,author_id: current_author.id )
+      redirect_to root_path
+    end
 
   end
 
@@ -116,9 +121,7 @@ class AppsController < ApplicationController
       @categories=@data
     end  
   end
-  def get_customize
-  end
-
+  
   def faq
   end  
 

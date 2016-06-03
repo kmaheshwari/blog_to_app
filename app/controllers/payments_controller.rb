@@ -25,8 +25,7 @@ class PaymentsController < ApplicationController
         if  @pay.save
           sign_in $current_author
           $current_author.update(author_active: true)
-          @app_order = OrderState.new()
-          @app_order.update(app_version_name: @app.app_name,app_status: "pending",generated_date: Date.today,author_id: current_author.id )
+          
           PaymentMail.perform_async(current_author.email)
         end
         

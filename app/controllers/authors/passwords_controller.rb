@@ -1,4 +1,5 @@
 class Authors::PasswordsController < Devise::PasswordsController
+  layout "step-form"
   # GET /resource/password/new
   # def new
   #   super

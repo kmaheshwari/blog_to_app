@@ -1,16 +1,37 @@
+<% if not @data.nil? %>
+<nav class="navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <h1> <a class="navbar-brand" href="index.html">Grappr</a></h1>         
+    </div>
+    <div class=" border-bottom">
+        <div class="full-left">
+            Submit Blog Details
+            <div class="clearfix"> </div>
+        </div>
+        <!-- Brand and toggle get grouped for better mobile display --> 
+        <!-- Collect the nav links, forms, and other content for toggling -->   
+        <div class="clearfix">
+        </div>
+      
+            
+    </div>
+</nav>
 
 <div class="grid-system" >   <!-- grid system -->
 
-
-  <div class="grid-form1 questions" style="height: 650px;">
-  <div class="row">
-    <div class="col-md-6">   <!-- form div -->
+  <div class="grid-form1 questions" >
     <p>You can customize your app logo, color scheme, main menus and sliders with few clicks and make it even better - just like the way you want and generate APK file within few minutes.</p>  
 
 
-<%= form_for @app , :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
-
-
+    <div class="row">
+      <div class="col-md-6">   <!-- form div -->
+        <%= form_for @app , :html=> {:class =>"form-horizontal" ,:id=>"app-form"} do |f| %>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Name</label>
             <div class="col-sm-10">
@@ -32,32 +53,62 @@
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Categories</label>
             <div class="col-sm-10">
-              <%= select_tag "categories","<option>Technology</option><option>Entertainment</option><option>Education</option><option>Food</option>".html_safe ,class: "form-control1 placeholder", id:"cateogries",  multiple: true %>
+                <% if @categories.nil? %>
+                  <%= select_tag "categories", "<option selected='selected'>No Categories To Show</option>".html_safe ,class: "form-control1 placeholder",  multiple: true %>     
+                <% else %>
+                  <%= select_tag "categories", options_for_select(@categories.collect {|c| [ c['title'] ] }) ,class: "form-control1 placeholder", multiple: true,required: true %>
+                <% end %>  
+            </div>
+          </div>
+
+          <%= f.fields_for :appcolours do |ac| %>
+            <div class="form-group">
+              <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
+              <div class="col-sm-10">
+                   <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                       <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')" %>
+                  </div>                          
+              </div>
+            </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Brand colour</label>
+            <div class="col-sm-10">
+                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                     <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');" %>
+                </div>                        
             </div>
           </div>
 
           <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Colors</label>
+            <label class="col-sm-2 control-label hor-form">Accent colour</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-          </div>
-
-
-          <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
-            <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                     <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')" %>
+                     
+                </div>                        
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label hor-form">Pages</label>
+            <label class="col-sm-2 control-label hor-form">Article colour</label>
             <div class="col-sm-10">
-              <%= select_tag "pages","<option>About</option><option>Privacy Policy</option>".html_safe ,class: "form-control1 placeholder", id:"pages",  multiple: true %>
+                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')" %>
+                </div>                        
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Article-writer colour</label>
+            <div class="col-sm-10">
+                 <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
+                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')" %>
+                </div>                        
             </div>
           </div>
           
+        <%end%>      
 
           <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
@@ -65,9 +116,11 @@
             </div>
           </div>  
 
-<% end %>
 
-      </div> <!-- form div ends -->
+    <% end %>
+
+
+      </div> <!-- col-md-6 ends -->
 
 
 
@@ -142,5 +195,18 @@
 
 
 </div> <!-- grid system ends-->
+<% else %>
+
+<div class="text-center alert alert-danger alert-dismissible fade in" role="alert"  style="margin-top:140px;width:50%;margin-left:350px;position:absolute">
+  <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+  <strong>Alert ! </strong> First Install Plugin and then continue
+</div>
+
+
+  <%= render 'apps/plugin' %>
+<% end %>
+
 
 

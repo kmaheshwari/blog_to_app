@@ -2,16 +2,11 @@ Rails.application.routes.draw do
   # resources :payments
   require 'sidekiq/web'
   mount API::Base, at: "/"
-  mount Sidekiq::Web ,at: '/sidekiq'
-
-
-  
+  mount Sidekiq::Web ,at: '/sidekiq'  
   root 'apps#index'
   resources :apps
 
   devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
-
-
 
   get '/posts' => 'apps#posts'
 
@@ -27,8 +22,7 @@ Rails.application.routes.draw do
   get '/payments' => 'payments#new'
   post '/payments' => 'payments#create'
   get 'payment_fail' => 'payments#payment_fail'
-
-
+  post '/check_site'=> 'registrations#check_site'
   get 'support' => 'apps#support'
 
   # get 'registration' => 'static#registration'

@@ -3,9 +3,6 @@ class Authors::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_account_update_params, only: [:update]
 layout "step-form"
 
-
-
-
 before_action :set_pass, only: [:new]
 
   # GET /resource/sign_up
@@ -23,41 +20,58 @@ end
  
   def create
 
-  if Author.exists?(:email => params[:email])
-      flash[:alert] = "Email Already taken"
-      redirect_to new_author_registration_path
+    @author =  Author.find_by(:email => params[:email])
+    #check email with active user exits
+    if Author.exists?(:email => params[:email],:author_active => true)
 
-   elsif App.exists?(:app_url => params[:blog_url])
-      flash[:alert] = "Blog Url Already registered"
+        flash[:notice] = "Email Already taken"
+        redirect_to new_author_registration_path
+    #check uniqueness of blog_url if email exist
+    elsif App.exists?(:app_url => params[:blog_url]) and not @author.nil? and @author.author_active
+      # @author_app=1
+      flash[:notice] = "Blog Url Already registered"
       redirect_to new_author_registration_path
-         
-       
-  else 
-        @next=0
+    #check uniqueness of blog_url and if email not exist 
+    elsif App.exists?(:app_url => params[:blog_url]) and @author.nil?
+        flash[:notice] = "Blog Url Already registered"
+        redirect_to new_author_registration_path
+      
+      else
+        $next=0
         @valid_url=check_site(params[:blog_url])
-
+        # byebug
         if @valid_url 
+
           # binding.pry
+            if not @author.nil?
+                @author.update(password: params[:author][:password])
+                @app =App.find_by(author_id: @author.id)
+                @app.update(app_url: params[:blog_url])
+            else 
                 @author = Author.new
                 @author.email = params[:email]
                 @author.password = params[:author][:password]
                 @author.save
-                SignupMail.perform_async(params[:email],$temp_pass)
+            
                 # to create session
-                sign_in @author
+                # sign_in @author
                 # byebug
-                @find_author_id =  Author.find_by(:email => params[:email]).id
+                
                 @app = App.new
-                @app.author_id = @find_author_id
+                @app.author_id = @author.id
                 @app.app_url = params[:blog_url]
                 @app.save
-                @app_colours=@app.appcolours.new
-                @app_colours.save
-                @next=1
+            end
+            $current_author=@author
+            @app_colours=@app.build_appcolour
+            @app_colours.save
+            $next=1
 
         else
-                @next=0
-        end                 #valid url if ends
+                $next=0
+
+        end  
+                       #valid url if ends
 
       # super
       # byebug
@@ -66,46 +80,37 @@ end
 
 end  #create ends
 
+  def check_site(url)
+    url=url[7..-1]
+    app_url = 'http://builtwith.com/q=' + url
+    @data= 0
+    begin
+      @response = Nokogiri::HTML(open(app_url))
+      @response.css('.techItem a').each do |link|
+        if link.content == "WordPress"
+          @data = 1
+        end
+      end
+      @data
+    rescue
+      -1
+    end
+  end
 
 
+   def edit
+    ResetPassword.perform_async(current_author.email)
 
-
+    super
+  end
+ 
   private
  
   def sign_up_params
 
-  
     allow = [:email ,:password, :app_url]
     params.require(resource_name).permit(allow)
-  end
-
-
-
-
-  def check_site(url)
-    url=url[7..-1]
-    app_url = 'http://builtwith.com/q=' + url
-    @response = Nokogiri::HTML(open(app_url))
-    @data= false
-    @response.css('.techItem a').each do |link|
-      if link.content == "WordPress"
-        @data = true
-      end
-    end
-    @data
-  end
-
-   def edit
-       super
-       respond_to do |format| 
-       
-        format.html {render :layout => "application"}
-
-     end
- end
- 
-
-
+  end 
 
 end  #class ends
 

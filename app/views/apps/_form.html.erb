@@ -32,29 +32,43 @@
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Categories</label>
             <div class="col-sm-10">
-              <%= select_tag "categories","<option>Technology</option><option>Entertainment</option><option>Education</option><option>Food</option>".html_safe ,class: "form-control1 placeholder", id:"cateogries",  multiple: true %>
+
+              <% if @categories.nil? %>
+                <%= select_tag "categories", "<option selected='selected'>No Categories To Show</option>".html_safe ,class: "form-control1 placeholder",  multiple: true %>     
+              <% else %>
+                <%= select_tag "categories", options_for_select(@categories.collect {|c| [ c['title'] ] }) ,class: "form-control1 placeholder",  multiple: true %>
+              <% end %>  
             </div>
           </div>
 
-          <!-- <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Colors</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-          </div> -->
 
 
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
             <div class="col-sm-10">
-              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+              <input type="email" name="email" class="form-control" id="inputEmail2" placeholder="Your contact email">
             </div>
           </div>
 
           <div class="form-group">
-            <label class="col-sm-2 control-label hor-form">Pages</label>
+            <label class="col-sm-2 control-label hor-form">About us</label>
             <div class="col-sm-10">
-              <%= select_tag "pages","<option>About</option><option>Privacy Policy</option>".html_safe ,class: "form-control1 placeholder", id:"pages",  multiple: true %>
+              <% if @pages.nil? %>
+                <%= select_tag "about_us","<option selected='selected'>No Pages To Show</option>".html_safe, class: "form-control1 placeholder", id:"about_us"%>
+              <% else %>
+                <%= select_tag "about_us", options_for_select(@pages.collect {|c| [ c['title'] ] }),class: "form-control1 placeholder", id:"about_us"%>
+              <% end %>  
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="col-sm-2 control-label hor-form">Privacy Policy</label>
+            <div class="col-sm-10">
+              <% if @pages.nil? %>
+                <%= select_tag "about_us","<option selected='selected'>No Pages To Show</option>".html_safe, class: "form-control1 placeholder", id:"about_us"%>
+              <% else %>
+                <%= select_tag "about_us", options_for_select(@pages.collect {|c| [ c['title'] ] }),class: "form-control1 placeholder", id:"about_us"%>
+              <% end %>  
             </div>
           </div>
 
@@ -113,7 +127,8 @@
           </div>  
 
     <% end %>
-      </div>
+      </div>      
+      <!-- col-md-6 end -->
       <div class="col-md-6">
 
         <div class="container">

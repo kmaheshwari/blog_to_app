@@ -1,25 +1,33 @@
-<div class="block-header"> </div>
+<nav class="navbar-default navbar-static-top" role="navigation">
+    <div class="navbar-header">
+      <h1> <a class="navbar-brand" href="index.html">Blappr</a></h1>         
+    </div>
+    <div class=" border-bottom">
+      <div class="full-left">
+        Change Password
+        <div class="clearfix"> </div>
+      </div>       
+      <div class="clearfix">
+      </div>
+    </div>
+  </nav>
+  
 
-              <%= devise_error_messages! %>
 
-
-          <div class="card col-sm-offset-2 col-sm-5">
-            <h2>Reset Your Password</h2>
-            <hr>
-
-            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { :id=>'reset-form', method: :put }) do |f| %>
+  <div class="login" style="background-color: #F3F3F4">
+    <div class="login-bottom">
+          
+            <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { class: "form-horizontal" ,:id=>'reset-form', method: :put }) do |f| %>
 
               <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
                 <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
               <% end %>
 
+              <%= devise_error_messages! %>
 
-              <div class="field">
-                <%= f.label :current_password %> <i></i>
-                <%= f.password_field :current_password, autocomplete: "off" %>
-              </div>
-
-
+            <div class="col-md-12">
+                  <%= f.label :current_password %> <i></i>
+                  <%= f.password_field :current_password, autocomplete: "off" %>
               <div class="field">
                 <label>New Password</label>
                 <%= f.password_field :password, autocomplete: "off" %>
@@ -27,14 +35,16 @@
 
               <div class="field">
                 <label>Confirm Password</label>
-                <%= f.password_field :password_confirm, autocomplete: "off" %>
+                <%= f.password_field :password_confirmation, autocomplete: "off" %>
               </div>
 
-
+            </div>
 
               <div class="actions">
                 <%= f.submit "Update" %>
               </div>
+            
+              <div class="clearfix"> </div>
             <% end %>
-
+    </div>
 </div>

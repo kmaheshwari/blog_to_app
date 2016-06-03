@@ -1,8 +1,8 @@
 module PostHelper
 	include HTTParty
-	@@attributes=["id","title","author","categories","thumbnail_images"]
+	@@attributes=["id","title","author","categories","thumbnail_images","url"]
 	@@category_attributes=["id","title"]
-	@@single_attributes=["id", "title","author","content", "categories","date","thumbnail_images"]
+	@@single_attributes=["id", "title","author","content", "categories","date","thumbnail_images","url"]
 	def fetch_posts base_uri, page, count, category_id
 		  if page.nil? || page.blank?
 		  	page=1
@@ -45,6 +45,9 @@ module PostHelper
 		post=post["post"]
 		post.slice!(*@@single_attributes)
 
+		if post["content"].match(/[\s?]style=".*?"/)
+			post["content"]=post["content"].gsub!(/[\s?]style=".*?"/,"")
+		end	
 
 		post["author"]=post["author"]["name"]
 		if !post["thumbnail_images"].nil?

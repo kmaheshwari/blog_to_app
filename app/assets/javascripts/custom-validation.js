@@ -1,7 +1,52 @@
- $(document).ready(function() {
 
-$("#loginform").validate({
-rules: {
+$(document).ready(function() {
+
+  $("#basicform").validate({
+                rules: {
+                    blog_url: { required: true,url: true },
+                    
+                    email: {required: true,email: true}
+                    ,}
+            })
+
+
+  $("#app-form").validate({
+
+                 onkeyup: function (element, event) {
+                        if (event.which === 9 && this.elementValue(element) === "") {
+                            return;
+                        } else {
+                            this.element(element);
+                        }
+                    },
+
+                    rules: {
+                        app_name: { required: true, },
+                        email: { required: true, }
+                        },
+
+                    messages: 
+                    {
+                               app_name: {
+                                required: "Enter Your App name",
+                               }
+                    },
+                      errorPlacement: function(error, element) {
+                        if (element.attr("name") == "app_name") {
+                          error.insertAfter("#inputEmail3");
+                        } else {
+                          error.insertAfter(element);
+                        }
+                      }
+              
+
+              });
+
+
+
+  $("#loginform").validate({
+    
+              rules: {
                    "author[email]": { required: true},
                     
                     "author[password]": {required: true}
@@ -15,61 +60,7 @@ rules: {
                           }
             });
 
-
-  $("#basicform").validate({
-                rules: {
-                    blog_url: { required: true,url: true },
-                    
-                    email: {required: true,email: true}
-                    }
-            });
-
-
-  $("#app-form").validate({
-                rules: {
-                    app_name: { required: true, },
-
-                    "#categories": { required: true }
-
-                messages: {
-                           app_name: {required: "Name of app is missing",},
-                          }
-            }});
-
-
-  $("#reset-form").validate({
-                
-      rules: 
-      {
-        "author[current_password]": { required: true},
-
-       "author[password]": { required: true ,minlength : 8},
-                    
-       "author[password_confirm]": {required: true,equalTo :"#author[password]"}
-                    
-        }  ,
-        
-        messages: 
-    {
-        "author[password]": {
-            required: "Please provide a password",
-            minlength: "Your password must be at least 8 characters long"
-        },
-        "author[password_confirm]": {
-            equalTo: "Please enter the same password as above"
-        }
-        
-    }
-
 });
-
-
-
-
-
-
-
- });
 
 
 

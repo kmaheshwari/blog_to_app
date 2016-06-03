@@ -17,12 +17,20 @@
 				      </tr>
 				    </thead>
 				    <tbody>
+				    	<% @apps.each do |app|%>
 				      <tr>
-				        <td>To guts, to pain… and to glory – an ode to the Indian Startup ecosystem!</td>
-				        <td>Will be ready in 2 hours</td>
-				        <td>21 mins ago</td>
-				        <td><button type="submit" class="btn btn-success">Pending App Build</button></td>
+				        <td><%=app.app_version_name%></td>
+				        <td><%= app.app_status %></td>
+				        <td><%= app.generated_date %></td>
+				        <td>
+				        <% if app.app_status == "pending"%>
+				        	<button type="submit" class="btn btn-success">Pending App Build</button>
+				        <% else %>
+				        	<td><a href="<%=app.download_link%>"<button type="submit" class="btn btn-danger">Download APK</button></a>
+				        <% end %>
+				        </td>
 				      </tr>
+				      <% end %>
 				      <tr>
 				        <td>Meet India’s ‘water doctor’, who has turned 84 acres of barren land into a water bowl</td>
 				        <td>App Created</td>

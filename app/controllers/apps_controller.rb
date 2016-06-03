@@ -121,12 +121,19 @@ class AppsController < ApplicationController
 
   def monetize
     @apps=App.find_by(author_id: current_author.id)
+    @monetize=@apps.monetize
   end
 
   def get_monetize
     @app_id = App.find_by(app_name: params["app_name"]).id
-    @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app_id)
-    @new_monetize.save
+    @app=App.find(@app_id)
+    if @app.monetize.nil?
+      @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app.id)
+      @new_monetize.save
+    else
+      @monetize=@app.monetize
+      @monetize.update(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"])
+    end    
     redirect_to root_path
     # byebug
   end

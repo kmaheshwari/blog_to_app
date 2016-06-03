@@ -5,5 +5,5 @@ class App < ActiveRecord::Base
     has_many :appcategories
 	accepts_nested_attributes_for :appcolour
     has_many :payments
-    belongs_to :monetize
+    has_one :monetize
 end

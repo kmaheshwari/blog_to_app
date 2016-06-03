@@ -66,10 +66,8 @@ function changeTextColor(color, element)
 function saveDraft(app_id, author_id, formdata)
 {
     categories = $("#app_appcategory_categories").val();
-    file = $("#app_app_icon").val();
-
-    console.log(file);
-    formdata = formdata + '&app_id=' + escape(app_id) + '&author_id=' + escape(author_id) +'&app[appcategory][categories][]=' + escape(categories);
+    file = document.getElementById("app_app_icon").val();
+    formdata = formdata + '&app_id=' + escape(app_id) + '&author_id=' + escape(author_id) +'&app[appcategory][categories][]=' + escape(categories) + '&file_path=' + escape(file);
     var params = JSON.parse('{"' + decodeURIComponent(formdata.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
     console.log(params);
     $.ajax({

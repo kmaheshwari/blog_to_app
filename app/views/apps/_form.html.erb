@@ -30,9 +30,8 @@
               <%if @app_draft.nil? %>
                 <%= f.file_field :app_icon%>
               <%else%>
-                <%= f.file_field :app_icon, :defaultValue => @app_draft.app_icon%>
+                <%= f.file_field :app_icon %>
               <%end%>
-              <%= image_tag @app.app_icon_url if @app.app_icon? %>
             </div>
           </div>
 
@@ -45,7 +44,13 @@
                 <%= cat.select :categories, "<option selected disabled>No Categories To Show</option>".html_safe ,{},{class: "form-control1 placeholder",multiple: true}  %>     
               <% else %>
                 <%= cat.select :categories, options_for_select(@categories.collect {|c| [ c['title'] ] }) ,{},{class: "form-control1 placeholder",multiple: true} %>
-              <% end %>  
+                <%if not @app_draft.nil? %>
+                  <script type="text/javascript">
+                    $('#app_appcategory_categories').val('<%=@app_draft.categories%>'.split(',')); 
+                  </script>
+                <% end %>
+
+              <%end%>  
             </div>
           </div>
         <%end%>
@@ -74,7 +79,7 @@
               <% end %>
               <%if not @app_draft.nil? %>
               <script type="text/javascript">
-                $('#about_us').val('<%= @app_draft.about_us%>'); //value of your default option
+                $('#about_us').val('<%= @app_draft.about_us%>'); 
               </script>
             <%end%>
             </div>
@@ -90,7 +95,7 @@
               <% end %>
             <%if not @app_draft.nil? %>
               <script type="text/javascript">
-                $('#privacy_policy').val('<%= @app_draft.privacy_policy%>'); //value of your default option
+                $('#privacy_policy').val('<%= @app_draft.privacy_policy%>'); 
               </script>
             <%end%>
 
@@ -103,7 +108,7 @@
               <div class="col-sm-10">
                    <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                    <%if @app_draft.nil? %>
-                       <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')" %>
+                       <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')", value: "002080" %>
                    <%else%>
                       <%= ac.text_field :top_bar_colour, class: "jscolor{valueElement:'top-bar', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "top-bar", onchange: "changecolor('#top-bar', '#top-nav')",value: @app_draft.top_bar_colour %>
                    <%end%>
@@ -116,7 +121,7 @@
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');" %>
+                     <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');",value: "002699" %>
                   <%else%>
                       <%= ac.text_field :brand_colour, class: "jscolor{valueElement:'brand', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "brand", onchange: "changecolor('#brand', '#header-app');changecolor('#brand', '.catog-div');changecolor('#brand', '.title');", value: @app_draft.brand_colour %>
                   <%end%>
@@ -129,7 +134,7 @@
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')" %>
+                     <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')",value: 'ff3333' %>
                   <%else%>
                      <%= ac.text_field :accent_colour, class: "jscolor{valueElement:'accent', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "accent", onchange: "changeAccentColor('#accent', '.home')", value: @app_draft.accent_colour %>
                   <%end%>
@@ -143,7 +148,7 @@
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')" %>
+                     <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')",value: '1a1a1a' %>
                   <%else%>
                       <%= ac.text_field :article_colour, class: "jscolor{valueElement:'article', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article", onchange: "changeTextColor('#article', '.a_title')", value: @app_draft.article_colour %>
                   <%end%>
@@ -156,7 +161,7 @@
             <div class="col-sm-10">
                  <div class="jscolor{valueElement:'valueInput', styleElement:'styleInput'}" value="57ABC5"     data-toggle="dropdown" id="color-element">
                   <%if @app_draft.nil? %>
-                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')" %>
+                     <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')",value: '808080' %>
                   <%else%>
                      <%= ac.text_field :article_writer_colour, class: "jscolor{valueElement:'article-writer', styleElement:'styleInput'} form-control", 'data-toggle' => "dropdown", id: "article-writer", onchange: "changeTextColor('#article-writer', '.a_author')",value: @app_draft.article_writer_colour %>
                   <%end%>

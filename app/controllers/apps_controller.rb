@@ -9,7 +9,7 @@ class AppsController < ApplicationController
   # GET /apps
   # GET /apps.json
   def index
-    @apps = App.all
+    @apps = OrderState.where(author_id: current_author.id)
   end
 
   # GET /apps/1

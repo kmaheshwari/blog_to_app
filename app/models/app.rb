@@ -7,5 +7,5 @@ class App < ActiveRecord::Base
 
     
     has_many :payments
-    belongs_to :monetize
+    has_one :monetize
 end

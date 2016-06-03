@@ -5,6 +5,9 @@ layout "step-form"
 
 before_action :set_pass, only: [:new]
 
+layout "application", only: [:edit]
+
+
   # GET /resource/sign_up
   def new
     super
@@ -19,6 +22,7 @@ end
 
  
   def create
+
 
     @author =  Author.find_by(:email => params[:email])
     #check email with active user exits
@@ -49,7 +53,7 @@ end
                 @app.update(app_url: params[:blog_url])
             else 
                 @author = Author.new
-                @author.email = params[:email]
+                @author.email = params[:email].to_s
                 @author.password = params[:author][:password]
                 @author.save
             

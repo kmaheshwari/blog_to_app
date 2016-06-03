@@ -4,6 +4,7 @@ class AppsController < ApplicationController
   layout "step-form", only: [:customize]
   before_filter :authenticate_author! 
   include CategoryHelper
+  include PageHelper
 
   # GET /apps
   # GET /apps.json
@@ -24,6 +25,18 @@ class AppsController < ApplicationController
   def edit
     @app = App.find_by(:author_id =>current_author.id)
     @app_draft = AppDraft.find_by(app_id: current_app.id,author_id: current_app.author_id)
+    @category_data=populate @app.app_url
+    @page_data=page_populate @app.app_url
+    if @category_data.nil?
+      @categories=nil
+    else  
+      @categories=@category_data
+    end
+    if @page_data.nil?
+      @pages=nil
+    else  
+      @pages=@page_data
+    end
   end
 
   # POST /apps
@@ -35,8 +48,7 @@ class AppsController < ApplicationController
   # PATCH/PUT /apps/1.json
   def update
     @app = App.find_by(:author_id =>current_author.id)
-    @app.app_name = params[:app_name]
-    @app.contact_email = params[:email]
+    @app.update(app_params)
     if params["app"][:app_icon]
       @app.app_icon = params["app"][:app_icon]
     end
@@ -100,7 +112,7 @@ class AppsController < ApplicationController
   end  
 
   def monetize
-    @apps=App.where(author_id: current_author.id)
+    @apps=App.find_by(author_id: current_author.id)
   end
 
   def get_monetize
@@ -142,10 +154,10 @@ class AppsController < ApplicationController
   def save_draft
     @old_draft = AppDraft.find_by(app_id: params["app_id"],author_id: params["author_id"])
     if @old_draft.nil?
-      @draft = AppDraft.new(app_id: params["app_id"], author_id: params["author_id"],app_icon: params[:app_icon], app_name: params[:app_name],about_us: params[:about_us], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params[:privacy_policy], contact_email: params[:email],categories: params["categories[]"] )
+      @draft = AppDraft.new(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["app[app_icon]"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"] )
       @draft.save
     else
-      @old_draft.update(app_id: params["app_id"], author_id: params["author_id"],app_icon: params[:app_icon], app_name: params[:app_name],about_us: params[:about_us],top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], privacy_policy: params[:privacy_policy], contact_email: params[:email],categories: params["categories[]"] )
+      @old_draft.update(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["app[app_icon]"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"]  )
     end
   end 
   private
@@ -156,7 +168,7 @@ class AppsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def app_params
-      params.require(:app).permit(:app_icon, :app_name,:app_url,:author_id,:contact_email, :appcolours_attributes => [:id,:app_id,:top_bar_colour, :brand_colour, :accent_colour, :article_colour, :article_writer_colour])
+      params.require(:app).permit(:app_icon,:app_icon_cache, :app_name,:app_url,:author_id,:contact_email,:about_us,:privacy_policy, :appcolour_attributes => [:id,:app_id,:top_bar_colour, :brand_colour, :accent_colour, :article_colour, :article_writer_colour])
     end
 
 end

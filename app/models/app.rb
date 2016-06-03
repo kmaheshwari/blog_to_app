@@ -3,8 +3,7 @@ class App < ActiveRecord::Base
 	belongs_to :author
 	mount_uploader :app_icon, IconUploader  
     has_many :appcategories
-    has_many :app_pages
-    accepts_nested_attributes_for :appcolour
+	accepts_nested_attributes_for :appcolour
     has_many :payments
     belongs_to :monetize
 end

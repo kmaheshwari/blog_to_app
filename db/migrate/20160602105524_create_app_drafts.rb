@@ -6,7 +6,7 @@ class CreateAppDrafts < ActiveRecord::Migration
       t.string   "categories"
       t.string   "about_us"
       t.string   "privacy_policy"
-      t.integer  "top_bar_colour"
+      t.string  "top_bar_colour"
       t.string   "contact_email"
       t.string   "brand_colour"
       t.string   "article_colour"

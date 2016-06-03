@@ -15,9 +15,10 @@
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Name</label>
             <div class="col-sm-10">
               <%if @app_draft.nil? %>
-                <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app" >
+                
+                <%= f.text_field :app_name, class: "form-control",id: "inputEmail3", placeholder:"Name of your app" %>
               <%else%>
-                <input type="text" name="app_name" class="form-control" id="inputEmail3" placeholder="Name of your app" value="<%= @app_draft.app_name%>">
+               <%= f.text_field :app_name, class: "form-control",id: "inputEmail3", placeholder:"Name of your app", value: @app_draft.app_name %>
               <%end%>
             </div>
           </div>
@@ -25,37 +26,40 @@
           <div class="form-group">
             <label for="inputPassword3" class="col-sm-2 control-label hor-form">Logo</label>
             <div class="col-sm-10">
+
               <%if @app_draft.nil? %>
                 <%= f.file_field :app_icon%>
               <%else%>
-                <%= f.file_field :app_icon, :value => @app_draft.app_icon%>
+                <%= f.file_field :app_icon, :defaultValue => @app_draft.app_icon%>
               <%end%>
+              <%= image_tag @app.app_icon_url if @app.app_icon? %>
             </div>
           </div>
 
-
+        <%= f.fields_for :appcategory do |cat| %>
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Categories</label>
             <div class="col-sm-10">
-              <%= select_tag "categories","<option>Technology</option><option>Entertainment</option><option>Education</option><option>Food</option>".html_safe ,class: "form-control1 placeholder",  multiple: true %>
+
+              <% if @categories.nil? %>
+                <%= cat.select :categories, "<option selected disabled>No Categories To Show</option>".html_safe ,{},{class: "form-control1 placeholder",multiple: true}  %>     
+              <% else %>
+                <%= cat.select :categories, options_for_select(@categories.collect {|c| [ c['title'] ] }) ,{},{class: "form-control1 placeholder",multiple: true} %>
+              <% end %>  
             </div>
           </div>
+        <%end%>
 
-          <!-- <div class="form-group">
-            <label for="inputEmail3" class="col-sm-2 control-label hor-form">Colors</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" id="inputEmail3" placeholder="Email">
-            </div>
-          </div> -->
 
 
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Email</label>
             <div class="col-sm-10">
             <%if @app_draft.nil? %>
-              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email">
+              
+              <%= f.email_field :contact_email,class:"form-control", id: "inputEmail3", placeholder: "Your contact email" %>
             <%else%>
-              <input type="email" name="email" class="form-control" id="inputEmail3" placeholder="Your contact email" value="<%= @app_draft.contact_email%>">
+              <%= f.email_field :contact_email,class:"form-control", id: "inputEmail3", placeholder: "Your contact email", value: @app_draft.contact_email %>
             <%end%>
             </div>
           </div>
@@ -63,7 +67,11 @@
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">About us</label>
             <div class="col-sm-10">
-              <%= select_tag "about_us","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"about_us"%>
+              <% if @pages.nil? %>
+                <%= f.select :about_us,"<option selected='selected'>No Pages To Show</option>".html_safe,{},{class: "form-control1 placeholder"}%>
+              <% else %>
+                <%= f.select :about_us, options_for_select(@pages.collect {|c| [ c['title'] ] }),{},{class: "form-control1 placeholder"}%>
+              <% end %>
               <%if not @app_draft.nil? %>
               <script type="text/javascript">
                 $('#about_us').val('<%= @app_draft.about_us%>'); //value of your default option
@@ -75,16 +83,21 @@
           <div class="form-group">
             <label class="col-sm-2 control-label hor-form">Privacy Policy</label>
             <div class="col-sm-10">
-            <%= select_tag "privacy_policy","<option>page1</option><option>Page2</option><option>Page3</option><option>Page4</option>".html_safe ,class: "form-control1 placeholder", id:"privacy_policy"%>
+            <% if @pages.nil? %>
+                <%= f.select :privacy_policy,"<option selected disabled>No Pages To Show</option>".html_safe,{},{class: "form-control1 placeholder"}%>
+              <% else %>
+                <%= f.select :privacy_policy, options_for_select(@pages.collect {|c| [ c['title'] ] }),{},{class: "form-control1 placeholder"}%>
+              <% end %>
             <%if not @app_draft.nil? %>
               <script type="text/javascript">
                 $('#privacy_policy').val('<%= @app_draft.privacy_policy%>'); //value of your default option
               </script>
             <%end%>
+
             </div>
           </div>
 
-          <%= f.fields_for :appcolour, @app.build_appcolour do |ac| %>
+          <%= f.fields_for :appcolour do |ac| %>
             <div class="form-group">
               <label class="col-sm-2 control-label hor-form">Top-bar colour</label>
               <div class="col-sm-10">

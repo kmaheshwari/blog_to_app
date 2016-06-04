@@ -2,6 +2,9 @@ class PaymentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   layout "step-form"
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create

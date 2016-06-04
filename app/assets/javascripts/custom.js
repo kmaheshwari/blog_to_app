@@ -45,7 +45,7 @@ $(function(){
         $(document).on("click", "#save_draft", function(){
             var formdata = $("#app-form").serialize();
             saveDraft($(this).data('app'),$(this).data('author'), formdata);
-            $('#saved').toggle();
+            $('#saved').toggle( );
         });
    });
 });
@@ -86,5 +86,8 @@ function saveDraft(app_id, author_id, formdata)
           data:  JSON.stringify(params), // the JSON data, as an object or string
           contentType: "application/json",
           dataType: "json",
+          success: function(response){
+            window.location.href = '/payments'
+          }
       });
 }

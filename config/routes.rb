@@ -6,13 +6,14 @@ Rails.application.routes.draw do
   root 'apps#index'
   resources :apps
 
-  devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions"}
+  devise_for :authors, :controllers => {:registrations => "authors/registrations",:sessions => "authors/sessions", :passwords => "authors/passwords"}
 
   get '/posts' => 'apps#posts'
 
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
   get '/analytics' => 'apps#analytics'
+  post '/get_analytics' => 'apps#get_analytics'
   get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'
@@ -23,6 +24,8 @@ Rails.application.routes.draw do
   post '/payments' => 'payments#create'
   get 'payment_fail' => 'payments#payment_fail'
   post '/check_site'=> 'registrations#check_site'
+  post '/save_draft' => 'apps#save_draft'
+
   get 'support' => 'apps#support'
 
   # get 'registration' => 'static#registration'

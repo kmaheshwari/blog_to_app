@@ -18,7 +18,8 @@ class PaymentsController < ApplicationController
     )
 
   # byebug
-  @app_id=App.find_by(author_id: $current_author.id).id
+  @app=App.find_by(author_id: $current_author.id)
+  @app_id=@app.id
   @pay=Payment.new(customer_id: @customer.id,amount:params[:amount],app_id: @app_id,status: @charge["status"])
 
        if @pay.save 
@@ -33,7 +34,7 @@ class PaymentsController < ApplicationController
               PaymentMail.perform_async(@author_email)
         end  
         end    
-        
+
         rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to payment_fail_path

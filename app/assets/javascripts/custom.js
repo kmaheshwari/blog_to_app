@@ -40,19 +40,50 @@ $(function(){
    $(".placeholder").multiselect({
    selectedText: "# of # selected"
     }); 
+   $(document).on("ready", function() {
+        loadColour();
+        $(document).on("click", "#save_draft", function(){
+            var formdata = $("#app-form").serialize();
+            console.log($(this).data('app'));
+            saveDraft($(this).data('app'),$(this).data('author'), formdata);
+        });
+   });
 });
+function loadColour(){
+    changecolor('#top-bar', '#top-nav');
+    changecolor('#brand', '#header-app');
+    changecolor('#brand', '.catog-div');
+    changecolor('#brand', '.title');
+    changeAccentColor('#accent', '.home');
+    changeTextColor('#article', '.a_title');
+    changeTextColor('#article-writer', '.a_author');
+}
 function changecolor(color, element)
 {
-    var color_value = $(color).val()
+    var color_value = $(color).val();
     $(element).css("background-color", "#"+color_value);
 }
 function changeAccentColor(color, element)
 {
-    var color_value = $(color).val()
+    var color_value = $(color).val();
     $(element).css("border-bottom-color", "#"+color_value);
 } 
 function changeTextColor(color, element)
 {
-    var color_value = $(color).val()
+    var color_value = $(color).val();
     $(element).css("color", "#"+color_value);
 }  
+function saveDraft(app_id, author_id, formdata)
+{
+    categories = $("#app_appcategory_categories").val();
+    formdata = formdata + '&app_id=' + escape(app_id) + '&author_id=' + escape(author_id) +'&app[appcategory][categories][]=' + escape(categories) ;
+    var params = JSON.parse('{"' + decodeURIComponent(formdata.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+    console.log(params);
+    $.ajax({
+          type: "POST",
+          url: "/save_draft",
+          data:  JSON.stringify(params), // the JSON data, as an object or string
+          contentType: "application/json",
+          dataType: "json",
+      });
+}

@@ -44,8 +44,8 @@ $(function(){
         loadColour();
         $(document).on("click", "#save_draft", function(){
             var formdata = $("#app-form").serialize();
-            console.log($(this).data('app'));
             saveDraft($(this).data('app'),$(this).data('author'), formdata);
+            $('#saved').toggle( );
         });
    });
 });
@@ -77,7 +77,8 @@ function saveDraft(app_id, author_id, formdata)
 {
     categories = $("#app_appcategory_categories").val();
     formdata = formdata + '&app_id=' + escape(app_id) + '&author_id=' + escape(author_id) +'&app[appcategory][categories][]=' + escape(categories) ;
-    var params = JSON.parse('{"' + decodeURIComponent(formdata.replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
+    console.log(formdata);
+    var params = JSON.parse('{"' + decodeURIComponent(formdata.replace(/[+]/g, " ").replace(/&/g, "\",\"").replace(/=/g,"\":\"")) + '"}');
     console.log(params);
     $.ajax({
           type: "POST",
@@ -85,5 +86,8 @@ function saveDraft(app_id, author_id, formdata)
           data:  JSON.stringify(params), // the JSON data, as an object or string
           contentType: "application/json",
           dataType: "json",
+          success: function(response){
+            window.location.href = '/payments'
+          }
       });
 }

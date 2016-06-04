@@ -2,6 +2,9 @@ class PaymentsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => :create
   layout "step-form"
   def new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
@@ -29,7 +32,7 @@ class PaymentsController < ApplicationController
               $current_author = nil
 
               @author_email = current_author.email
-
+              # 
               SignupMail.perform_async(@author_email,$temp_pass)
               PaymentMail.perform_async(@author_email)
         end  

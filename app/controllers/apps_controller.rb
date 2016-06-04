@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   # protect_from_forgery 
   layout "step-form", only: [:customize]
-  before_filter :authenticate_author! ,:except => [:customize,:update]
+  before_filter :authenticate_author! ,:except => [:customize,:update, :save_draft]
   include CategoryHelper
   include PageHelper
 
@@ -183,7 +183,12 @@ class AppsController < ApplicationController
     @old_draft = AppDraft.find_by(app_id: params["app_id"],author_id: params["author_id"])
     if @old_draft.nil?
       @draft = AppDraft.new(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["file_path"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"] )
-      @draft.save
+        @draft.save   
+        respond_to do |format|
+          format.json{
+            render :json => {:status => :ok,:message => "Success!"}.to_json
+          }
+        end  
     else
       @old_draft.update(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["file_path"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"]  )
     end

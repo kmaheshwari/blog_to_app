@@ -1,14 +1,13 @@
 @import "bootstrap-sprockets";
-@import "bootstrap";
-@import "style";
-@import "font-awesome";
-@import "custom";
-@import "graph";
-@import "owl.carousel";
-@import "jquery-ui";	
+@import "bootstrap.min";
+@import "core";
+@import "components";
+@import "icons";
+@import "pages";
+@import "responsive";
+@import "bootstrap-theme.min";
+	
 @import "bootstrap-multiselect";
-
-
 /*
  *= require_self
 */

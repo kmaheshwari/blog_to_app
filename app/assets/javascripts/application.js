@@ -10,10 +10,9 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require jquery
+//= require jquery.min
 //= require jquery_ujs 
 //= require jquery.validate
-//= require jquery-ui
 //= require bootstrap-multiselect
 //= require_tree .
 //= require bootstrap-sprockets

@@ -2,65 +2,142 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="A fully featured admin theme which can be used to build CRM, CMS, etc.">
+    <meta name="author" content="Coderthemes">
+
+    <link rel="shortcut icon" href="assets/images/favicon_1.ico">
+
     <title>BlogToApp</title>
-    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= csrf_meta_tags %>
-    <%= javascript_include_tag 'application'%>  
+    <%= javascript_include_tag 'application'%>
   </head>
   <body>
 
+    <div class="animationload">
+        <div class="loader"></div>
+    </div>
 
-    <div class="login">
-      <h1><a href="">Blappr </a></h1>
-      <div class="login-bottom">
-        <h2>Login</h2>
+    <div class="account-pages"></div>
+    <div class="clearfix"></div>
 
-  <%= devise_error_messages! %>
+    <div class="container-alt">
+      <div class="row">
+        <div class="col-sm-10 col-sm-offset-1">
+          <div class="wrapper-page signup-signin-page">
+            <div class="card-box">
+              <div class="panel-heading">
+                <h3 class="text-center"> Welcome to <strong class="text-custom">Blappr</strong></h3>
+              </div>
+    
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-lg-6">
+                    <div class="p-20">
+                      <h4><b>Sign In</b></h4>
+                      <%= devise_error_messages! %>
+                      <%= form_for(resource, as: resource_name,:class=>"form-horizontal m-t-20" ,:validate=> true, url: session_path(resource_name),html: {id: "loginform"}) do |f| %>
+                        <div class="form-group ">
+                          <div class="col-xs-12">
+                            <%= f.text_field :email ,:class=> "form-control",:placeholder=>"Email" ,required:true%>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-xs-12">
+                            <%= f.password_field :password, autocomplete: "off",:class=>"form-control",required:true, :placeholder=>"Password" %>
+                          </div>
+                        </div>
 
 
-        <%= form_for(resource, as: resource_name,:validate=> true, url: session_path(resource_name),html: {id: "loginform"}) do |f| %>
+                      <div class="form-group ">
+                        <div class="col-xs-12">
+                          <div class="checkbox checkbox-primary">
+                            <% if devise_mapping.rememberable? %>
+                              <%= f.check_box :remember_me %>
+                              <%= f.label :remember_me ,required: true %>
+                            <% end %>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="form-group text-right m-t-20">
+                        <div class="col-xs-12">
+                          <button class="btn btn-pink text-uppercase waves-effect waves-light w-sm" type="submit">
+                            Log In
+                          </button>
+                        </div>
+                      </div>
+                      
+                      <div class="form-group m-t-20 m-b-0">
+                        <div class="col-sm-12 text-right">
+                          <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
+                            <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
+                          <% end %>
+                        </div>
+                      </div>
+                      <% end %>
+                    </div>
+                  </div>
+
+
+
+<% if flash[:notice] %>
+     
+     <div class="alert alert-danger"> 
+     <%= flash[:notice] %>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+        <span aria-hidden="true" style="color: #fff"><b>&times; </b> </span></button>
+
+     </div>
+
         
-          <div class="col-md-6">
-            
-            <div class="login-mail">
-            
-               <i class="fa fa-user"></i>
+<% end %>
 
-              <%= f.text_field :email %> 
+
+                  <div class="col-lg-6">
+                    <div class="p-20">
+                      <h4><b>Sign Up</b></h4>
+                      <%= form_for(resource, as: resource_name,:validate=> true,:class=> "form-horizontal m-t-20", url: registration_path(resource_name),html: { id: "basicform"}) do |f| %>
+                        <div class="form-group ">
+                          <div class="col-xs-12">
+                            <input class="form-control" type="email" required="" placeholder="Email" name="email">
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-xs-12">
+                            <input type="url" name="blog_url"  required="" id ="blog_url" class="form-control" type="email" required="" placeholder="Wordpress Website Url" value="http://" >
+                          </div>
+                        </div>
+                        <div class="field">
+                          <%= f.hidden_field :password, autocomplete: "off" ,:value=> $temp_pass %>
+                        </div>
+                        <div class="form-group">
+                          <div class="col-xs-12">
+                            <div class="checkbox checkbox-primary">
+                              <input id="checkbox-signup" type="checkbox" checked="checked">
+                              <label for="checkbox-signup">I accept <a href="#">Terms and Conditions</a></label>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="form-group text-right m-t-20 m-b-0">
+                          <div class="col-xs-12">
+                            <button class="btn btn-pink text-uppercase waves-effect waves-light w-sm" type="submit">
+                              Sign Up
+                            </button>
+                          </div>
+                        </div>
+                      <%end %>
+                </div>
+              </div>
+
+
+
+
             </div>
-
-
-            <div class="login-mail">
-                          <i class="fa fa-lock"></i>
-
-           <%= f.password_field :password, autocomplete: "off" %>
-            </div>
-
-            <% if devise_mapping.rememberable? %>
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me ,required: true %>
-            <% end %>
-            <br>
-            <% if devise_mapping.recoverable? && controller_name != 'passwords' && controller_name != 'registrations' %>
-                <%= link_to "Forgot your password?", new_password_path(resource_name) %><br />
-            <% end %>
           </div>
-          <div class="col-md-6 login-do">
-            <label class="hvr-shutter-in-horizontal login-sub">
-              <input type="submit" value="login">
-            </label>
-            <p>Do not have an account?</p>
-            <a href="sign_up" class="hvr-shutter-in-horizontal">Signup</a>
-          </div>
-          <div class="clearfix"> </div>
-        <%end %>
+        </div>
       </div>
     </div>
-    <div class="copy-right">
-      <p> &copy; 2016 Blappr. All Rights Reserved | Design by <a href="http://risemetric.com/" target="_blank">Risemetric </a> </p> 
-    </div>
   </body>
-</html>
+</html> 

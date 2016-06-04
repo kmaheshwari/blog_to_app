@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160603082701) do
+ActiveRecord::Schema.define(version: 20160604082406) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -88,6 +88,15 @@ ActiveRecord::Schema.define(version: 20160603082701) do
   add_index "authors", ["email"], name: "index_authors_on_email", unique: true, using: :btree
   add_index "authors", ["reset_password_token"], name: "index_authors_on_reset_password_token", unique: true, using: :btree
 
+  create_table "google_analytics", force: :cascade do |t|
+    t.string   "analytics_id"
+    t.integer  "app_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "google_analytics", ["app_id"], name: "index_google_analytics_on_app_id", using: :btree
+
   create_table "monetizes", force: :cascade do |t|
     t.string   "platform"
     t.integer  "phone_ad_unit"
@@ -117,9 +126,18 @@ ActiveRecord::Schema.define(version: 20160603082701) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "stripe_card_token"
+    t.string   "app_id"
+    t.string   "plan_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   add_foreign_key "appcategories", "apps"
   add_foreign_key "appcolours", "apps"
   add_foreign_key "apps", "authors"
+  add_foreign_key "google_analytics", "apps"
   add_foreign_key "monetizes", "apps"
   add_foreign_key "order_states", "authors"
   add_foreign_key "payments", "apps"

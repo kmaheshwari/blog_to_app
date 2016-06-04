@@ -6,4 +6,5 @@ class App < ActiveRecord::Base
 	accepts_nested_attributes_for :appcolour
     has_many :payments
     has_one :monetize
+    has_one :google_analytic
 end

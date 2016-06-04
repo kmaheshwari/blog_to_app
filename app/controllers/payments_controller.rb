@@ -22,13 +22,19 @@ class PaymentsController < ApplicationController
   @app_id=@app.id
   @pay=Payment.new(customer_id: @customer.id,amount:params[:amount],app_id: @app_id,status: @charge["status"])
 
-        if  @pay.save
-          sign_in $current_author
-          $current_author.update(author_active: true)
-          
-          PaymentMail.perform_async(current_author.email)
-        end
-        
+       if @pay.save 
+           if $current_author
+              sign_in $current_author
+              $current_author.update(author_active: true)
+              $current_author = nil
+
+              @author_email = current_author.email
+
+              SignupMail.perform_async(@author_email,$temp_pass)
+              PaymentMail.perform_async(@author_email)
+        end  
+        end    
+
         rescue Stripe::CardError => e
     flash[:error] = e.message
     redirect_to payment_fail_path

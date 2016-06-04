@@ -5,7 +5,7 @@ class SignupMail
 
 
 	def perform(author_email,temp_pass)
-
+      
 		@temp_pass    = temp_pass
         @author_email = author_email
     

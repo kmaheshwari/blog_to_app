@@ -103,6 +103,14 @@ ActiveRecord::Schema.define(version: 20160603081854) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "subscriptions", force: :cascade do |t|
+    t.string   "stripe_card_token"
+    t.string   "app_id"
+    t.string   "plan_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
   add_foreign_key "appcategories", "apps"
   add_foreign_key "appcolours", "apps"
   add_foreign_key "apps", "authors"

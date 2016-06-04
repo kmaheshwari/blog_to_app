@@ -1,11 +1,11 @@
 class Authors::RegistrationsController < Devise::RegistrationsController
 # before_action :configure_sign_up_params, only: [:create]
 # before_action :configure_account_update_params, only: [:update]
-layout "step-form"
+layout "step-form", except: [:edit]
 
 before_action :set_pass, only: [:new]
 
-layout "application", only: [:edit]
+# layout "application", only: [:edit]
 
 
   # GET /resource/sign_up

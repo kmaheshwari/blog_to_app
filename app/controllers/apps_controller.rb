@@ -104,6 +104,20 @@ class AppsController < ApplicationController
   end
 
   def analytics
+    @app=App.find_by(author_id: current_author.id)
+    @analytics=@app.google_analytic
+  end  
+
+  def get_analytics
+    @app=App.find_by(author_id: current_author.id)
+    if @app.google_analytic.nil?
+      @new_analytic=GoogleAnalytic.new(analytics_id: params["analytics_id"], app_id: @app.id)    
+      @new_analytic.save
+    else  
+      @analytics=@app.google_analytic
+      @analytics.update(analytics_id: params["analytics_id"])
+    end  
+    redirect_to root_path
   end  
 
   def customize
@@ -125,8 +139,7 @@ class AppsController < ApplicationController
   end
 
   def get_monetize
-    @app_id = App.find_by(app_name: params["app_name"]).id
-    @app=App.find(@app_id)
+    @app= App.find_by(app_name: params["app_name"])
     if @app.monetize.nil?
       @new_monetize=Monetize.new(platform: params["platform"],phone_ad_unit: params["phone_ad_unit"],add_unit_id: params["add_unit_id"],interval: params["interval"],app_id: @app.id)
       @new_monetize.save

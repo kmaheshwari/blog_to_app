@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  analytics_id: MyString
+  app_id: 
+
+two:
+  analytics_id: MyString
+  app_id: 

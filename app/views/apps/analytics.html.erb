@@ -6,11 +6,12 @@
     <hr>
     <div class="row">
       <div class="col-md-8">
-        <form class="form-horizontal">
+        <form class="form-horizontal" action="get_analytics" method="POST">
+          <input type='hidden' name='authenticity_token' value='" + token + "'>
           <div class="form-group">
             <label for="inputEmail3" class="col-sm-2 control-label hor-form">Analytics ID</label>
             <div class="col-sm-10">
-              <input type="email" class="form-control" id="inputEmail3" placeholder="UA-XXXXXXXX-X">
+              <input type="text" class="form-control" name="analytics_id" id="inputEmail3" placeholder="UA-XXXXXXXX-X" value="<%= @analytics.analytics_id if !@analytics.nil? %>">
             </div>
           </div>
           <div class="form-group">

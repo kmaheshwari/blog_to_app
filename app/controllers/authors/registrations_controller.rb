@@ -102,7 +102,6 @@ end  #create ends
 
 
    def edit
-    ResetPassword.perform_async(current_author.email)
 
     super
   end
@@ -117,7 +116,11 @@ end  #create ends
 
 end  #class ends
 
+def update
+super
+    ResetPassword.perform_async(current_author.email)
 
+end
 
   # GET /resource/edit
   

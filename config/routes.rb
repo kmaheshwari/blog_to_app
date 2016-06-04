@@ -13,6 +13,7 @@ Rails.application.routes.draw do
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
   get '/analytics' => 'apps#analytics'
+  post '/get_analytics' => 'apps#get_analytics'
   get '/customize' => 'apps#customize'
   get '/faq' => 'apps#faq'
   get '/monetize' => 'apps#monetize'

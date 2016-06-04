@@ -29,7 +29,7 @@ class PaymentsController < ApplicationController
               $current_author = nil
 
               @author_email = current_author.email
-
+              # 
               SignupMail.perform_async(@author_email,$temp_pass)
               PaymentMail.perform_async(@author_email)
         end  

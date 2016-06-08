@@ -100,12 +100,14 @@ end  #create ends
     end
   end
 
+def update
+  
+  super
 
-   def edit
-
-    super
-  end
- 
+  if params[:author][:current_password] and params[:author][:password] == params[:author][:password_confirmation]       
+     ResetPassword.perform_async(current_author.email)
+   end
+end
   private
  
   def sign_up_params
@@ -114,13 +116,11 @@ end  #create ends
     params.require(resource_name).permit(allow)
   end 
 
+
 end  #class ends
+  
+  
 
-def update
-super
-    ResetPassword.perform_async(current_author.email)
-
-end
 
   # GET /resource/edit
   

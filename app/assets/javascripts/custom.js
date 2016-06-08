@@ -47,6 +47,9 @@ $(function(){
             saveDraft($(this).data('app'),$(this).data('author'), formdata);
             $('#saved').toggle( );
         });
+        $(document).on("click", "#see_preview", function(){
+            seePreview();
+        });
    });
 });
 function loadColour(){
@@ -88,6 +91,22 @@ function saveDraft(app_id, author_id, formdata)
           dataType: "json",
           success: function(response){
             window.location.href = '/payments'
+          }
+      });
+}
+function seePreview()
+{
+    $.ajax({
+          type: "POST",
+          url: '/emulator',
+          contentType: "application/json",
+          dataType: "json",
+          success: function(response){
+            console.log('here');
+            console.log(response);
+          },
+          error: function(response){
+            console.log(response);
           }
       });
 }

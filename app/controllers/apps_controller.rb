@@ -2,7 +2,7 @@ class AppsController < ApplicationController
   before_action :set_app, only: [:show, :edit, :update, :destroy]
   # protect_from_forgery 
   layout "step-form", only: [:customize]
-  before_filter :authenticate_author! ,:except => [:customize,:update, :save_draft]
+  before_filter :authenticate_author! ,:except => [:customize,:update, :save_draft,:emulator]
   include CategoryHelper
   include PageHelper
 
@@ -157,10 +157,7 @@ class AppsController < ApplicationController
   def all_notification
   end
 
-  
-
-  def support
-    
+  def support 
   end
 
   # check if url is a wordpress blog: returns true for wordpress blog
@@ -193,6 +190,18 @@ class AppsController < ApplicationController
       @old_draft.update(app_id: params[:app_id], author_id: params[:author_id],app_icon: params["file_path"], app_name: params["app[app_name]"],about_us: params["app[about_us]"], accent_colour: params["app[appcolour_attributes][accent_colour]"], article_colour: params["app[appcolour_attributes][article_colour]"], article_writer_colour: params["app[appcolour_attributes][article_writer_colour]"], brand_colour: params["app[appcolour_attributes][brand_colour]"], top_bar_colour: params["app[appcolour_attributes][top_bar_colour]"], privacy_policy: params["app[privacy_policy]"], contact_email: params["app[contact_email]"],categories: params["app[appcategory][categories][]"]  )
     end
   end 
+
+  def emulator
+    @urlstring_to_post = 'https://tok_fyq9wgjq8ep7yc7h1nkwy6xy8w@api.appetize.io/v1/apps'
+    @result = HTTParty.post(@urlstring_to_post.to_str,:body => { :file => '@app-release.apk', :platform => 'android'}.to_json,
+    :headers => { 'Content-Type' => 'application/json' } )
+    respond_to do |format|
+          format.json{
+            render :json => {:status => :ok,:message => "Success!"}.to_json
+          }
+        end  
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_app

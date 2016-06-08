@@ -75,12 +75,13 @@
                 <%= f.select :about_us,"<option selected disabled>No Pages To Show</option>".html_safe,{},{class: "form-control1 placeholder"}%>
               <% else %>
                 <%= f.select :about_us, options_for_select(@pages.collect {|c| [ c['title'] ] }),{},{class: "form-control1 placeholder"}%>
+                  <%if not @app_draft.nil? %>
+                  <script type="text/javascript">
+                    $('#app_about_us').val('<%= @app_draft.about_us%>'); 
+                  </script>
+                <%end%>
               <% end %>
-              <%if not @app_draft.nil? %>
-              <script type="text/javascript">
-                $('#about_us').val('<%= @app_draft.about_us%>'); 
-              </script>
-            <%end%>
+              
             </div>
           </div>
 
@@ -91,13 +92,13 @@
                 <%= f.select :privacy_policy,"<option selected disabled>No Pages To Show</option>".html_safe,{},{class: "form-control1 placeholder"}%>
               <% else %>
                 <%= f.select :privacy_policy, options_for_select(@pages.collect {|c| [ c['title'] ] }),{},{class: "form-control1 placeholder"}%>
+                <%if not @app_draft.nil? %>
+                  <script type="text/javascript">
+                    $('#app_privacy_policy').val('<%= @app_draft.privacy_policy%>'); 
+                  </script>
+                <%end%>
               <% end %>
-            <%if not @app_draft.nil? %>
-              <script type="text/javascript">
-                $('#privacy_policy').val('<%= @app_draft.privacy_policy%>'); 
-              </script>
-            <%end%>
-
+            
             </div>
           </div>
 
@@ -190,6 +191,11 @@
       </div>      
       <!-- col-md-6 end -->
       <%= render "phone" %>
+      <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+          <button type="button" class="btn btn-default" id="see_preview" >See Preview</button>
+        </div>
+      </div>
     </div>
     <!-- row ends -->
     <br><br><br>

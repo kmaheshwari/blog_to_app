@@ -16,6 +16,7 @@ layout :false
     super
   end
 
+
   protected
 
   # If you have extra params to permit, append them to the sanitizer.

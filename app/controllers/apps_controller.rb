@@ -17,6 +17,22 @@ class AppsController < ApplicationController
   def show
   end
 
+  def file_maker
+      require 'json'
+
+      @author = Author.find(1).id
+
+      path = "/home/rajiv/#{@author}.json"
+
+      content = Author.find(1).email
+      File.open(path, "w+") do |f|
+        f.write(content.to_json)
+
+      end
+       redirect_to root_path
+  end
+
+
   # GET /apps/new
   def new
     end

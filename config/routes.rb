@@ -10,6 +10,8 @@ Rails.application.routes.draw do
 
   get '/posts' => 'apps#posts'
 
+  get '/file_maker' => "apps#file_maker"
+ 
   get '/new_notification' => 'apps#push_notification'
   get '/all_notification' => 'apps#all_notification'
   get '/analytics' => 'apps#analytics'
